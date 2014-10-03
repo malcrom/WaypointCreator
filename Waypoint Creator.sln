@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C# Express 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waypoint Creator", "Waypoint Creator\Waypoint Creator.csproj", "{B2FB6C0C-20E1-40E7-9C63-7B0B5D7FBDBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2FB6C0C-20E1-40E7-9C63-7B0B5D7FBDBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2FB6C0C-20E1-40E7-9C63-7B0B5D7FBDBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2FB6C0C-20E1-40E7-9C63-7B0B5D7FBDBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2FB6C0C-20E1-40E7-9C63-7B0B5D7FBDBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

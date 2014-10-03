@@ -1,0 +1,24 @@
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\obj\Debug\Waypoint Creator.csproj.GenerateResource.Cache
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\bin\Debug\Waypoint Creator.exe.config
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\bin\Debug\Waypoint Creator.exe
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\bin\Debug\Waypoint Creator.pdb
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\bin\Debug\MySql.Data.dll
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\obj\Debug\Waypoint Creator.exe
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\obj\Debug\Waypoint Creator.pdb
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\obj\Debug\Frm_waypoint.Frm_waypoint.resources
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\obj\Debug\Frm_waypoint.Frm_login.resources
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\obj\Debug\Frm_waypoint.Properties.Resources.resources
+C:\Users\Troy\Desktop\Waypoint Creator Sharp\Waypoint Creator\obj\Debug\Frm_waypoint.Frm_settings.resources
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\bin\Debug\Waypoint Creator.exe.config
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.exe
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.pdb
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\bin\Debug\Waypoint Creator.exe
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\bin\Debug\Waypoint Creator.pdb
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\bin\Debug\MySql.Data.dll
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.frm_Settings.resources
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.frm_Waypoint.resources
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.frm_Login.resources
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.Properties.Resources.resources
+C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.csproj.GenerateResource.Cache
