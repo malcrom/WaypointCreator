@@ -29,20 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Waypoint));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabOutput = new System.Windows.Forms.TabPage();
             this.txtOutput = new System.Windows.Forms.TextBox();
+            this.toolStripSQL = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
             this.tabEditor = new System.Windows.Forms.TabPage();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.listBox = new System.Windows.Forms.ListBox();
@@ -56,9 +58,12 @@
             this.gridColumn_delay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteAboveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteBelowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.createSQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripEdit = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripTextBoxEntry = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButtonLoadSniff = new System.Windows.Forms.ToolStripButton();
@@ -67,12 +72,14 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tab_Waypoint = new System.Windows.Forms.TabControl();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.tabOutput.SuspendLayout();
+            this.toolStripSQL.SuspendLayout();
             this.tabEditor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridWaypoint)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
-            this.toolStrip.SuspendLayout();
+            this.toolStripEdit.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.tab_Waypoint.SuspendLayout();
             this.SuspendLayout();
@@ -84,6 +91,7 @@
             // tabOutput
             // 
             this.tabOutput.Controls.Add(this.txtOutput);
+            this.tabOutput.Controls.Add(this.toolStripSQL);
             this.tabOutput.Location = new System.Drawing.Point(4, 22);
             this.tabOutput.Name = "tabOutput";
             this.tabOutput.Padding = new System.Windows.Forms.Padding(3);
@@ -95,18 +103,42 @@
             // txtOutput
             // 
             this.txtOutput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtOutput.Location = new System.Drawing.Point(3, 3);
+            this.txtOutput.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOutput.Location = new System.Drawing.Point(3, 28);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(1306, 688);
+            this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtOutput.Size = new System.Drawing.Size(1306, 663);
             this.txtOutput.TabIndex = 0;
+            this.txtOutput.WordWrap = false;
+            // 
+            // toolStripSQL
+            // 
+            this.toolStripSQL.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonSave});
+            this.toolStripSQL.Location = new System.Drawing.Point(3, 3);
+            this.toolStripSQL.Name = "toolStripSQL";
+            this.toolStripSQL.Size = new System.Drawing.Size(1306, 25);
+            this.toolStripSQL.TabIndex = 1;
+            this.toolStripSQL.Text = "toolStrip1";
+            // 
+            // toolStripButtonSave
+            // 
+            this.toolStripButtonSave.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSave.Image")));
+            this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSave.Name = "toolStripButtonSave";
+            this.toolStripButtonSave.Size = new System.Drawing.Size(75, 22);
+            this.toolStripButtonSave.Text = "Write SQL";
+            this.toolStripButtonSave.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.toolStripButtonSave.Click += new System.EventHandler(this.toolStripButtonSave_Click);
             // 
             // tabEditor
             // 
             this.tabEditor.Controls.Add(this.chart);
             this.tabEditor.Controls.Add(this.listBox);
             this.tabEditor.Controls.Add(this.gridWaypoint);
-            this.tabEditor.Controls.Add(this.toolStrip);
+            this.tabEditor.Controls.Add(this.toolStripEdit);
             this.tabEditor.Controls.Add(this.statusStrip);
             this.tabEditor.Location = new System.Drawing.Point(4, 22);
             this.tabEditor.Name = "tabEditor";
@@ -122,87 +154,87 @@
             this.chart.BorderSkin.BackColor = System.Drawing.Color.Transparent;
             this.chart.BorderSkin.BorderColor = System.Drawing.Color.Transparent;
             this.chart.BorderSkin.BorderWidth = 0;
-            chartArea2.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
-            chartArea2.AxisX.IsReversed = true;
-            chartArea2.AxisX.IsStartedFromZero = false;
-            chartArea2.AxisX.LabelStyle.ForeColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.MajorGrid.Enabled = false;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.MajorTickMark.Enabled = false;
-            chartArea2.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.MinorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.MinorTickMark.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.MinorTickMark.TickMarkStyle = System.Windows.Forms.DataVisualization.Charting.TickMarkStyle.None;
-            chartArea2.AxisX.ScaleBreakStyle.Enabled = true;
-            chartArea2.AxisX.ScaleBreakStyle.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.ScrollBar.ButtonColor = System.Drawing.Color.Silver;
-            chartArea2.AxisX.ScrollBar.LineColor = System.Drawing.Color.Black;
-            chartArea2.AxisX.TitleForeColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX2.MajorGrid.Enabled = false;
-            chartArea2.AxisX2.MajorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX2.MajorTickMark.Enabled = false;
-            chartArea2.AxisX2.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX2.MinorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea2.AxisY.IsStartedFromZero = false;
-            chartArea2.AxisY.LabelStyle.Enabled = false;
-            chartArea2.AxisY.LabelStyle.IsEndLabelVisible = false;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.MajorGrid.Enabled = false;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.MajorTickMark.Enabled = false;
-            chartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.MinorTickMark.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.MinorTickMark.TickMarkStyle = System.Windows.Forms.DataVisualization.Charting.TickMarkStyle.None;
-            chartArea2.AxisY.ScaleBreakStyle.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.ScrollBar.ButtonColor = System.Drawing.Color.Silver;
-            chartArea2.AxisY.ScrollBar.LineColor = System.Drawing.Color.Black;
-            chartArea2.AxisY.TitleForeColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY2.MajorGrid.Enabled = false;
-            chartArea2.AxisY2.MajorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY2.MajorTickMark.Enabled = false;
-            chartArea2.AxisY2.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY2.MinorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY2.MinorTickMark.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.BorderColor = System.Drawing.Color.Transparent;
-            chartArea2.CursorX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.CursorX.IsUserEnabled = true;
-            chartArea2.CursorX.IsUserSelectionEnabled = true;
-            chartArea2.CursorX.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            chartArea2.CursorY.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.CursorY.IsUserEnabled = true;
-            chartArea2.CursorY.IsUserSelectionEnabled = true;
-            chartArea2.CursorY.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
+            chartArea3.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+            chartArea3.AxisX.IsReversed = true;
+            chartArea3.AxisX.IsStartedFromZero = false;
+            chartArea3.AxisX.LabelStyle.ForeColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX.MajorGrid.Enabled = false;
+            chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX.MajorTickMark.Enabled = false;
+            chartArea3.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX.MinorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX.MinorTickMark.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX.MinorTickMark.TickMarkStyle = System.Windows.Forms.DataVisualization.Charting.TickMarkStyle.None;
+            chartArea3.AxisX.ScaleBreakStyle.Enabled = true;
+            chartArea3.AxisX.ScaleBreakStyle.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX.ScrollBar.ButtonColor = System.Drawing.Color.Silver;
+            chartArea3.AxisX.ScrollBar.LineColor = System.Drawing.Color.Black;
+            chartArea3.AxisX.TitleForeColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX2.MajorGrid.Enabled = false;
+            chartArea3.AxisX2.MajorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX2.MajorTickMark.Enabled = false;
+            chartArea3.AxisX2.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX2.MinorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea3.AxisY.IsStartedFromZero = false;
+            chartArea3.AxisY.LabelStyle.Enabled = false;
+            chartArea3.AxisY.LabelStyle.IsEndLabelVisible = false;
+            chartArea3.AxisY.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.MajorGrid.Enabled = false;
+            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.MajorTickMark.Enabled = false;
+            chartArea3.AxisY.MinorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.MinorTickMark.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.MinorTickMark.TickMarkStyle = System.Windows.Forms.DataVisualization.Charting.TickMarkStyle.None;
+            chartArea3.AxisY.ScaleBreakStyle.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.ScrollBar.ButtonColor = System.Drawing.Color.Silver;
+            chartArea3.AxisY.ScrollBar.LineColor = System.Drawing.Color.Black;
+            chartArea3.AxisY.TitleForeColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY2.MajorGrid.Enabled = false;
+            chartArea3.AxisY2.MajorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY2.MajorTickMark.Enabled = false;
+            chartArea3.AxisY2.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY2.MinorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY2.MinorTickMark.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.BorderColor = System.Drawing.Color.Transparent;
+            chartArea3.CursorX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea3.CursorX.IsUserEnabled = true;
+            chartArea3.CursorX.IsUserSelectionEnabled = true;
+            chartArea3.CursorX.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            chartArea3.CursorY.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea3.CursorY.IsUserEnabled = true;
+            chartArea3.CursorY.IsUserSelectionEnabled = true;
+            chartArea3.CursorY.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            chartArea3.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea3);
             this.chart.Dock = System.Windows.Forms.DockStyle.Left;
-            legend2.Enabled = false;
-            legend2.ForeColor = System.Drawing.Color.Transparent;
-            legend2.HeaderSeparatorColor = System.Drawing.Color.Transparent;
-            legend2.ItemColumnSeparatorColor = System.Drawing.Color.Transparent;
-            legend2.Name = "Legend1";
-            legend2.TitleForeColor = System.Drawing.Color.Transparent;
-            legend2.TitleSeparatorColor = System.Drawing.Color.Transparent;
-            this.chart.Legends.Add(legend2);
+            legend3.Enabled = false;
+            legend3.ForeColor = System.Drawing.Color.Transparent;
+            legend3.HeaderSeparatorColor = System.Drawing.Color.Transparent;
+            legend3.ItemColumnSeparatorColor = System.Drawing.Color.Transparent;
+            legend3.Name = "Legend1";
+            legend3.TitleForeColor = System.Drawing.Color.Transparent;
+            legend3.TitleSeparatorColor = System.Drawing.Color.Transparent;
+            this.chart.Legends.Add(legend3);
             this.chart.Location = new System.Drawing.Point(3, 28);
             this.chart.Name = "chart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series2.Color = System.Drawing.Color.Red;
-            series2.Legend = "Legend1";
-            series2.Name = "Path";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.chart.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series3.Color = System.Drawing.Color.Red;
+            series3.Legend = "Legend1";
+            series3.Name = "Path";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.chart.Series.Add(series3);
             this.chart.Size = new System.Drawing.Size(695, 663);
             this.chart.TabIndex = 25;
             this.chart.Text = "Waypoints";
-            title2.DockedToChartArea = "ChartArea1";
-            title2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.Name = "Path";
-            title2.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            this.chart.Titles.Add(title2);
+            title3.DockedToChartArea = "ChartArea1";
+            title3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Path";
+            title3.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            this.chart.Titles.Add(title3);
             // 
             // listBox
             // 
@@ -219,18 +251,18 @@
             this.gridWaypoint.AllowUserToDeleteRows = false;
             this.gridWaypoint.AllowUserToResizeColumns = false;
             this.gridWaypoint.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.NullValue = null;
-            this.gridWaypoint.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.NullValue = null;
+            this.gridWaypoint.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridWaypoint.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.NullValue = null;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridWaypoint.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridWaypoint.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridWaypoint.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridWaypoint.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gridColumn_no,
@@ -241,22 +273,22 @@
             this.gridColumn_time,
             this.gridColumn_delay});
             this.gridWaypoint.ContextMenuStrip = this.contextMenuStrip;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.NullValue = null;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridWaypoint.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.NullValue = null;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridWaypoint.DefaultCellStyle = dataGridViewCellStyle13;
             this.gridWaypoint.Dock = System.Windows.Forms.DockStyle.Right;
             this.gridWaypoint.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.gridWaypoint.Location = new System.Drawing.Point(850, 28);
             this.gridWaypoint.Name = "gridWaypoint";
             this.gridWaypoint.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridWaypoint.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridWaypoint.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.gridWaypoint.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridWaypoint.ShowEditingIcon = false;
             this.gridWaypoint.Size = new System.Drawing.Size(459, 663);
@@ -272,8 +304,8 @@
             // 
             // gridColumn_x
             // 
-            dataGridViewCellStyle9.NullValue = null;
-            this.gridColumn_x.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.NullValue = null;
+            this.gridColumn_x.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridColumn_x.HeaderText = "x";
             this.gridColumn_x.MaxInputLength = 25;
             this.gridColumn_x.Name = "gridColumn_x";
@@ -282,8 +314,8 @@
             // 
             // gridColumn_y
             // 
-            dataGridViewCellStyle10.NullValue = null;
-            this.gridColumn_y.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.NullValue = null;
+            this.gridColumn_y.DefaultCellStyle = dataGridViewCellStyle6;
             this.gridColumn_y.HeaderText = "y";
             this.gridColumn_y.Name = "gridColumn_y";
             this.gridColumn_y.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -319,43 +351,67 @@
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cutToolStripMenuItem,
+            this.copyToolStripMenuItem,
+            this.pasteAboveToolStripMenuItem,
+            this.pasteBelowToolStripMenuItem,
             this.toolStripSeparator,
             this.createSQLToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(130, 54);
+            this.contextMenuStrip.Size = new System.Drawing.Size(136, 120);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // pasteAboveToolStripMenuItem
+            // 
+            this.pasteAboveToolStripMenuItem.Name = "pasteAboveToolStripMenuItem";
+            this.pasteAboveToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.pasteAboveToolStripMenuItem.Text = "Paste Above";
+            this.pasteAboveToolStripMenuItem.Click += new System.EventHandler(this.pasteAboveToolStripMenuItem_Click);
+            // 
+            // pasteBelowToolStripMenuItem
+            // 
+            this.pasteBelowToolStripMenuItem.Name = "pasteBelowToolStripMenuItem";
+            this.pasteBelowToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.pasteBelowToolStripMenuItem.Text = "Paste Below";
+            this.pasteBelowToolStripMenuItem.Click += new System.EventHandler(this.pasteBelowToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(126, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(132, 6);
             // 
             // createSQLToolStripMenuItem
             // 
             this.createSQLToolStripMenuItem.Name = "createSQLToolStripMenuItem";
-            this.createSQLToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.createSQLToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.createSQLToolStripMenuItem.Text = "Create SQL";
             this.createSQLToolStripMenuItem.Click += new System.EventHandler(this.createSQLToolStripMenuItem_Click);
             // 
-            // toolStrip
+            // toolStripEdit
             // 
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonSearch,
             this.toolStripTextBoxEntry,
             this.toolStripButtonLoadSniff,
             this.toolStripSeparator1,
             this.toolStripButtonSettings});
-            this.toolStrip.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1306, 25);
-            this.toolStrip.TabIndex = 23;
-            this.toolStrip.Text = "toolStrip1";
+            this.toolStripEdit.Location = new System.Drawing.Point(3, 3);
+            this.toolStripEdit.Name = "toolStripEdit";
+            this.toolStripEdit.Size = new System.Drawing.Size(1306, 25);
+            this.toolStripEdit.TabIndex = 23;
+            this.toolStripEdit.Text = "toolStrip1";
             // 
             // toolStripButtonSearch
             // 
@@ -446,13 +502,15 @@
             this.Load += new System.EventHandler(this.Frm_waypoint_Load);
             this.tabOutput.ResumeLayout(false);
             this.tabOutput.PerformLayout();
+            this.toolStripSQL.ResumeLayout(false);
+            this.toolStripSQL.PerformLayout();
             this.tabEditor.ResumeLayout(false);
             this.tabEditor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridWaypoint)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
+            this.toolStripEdit.ResumeLayout(false);
+            this.toolStripEdit.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.tab_Waypoint.ResumeLayout(false);
@@ -469,7 +527,7 @@
         internal System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.ListBox listBox;
         internal System.Windows.Forms.DataGridView gridWaypoint;
-        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStrip toolStripEdit;
         private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxEntry;
         private System.Windows.Forms.ToolStripButton toolStripButtonLoadSniff;
@@ -489,6 +547,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gridColumn_o;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridColumn_time;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridColumn_delay;
+        private System.Windows.Forms.ToolStrip toolStripSQL;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSave;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteAboveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteBelowToolStripMenuItem;
 
     }
 }

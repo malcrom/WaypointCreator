@@ -16,7 +16,8 @@ namespace Frm_waypoint
     {
         static DataTable waypoints = new DataTable();
         static DataTable guids = new DataTable();
-        static DataTable movepackets = new DataTable();
+        static DataTable movePackets = new DataTable();
+        static DataTable copiedRows = new DataTable();
 
         string creature_guid  = "";
         string creature_entry = "";
@@ -37,6 +38,63 @@ namespace Frm_waypoint
         private void Frm_waypoint_FormClosing(object sender, FormClosingEventArgs e)
         {
             System.Environment.Exit(1);
+        }
+
+        private void toolStripButtonLoadSniff_Click(object sender, EventArgs e)
+        {
+            object boolresult = null;
+            openFileDialog.Title = "Open File";
+            openFileDialog.Filter = "Monster Move File (*.csv)|*.csv";
+            openFileDialog.FileName = "*.csv";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.ShowReadOnly = false;
+            openFileDialog.Multiselect = false;
+            openFileDialog.CheckFileExists = true;
+            boolresult = openFileDialog.ShowDialog();
+            if (Convert.ToInt16(boolresult) == 2)
+            {
+                // This code runs if the dialog was cancelled
+                return;
+            }
+            else
+            {
+                LoadFileIntoDatatable(openFileDialog.FileName);
+                toolStripTextBoxEntry.Enabled = true;
+                toolStripButtonSearch.Enabled = true;
+                toolStripStatusLabel.Text = openFileDialog.FileName + " is selected for parsing.";
+            }
+        }
+
+        private void toolStripButtonSave_Click(object sender, EventArgs e)
+        {
+            object boolresult = null;
+            saveFileDialog.Title = "Save File";
+            saveFileDialog.Filter = "Path Insert SQL (*.sql)|*.sql";
+            saveFileDialog.FileName = "";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.CheckFileExists = false;
+            boolresult = saveFileDialog.ShowDialog();
+            if (Convert.ToInt16(boolresult) == 2)
+            {
+                // This code runs if the dialog was cancelled
+                return;
+            }
+            else
+            {
+                using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                {
+                    using (StreamWriter sw = new StreamWriter(fs))
+                    {
+                        foreach (string line in txtOutput.Lines)
+                            sw.Write(line + sw.NewLine);
+
+                        sw.Close();
+
+                        MessageBox.Show("SQL Pathing Inserts written to file " + saveFileDialog.FileName, "SQL Written to file", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    }
+                }
+
+            }
         }
 
         private void toolStripButtonSearch_Click(object sender, EventArgs e)
@@ -60,39 +118,57 @@ namespace Frm_waypoint
             }
         }
 
-        private void toolStripButtonLoadSniff_Click(object sender, EventArgs e)
+        private void toolStripButtonSettings_Click(object sender, EventArgs e)
         {
-            object boolresult = null;
-            openFileDialog.Title = "Open Files";
-            openFileDialog.Filter = "Monster Move File (*.csv)|*.csv";
-            openFileDialog.FileName = "*.csv";
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.ShowReadOnly = false;
-            openFileDialog.Multiselect = false;
-            openFileDialog.CheckFileExists = true;
-            boolresult = openFileDialog.ShowDialog();
-            if (Convert.ToInt16(boolresult) == 2)
-            {
-                // This code runs if the dialog was cancelled
-                return;
-            }
-            else
-            {
-                LoadFileIntoDatatable(openFileDialog.FileName);
-                toolStripTextBoxEntry.Enabled = true;
-                toolStripButtonSearch.Enabled = true;
-                toolStripStatusLabel.Text = openFileDialog.FileName + " is selected for parsing.";
-            }
+            // Show Settings dialog
+            System.Windows.Forms.Form Frm_settings = new frm_Settings();
+            Frm_settings.ShowDialog();
+            GraphPath();
         }
 
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            // On guid select fill grid and graph.
             FillGrid();
             GraphPath();
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Cut selected fields from grid.
+            CopyFromGrid();
+            CutFromGrid();
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Copy selected fields from grid.
+            CopyFromGrid();
+        }
+
+        private void pasteAboveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Paste cut or copied data into grid above selected row.
+            PasteToGrid(true);
+        }
+
+        private void pasteBelowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Paste cut or copied data into grid below selected row.
+            PasteToGrid(false);
+        }
+
+        private void createSQLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.TDB)
+                createSQL_TDB();
+            if (Properties.Settings.Default.UDB)
+                createSQL_UDB();
+        }
+
+        private void CutFromGrid()
+        {
+            // Cut selected fields from grid.
             if (gridWaypoint.SelectedRows.Count == gridWaypoint.Rows.Count)
             {
                 gridWaypoint.Rows.Clear();
@@ -105,22 +181,18 @@ namespace Frm_waypoint
             {
                 gridWaypoint[0, l].Value = l + 1;
             }
+
             GraphPath();
         }
 
-        private void createSQLToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CopyFromGrid()
         {
-            if (Properties.Settings.Default.TDB)
-                createSQL_TDB();
-            if (Properties.Settings.Default.UDB)
-                createSQL_UDB();
+
         }
 
-        private void toolStripButtonSettings_Click(object sender, EventArgs e)
+        private void PasteToGrid(bool above)
         {
-            System.Windows.Forms.Form Frm_settings = new frm_Settings();
-            Frm_settings.ShowDialog();
-            GraphPath();
+
         }
 
         public DataTable GetDataSourceFromFile(string fileName)
@@ -174,27 +246,27 @@ namespace Frm_waypoint
         public void FillGrid()
         {
             creature_guid = (string)listBox.SelectedItem;
-            movepackets = waypoints.Clone();
+            movePackets = waypoints.Clone();
 
             foreach (DataRow row in waypoints.Rows)
             {
                 if (row.Field<string>(1) == creature_guid)
-                    movepackets.ImportRow(row);
+                    movePackets.ImportRow(row);
             }
 
-            creature_entry = movepackets.Rows[0].Field<string>(0);
+            creature_entry = movePackets.Rows[0].Field<string>(0);
 
             gridWaypoint.Rows.Clear();
-            for (var l = 0; l < movepackets.Rows.Count; l++)
+            for (var l = 0; l < movePackets.Rows.Count; l++)
             {
                 gridWaypoint.Rows.Add();
                 gridWaypoint[0, gridWaypoint.RowCount - 1].Value = l + 1;
                 for (var ll = 1; ll < 6; ll++)
-                gridWaypoint[1, gridWaypoint.RowCount - 1].Value = movepackets.Rows[l].Field<string>(2);
-                gridWaypoint[2, gridWaypoint.RowCount - 1].Value = movepackets.Rows[l].Field<string>(3);
-                gridWaypoint[3, gridWaypoint.RowCount - 1].Value = movepackets.Rows[l].Field<string>(4);
-                gridWaypoint[4, gridWaypoint.RowCount - 1].Value = movepackets.Rows[l].Field<string>(5);
-                gridWaypoint[5, gridWaypoint.RowCount - 1].Value = movepackets.Rows[l].Field<string>(6);
+                gridWaypoint[1, gridWaypoint.RowCount - 1].Value = movePackets.Rows[l].Field<string>(2);
+                gridWaypoint[2, gridWaypoint.RowCount - 1].Value = movePackets.Rows[l].Field<string>(3);
+                gridWaypoint[3, gridWaypoint.RowCount - 1].Value = movePackets.Rows[l].Field<string>(4);
+                gridWaypoint[4, gridWaypoint.RowCount - 1].Value = movePackets.Rows[l].Field<string>(5);
+                gridWaypoint[5, gridWaypoint.RowCount - 1].Value = movePackets.Rows[l].Field<string>(6);
                 gridWaypoint[6, gridWaypoint.RowCount - 1].Value = "";
             }
         }
@@ -308,8 +380,9 @@ namespace Frm_waypoint
                     SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0);" + "\r\n";
                 }
             }
-                SQLtext = SQLtext + "-- " + (string)listBox.SelectedItem + " .go " + Convert.ToString(gridWaypoint[1, 0].Value) + " " + Convert.ToString(gridWaypoint[2, 0].Value) + " " + Convert.ToString(gridWaypoint[3, 0].Value) + "\r\n";
-                txtOutput.Text = txtOutput.Text + SQLtext + "\r\n";
+                
+            SQLtext = SQLtext + "-- " + (string)listBox.SelectedItem + " .go " + Convert.ToString(gridWaypoint[1, 0].Value) + " " + Convert.ToString(gridWaypoint[2, 0].Value) + " " + Convert.ToString(gridWaypoint[3, 0].Value) + "\r\n";
+            txtOutput.Text = txtOutput.Text + SQLtext + "\r\n";
         }
 
         private void createSQL_UDB()
@@ -346,6 +419,7 @@ namespace Frm_waypoint
                     SQLtext = SQLtext + waittime + ",0,0,0,0,0,0,0,0,0," + facing + ",0,0);" + "\r\n";
                 }
             }
+
             SQLtext = SQLtext + "-- " + (string)listBox.SelectedItem + " .go " + Convert.ToString(gridWaypoint[1, 0].Value) + " " + Convert.ToString(gridWaypoint[2, 0].Value) + " " + Convert.ToString(gridWaypoint[3, 0].Value) + "\r\n";
             txtOutput.Text = txtOutput.Text + SQLtext + "\r\n";
         }
