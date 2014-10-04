@@ -17,7 +17,7 @@ namespace Frm_waypoint
         static DataTable waypoints = new DataTable();
         static DataTable guids = new DataTable();
         static DataTable movePackets = new DataTable();
-        static DataTable copiedRows = new DataTable();
+        static DataSet copiedRows = new DataSet();
 
         string creature_guid  = "";
         string creature_entry = "";
@@ -136,14 +136,13 @@ namespace Frm_waypoint
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Cut selected fields from grid.
-            CopyFromGrid();
-            CutFromGrid();
+            CopyCutFromGrid(true);
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Copy selected fields from grid.
-            CopyFromGrid();
+            CopyCutFromGrid(false);
         }
 
         private void pasteAboveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -166,33 +165,37 @@ namespace Frm_waypoint
                 createSQL_UDB();
         }
 
-        private void CutFromGrid()
+        private void CopyCutFromGrid(bool cut)
         {
-            // Cut selected fields from grid.
-            if (gridWaypoint.SelectedRows.Count == gridWaypoint.Rows.Count)
-            {
-                gridWaypoint.Rows.Clear();
-            }
+            // Copy selected fields from grid and cut if cut is true.
+            copiedRows.Tables.Clear();
+            copiedRows.Tables.Add();
+            copiedRows.Tables[0].Columns.AddRange(new DataColumn[6] {new DataColumn("x", typeof(string)), new DataColumn("y", typeof(string)),
+                            new DataColumn("z", typeof(string)), new DataColumn("o",typeof(string)), new DataColumn("time",typeof(string)), new DataColumn("delay",typeof(string)) });
+
             foreach (DataGridViewRow row in gridWaypoint.SelectedRows)
             {
-                gridWaypoint.Rows.Remove(row);
+                copiedRows.Tables[0].Rows.Add(row.Cells[1].Value, row.Cells[2].Value, row.Cells[3].Value, row.Cells[4].Value, row.Cells[5].Value, row.Cells[6].Value);
+                if (cut)
+                    gridWaypoint.Rows.Remove(row);
             }
-            for (var l = 0; l < gridWaypoint.Rows.Count; l++)
+
+            if (cut)
             {
-                gridWaypoint[0, l].Value = l + 1;
+                RenumberGrid();
+                GraphPath();
             }
-
-            GraphPath();
-        }
-
-        private void CopyFromGrid()
-        {
-
         }
 
         private void PasteToGrid(bool above)
         {
 
+        }
+
+        private void RenumberGrid()
+        {
+            for (var l = 0; l < gridWaypoint.Rows.Count; l++)
+                gridWaypoint[0, l].Value = l + 1;
         }
 
         public DataTable GetDataSourceFromFile(string fileName)
@@ -238,7 +241,7 @@ namespace Frm_waypoint
             {
                 lst.Add(r["guid"].ToString());
             }
-            //listBox.DataSource.clear();
+
             if (listBox.DataSource != lst)
                 listBox.DataSource = lst;
         }
