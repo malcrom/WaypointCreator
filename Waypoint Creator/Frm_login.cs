@@ -42,13 +42,11 @@ namespace Frm_waypoint
                     Properties.Settings.Default.password = txt_Password.Text;
                     Properties.Settings.Default.database = txt_Database.Text;
                     Properties.Settings.Default.port = txt_Port.Text;
+                    Properties.Settings.Default.UsingDB = true;
                     Properties.Settings.Default.Save();
 				}
 
-                // If db connection and save values to settings success, open Frm_waypoint and hide login form.
-                System.Windows.Forms.Form Frm_waypoint = new frm_Waypoint();
-                Frm_waypoint.Show();
-				this.Hide();
+                LoadMain();
 			}
 			catch (MySqlException myerror)
 			{
@@ -63,8 +61,17 @@ namespace Frm_waypoint
 
         private void Btn_Cancel_Click(object sender, EventArgs e)
         {
-            // Exit program
-            System.Environment.Exit(1);
+            Properties.Settings.Default.UsingDB = false;
+            Properties.Settings.Default.Save();
+            LoadMain();
+        }
+
+        private void LoadMain()
+        {
+            // Open Frm_waypoint and hide login form.
+            System.Windows.Forms.Form Frm_waypoint = new frm_Waypoint();
+            Frm_waypoint.Show();
+            this.Hide();
         }
     }
 }

@@ -178,5 +178,17 @@ namespace Frm_waypoint.Properties {
                 this["TitleColour"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UsingDB {
+            get {
+                return ((bool)(this["UsingDB"]));
+            }
+            set {
+                this["UsingDB"] = value;
+            }
+        }
     }
 }

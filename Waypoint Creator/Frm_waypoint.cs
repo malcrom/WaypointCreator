@@ -18,10 +18,10 @@ namespace Frm_waypoint
         static DataTable guids = new DataTable();
         static DataTable movepackets = new DataTable();
 
-        string creature_guid = "";
+        string creature_guid  = "";
         string creature_entry = "";
-        string creature_name = "";
-        string SQLtext = "";
+        string creature_name  = "";
+        string SQLtext        = "";
 
         public frm_Waypoint()
         {
@@ -210,23 +210,33 @@ namespace Frm_waypoint
             if (creature_entry == "")
                 return;
 
-            DataSet DS = new DataSet();
-            string sqltext = "SELECT `name` FROM `creature_template` WHERE `entry`=";
-            sqltext = sqltext + creature_entry + ";";
-            DS = (DataSet)Module.database_conn(sqltext);
-
-            if (DS.Tables["table1"].Rows.Count > 0)
+            if (Properties.Settings.Default.UsingDB == true)
             {
-                creature_name = DS.Tables["table1"].Rows[0][0].ToString();
-                chart.Titles.Clear();
-                Title title = chart.Titles.Add(creature_name + " Entry: " + creature_entry);
-                title.Font = new System.Drawing.Font("Arial", 16, FontStyle.Bold);
-                title.ForeColor = Properties.Settings.Default.TitleColour;
+                DataSet DS = new DataSet();
+                string sqltext = "SELECT `name` FROM `creature_template` WHERE `entry`=";
+                sqltext = sqltext + creature_entry + ";";
+                DS = (DataSet)Module.database_conn(sqltext);
+
+                if (DS.Tables["table1"].Rows.Count > 0)
+                {
+                    creature_name = DS.Tables["table1"].Rows[0][0].ToString();
+                    chart.Titles.Clear();
+                    Title title = chart.Titles.Add(creature_name + " Entry: " + creature_entry);
+                    title.Font = new System.Drawing.Font("Arial", 16, FontStyle.Bold);
+                    title.ForeColor = Properties.Settings.Default.TitleColour;
+                }
+                else
+                {
+                    chart.Titles.Clear();
+                    Title title = chart.Titles.Add("Entry " + creature_entry + " not in database");
+                    title.Font = new System.Drawing.Font("Arial", 16, FontStyle.Bold);
+                    title.ForeColor = Properties.Settings.Default.TitleColour;
+                }
             }
             else
             {
                 chart.Titles.Clear();
-                Title title = chart.Titles.Add("Entry " + creature_entry + " not in database");
+                Title title = chart.Titles.Add("Entry " + creature_entry + " database not connected");
                 title.Font = new System.Drawing.Font("Arial", 16, FontStyle.Bold);
                 title.ForeColor = Properties.Settings.Default.TitleColour;
             }
