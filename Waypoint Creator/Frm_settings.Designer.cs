@@ -30,37 +30,37 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Settings));
             this.groupSQL = new System.Windows.Forms.GroupBox();
-            this.chkBox_UDB = new System.Windows.Forms.CheckBox();
-            this.chkBox_TDB = new System.Windows.Forms.CheckBox();
+            this.chkBoxUDB = new System.Windows.Forms.CheckBox();
+            this.chkBoxTDB = new System.Windows.Forms.CheckBox();
             this.groupGraph = new System.Windows.Forms.GroupBox();
-            this.chkBox_Spline = new System.Windows.Forms.CheckBox();
-            this.chkBox_Line = new System.Windows.Forms.CheckBox();
-            this.btn_OK = new System.Windows.Forms.Button();
-            this.btn_Cancel = new System.Windows.Forms.Button();
+            this.chkBoxSpline = new System.Windows.Forms.CheckBox();
+            this.chkBoxLine = new System.Windows.Forms.CheckBox();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupColours = new System.Windows.Forms.GroupBox();
-            this.btn_Title_Colour = new System.Windows.Forms.Button();
-            this.picBox_Title_Colour = new System.Windows.Forms.PictureBox();
-            this.btn_Back_Colour = new System.Windows.Forms.Button();
-            this.picBox_Back_Colour = new System.Windows.Forms.PictureBox();
-            this.btn_Line_Colour = new System.Windows.Forms.Button();
-            this.btn_Point_Colour = new System.Windows.Forms.Button();
-            this.picBox_Line_Colour = new System.Windows.Forms.PictureBox();
-            this.picBox_Point_Colour = new System.Windows.Forms.PictureBox();
+            this.btnPointColour = new System.Windows.Forms.Button();
+            this.btnLineColour = new System.Windows.Forms.Button();
+            this.btnBackColour = new System.Windows.Forms.Button();
+            this.btnTitleColour = new System.Windows.Forms.Button();
+            this.picBoxPointColour = new System.Windows.Forms.PictureBox();
+            this.picBoxLineColour = new System.Windows.Forms.PictureBox();
+            this.picBoxBackColour = new System.Windows.Forms.PictureBox();
+            this.picBoxTitleColour = new System.Windows.Forms.PictureBox();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.btn_Default = new System.Windows.Forms.Button();
+            this.btnDefault = new System.Windows.Forms.Button();
             this.groupSQL.SuspendLayout();
             this.groupGraph.SuspendLayout();
             this.groupColours.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_Title_Colour)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_Back_Colour)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_Line_Colour)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_Point_Colour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxPointColour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLineColour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBackColour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxTitleColour)).BeginInit();
             this.SuspendLayout();
             // 
             // groupSQL
             // 
-            this.groupSQL.Controls.Add(this.chkBox_UDB);
-            this.groupSQL.Controls.Add(this.chkBox_TDB);
+            this.groupSQL.Controls.Add(this.chkBoxUDB);
+            this.groupSQL.Controls.Add(this.chkBoxTDB);
             this.groupSQL.Location = new System.Drawing.Point(12, 12);
             this.groupSQL.Name = "groupSQL";
             this.groupSQL.Size = new System.Drawing.Size(168, 68);
@@ -68,31 +68,30 @@
             this.groupSQL.TabStop = false;
             this.groupSQL.Text = "SQL Output Format";
             // 
-            // chkBox_UDB
+            // chkBoxUDB
             // 
-            this.chkBox_UDB.AutoSize = true;
-            this.chkBox_UDB.Location = new System.Drawing.Point(6, 42);
-            this.chkBox_UDB.Name = "chkBox_UDB";
-            this.chkBox_UDB.Size = new System.Drawing.Size(98, 17);
-            this.chkBox_UDB.TabIndex = 3;
-            this.chkBox_UDB.Text = "UDB Database";
-            this.chkBox_UDB.UseVisualStyleBackColor = true;
+            this.chkBoxUDB.AutoSize = true;
+            this.chkBoxUDB.Location = new System.Drawing.Point(6, 42);
+            this.chkBoxUDB.Name = "chkBoxUDB";
+            this.chkBoxUDB.Size = new System.Drawing.Size(98, 17);
+            this.chkBoxUDB.TabIndex = 3;
+            this.chkBoxUDB.Text = "UDB Database";
+            this.chkBoxUDB.UseVisualStyleBackColor = true;
             // 
-            // chkBox_TDB
+            // chkBoxTDB
             // 
-            this.chkBox_TDB.AutoSize = true;
-            this.chkBox_TDB.Location = new System.Drawing.Point(6, 19);
-            this.chkBox_TDB.Name = "chkBox_TDB";
-            this.chkBox_TDB.Size = new System.Drawing.Size(97, 17);
-            this.chkBox_TDB.TabIndex = 2;
-            this.chkBox_TDB.Text = "TDB Database";
-            this.chkBox_TDB.UseVisualStyleBackColor = true;
-            this.chkBox_TDB.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.chkBoxTDB.AutoSize = true;
+            this.chkBoxTDB.Location = new System.Drawing.Point(6, 19);
+            this.chkBoxTDB.Name = "chkBoxTDB";
+            this.chkBoxTDB.Size = new System.Drawing.Size(97, 17);
+            this.chkBoxTDB.TabIndex = 2;
+            this.chkBoxTDB.Text = "TDB Database";
+            this.chkBoxTDB.UseVisualStyleBackColor = true;
             // 
             // groupGraph
             // 
-            this.groupGraph.Controls.Add(this.chkBox_Spline);
-            this.groupGraph.Controls.Add(this.chkBox_Line);
+            this.groupGraph.Controls.Add(this.chkBoxSpline);
+            this.groupGraph.Controls.Add(this.chkBoxLine);
             this.groupGraph.Location = new System.Drawing.Point(12, 86);
             this.groupGraph.Name = "groupGraph";
             this.groupGraph.Size = new System.Drawing.Size(168, 68);
@@ -100,58 +99,58 @@
             this.groupGraph.TabStop = false;
             this.groupGraph.Text = "Point Graphing";
             // 
-            // chkBox_Spline
+            // chkBoxSpline
             // 
-            this.chkBox_Spline.AutoSize = true;
-            this.chkBox_Spline.Location = new System.Drawing.Point(6, 42);
-            this.chkBox_Spline.Name = "chkBox_Spline";
-            this.chkBox_Spline.Size = new System.Drawing.Size(98, 17);
-            this.chkBox_Spline.TabIndex = 6;
-            this.chkBox_Spline.Text = "Linetype Spline";
-            this.chkBox_Spline.UseVisualStyleBackColor = true;
+            this.chkBoxSpline.AutoSize = true;
+            this.chkBoxSpline.Location = new System.Drawing.Point(6, 42);
+            this.chkBoxSpline.Name = "chkBoxSpline";
+            this.chkBoxSpline.Size = new System.Drawing.Size(98, 17);
+            this.chkBoxSpline.TabIndex = 6;
+            this.chkBoxSpline.Text = "Linetype Spline";
+            this.chkBoxSpline.UseVisualStyleBackColor = true;
             // 
-            // chkBox_Line
+            // chkBoxLine
             // 
-            this.chkBox_Line.AutoSize = true;
-            this.chkBox_Line.Location = new System.Drawing.Point(6, 19);
-            this.chkBox_Line.Name = "chkBox_Line";
-            this.chkBox_Line.Size = new System.Drawing.Size(81, 17);
-            this.chkBox_Line.TabIndex = 5;
-            this.chkBox_Line.Text = "Show Lines";
-            this.chkBox_Line.UseVisualStyleBackColor = true;
+            this.chkBoxLine.AutoSize = true;
+            this.chkBoxLine.Location = new System.Drawing.Point(6, 19);
+            this.chkBoxLine.Name = "chkBoxLine";
+            this.chkBoxLine.Size = new System.Drawing.Size(81, 17);
+            this.chkBoxLine.TabIndex = 5;
+            this.chkBoxLine.Text = "Show Lines";
+            this.chkBoxLine.UseVisualStyleBackColor = true;
             // 
-            // btn_OK
+            // btnOK
             // 
-            this.btn_OK.Location = new System.Drawing.Point(248, 225);
-            this.btn_OK.Name = "btn_OK";
-            this.btn_OK.Size = new System.Drawing.Size(75, 23);
-            this.btn_OK.TabIndex = 7;
-            this.btn_OK.Text = "OK";
-            this.btn_OK.UseVisualStyleBackColor = true;
-            this.btn_OK.Click += new System.EventHandler(this.button1_Click);
+            this.btnOK.Location = new System.Drawing.Point(248, 225);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 7;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOKClick);
             // 
-            // btn_Cancel
+            // btnCancel
             // 
-            this.btn_Cancel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.btn_Cancel.Location = new System.Drawing.Point(248, 254);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_Cancel.TabIndex = 8;
-            this.btn_Cancel.Text = "Cancel";
-            this.btn_Cancel.UseVisualStyleBackColor = true;
-            this.btn_Cancel.Click += new System.EventHandler(this.button2_Click);
+            this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.btnCancel.Location = new System.Drawing.Point(248, 254);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancelClick);
             // 
             // groupColours
             // 
             this.groupColours.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.groupColours.Controls.Add(this.btn_Point_Colour);
-            this.groupColours.Controls.Add(this.btn_Line_Colour);
-            this.groupColours.Controls.Add(this.btn_Back_Colour);
-            this.groupColours.Controls.Add(this.btn_Title_Colour);
-            this.groupColours.Controls.Add(this.picBox_Point_Colour);
-            this.groupColours.Controls.Add(this.picBox_Line_Colour);
-            this.groupColours.Controls.Add(this.picBox_Back_Colour);
-            this.groupColours.Controls.Add(this.picBox_Title_Colour);
+            this.groupColours.Controls.Add(this.btnPointColour);
+            this.groupColours.Controls.Add(this.btnLineColour);
+            this.groupColours.Controls.Add(this.btnBackColour);
+            this.groupColours.Controls.Add(this.btnTitleColour);
+            this.groupColours.Controls.Add(this.picBoxPointColour);
+            this.groupColours.Controls.Add(this.picBoxLineColour);
+            this.groupColours.Controls.Add(this.picBoxBackColour);
+            this.groupColours.Controls.Add(this.picBoxTitleColour);
             this.groupColours.Location = new System.Drawing.Point(188, 12);
             this.groupColours.Name = "groupColours";
             this.groupColours.Size = new System.Drawing.Size(136, 142);
@@ -159,90 +158,90 @@
             this.groupColours.TabStop = false;
             this.groupColours.Text = "Graph Colours";
             // 
-            // btn_Title_Colour
+            // btnPointColour
             // 
-            this.btn_Title_Colour.Location = new System.Drawing.Point(41, 109);
-            this.btn_Title_Colour.Name = "btn_Title_Colour";
-            this.btn_Title_Colour.Size = new System.Drawing.Size(85, 23);
-            this.btn_Title_Colour.TabIndex = 17;
-            this.btn_Title_Colour.Text = "Title Colour";
-            this.btn_Title_Colour.UseVisualStyleBackColor = true;
-            this.btn_Title_Colour.Click += new System.EventHandler(this.button6_Click);
+            this.btnPointColour.Location = new System.Drawing.Point(41, 22);
+            this.btnPointColour.Name = "btnPointColour";
+            this.btnPointColour.Size = new System.Drawing.Size(85, 23);
+            this.btnPointColour.TabIndex = 12;
+            this.btnPointColour.Text = "Point Colour";
+            this.btnPointColour.UseVisualStyleBackColor = true;
+            this.btnPointColour.Click += new System.EventHandler(this.btnPointColour_Click);
             // 
-            // picBox_Title_Colour
+            // btnLineColour
             // 
-            this.picBox_Title_Colour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBox_Title_Colour.Location = new System.Drawing.Point(6, 109);
-            this.picBox_Title_Colour.Name = "picBox_Title_Colour";
-            this.picBox_Title_Colour.Size = new System.Drawing.Size(23, 23);
-            this.picBox_Title_Colour.TabIndex = 16;
-            this.picBox_Title_Colour.TabStop = false;
+            this.btnLineColour.Location = new System.Drawing.Point(41, 51);
+            this.btnLineColour.Name = "btnLineColour";
+            this.btnLineColour.Size = new System.Drawing.Size(85, 23);
+            this.btnLineColour.TabIndex = 13;
+            this.btnLineColour.Text = "Line Colour";
+            this.btnLineColour.UseVisualStyleBackColor = true;
+            this.btnLineColour.Click += new System.EventHandler(this.btnLineColour_Click);
             // 
-            // btn_Back_Colour
+            // btnBackColour
             // 
-            this.btn_Back_Colour.Location = new System.Drawing.Point(41, 80);
-            this.btn_Back_Colour.Name = "btn_Back_Colour";
-            this.btn_Back_Colour.Size = new System.Drawing.Size(85, 23);
-            this.btn_Back_Colour.TabIndex = 15;
-            this.btn_Back_Colour.Text = "Back Colour";
-            this.btn_Back_Colour.UseVisualStyleBackColor = true;
-            this.btn_Back_Colour.Click += new System.EventHandler(this.button5_Click);
+            this.btnBackColour.Location = new System.Drawing.Point(41, 80);
+            this.btnBackColour.Name = "btnBackColour";
+            this.btnBackColour.Size = new System.Drawing.Size(85, 23);
+            this.btnBackColour.TabIndex = 15;
+            this.btnBackColour.Text = "Back Colour";
+            this.btnBackColour.UseVisualStyleBackColor = true;
+            this.btnBackColour.Click += new System.EventHandler(this.btnBackColour_Click);
             // 
-            // picBox_Back_Colour
+            // btnTitleColour
             // 
-            this.picBox_Back_Colour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBox_Back_Colour.Location = new System.Drawing.Point(6, 80);
-            this.picBox_Back_Colour.Name = "picBox_Back_Colour";
-            this.picBox_Back_Colour.Size = new System.Drawing.Size(23, 23);
-            this.picBox_Back_Colour.TabIndex = 14;
-            this.picBox_Back_Colour.TabStop = false;
+            this.btnTitleColour.Location = new System.Drawing.Point(41, 109);
+            this.btnTitleColour.Name = "btnTitleColour";
+            this.btnTitleColour.Size = new System.Drawing.Size(85, 23);
+            this.btnTitleColour.TabIndex = 17;
+            this.btnTitleColour.Text = "Title Colour";
+            this.btnTitleColour.UseVisualStyleBackColor = true;
+            this.btnTitleColour.Click += new System.EventHandler(this.btnTitleColour_Click);
             // 
-            // btn_Line_Colour
+            // picBoxPointColour
             // 
-            this.btn_Line_Colour.Location = new System.Drawing.Point(41, 51);
-            this.btn_Line_Colour.Name = "btn_Line_Colour";
-            this.btn_Line_Colour.Size = new System.Drawing.Size(85, 23);
-            this.btn_Line_Colour.TabIndex = 13;
-            this.btn_Line_Colour.Text = "Line Colour";
-            this.btn_Line_Colour.UseVisualStyleBackColor = true;
-            this.btn_Line_Colour.Click += new System.EventHandler(this.button4_Click);
+            this.picBoxPointColour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxPointColour.Location = new System.Drawing.Point(6, 22);
+            this.picBoxPointColour.Name = "picBoxPointColour";
+            this.picBoxPointColour.Size = new System.Drawing.Size(23, 23);
+            this.picBoxPointColour.TabIndex = 0;
+            this.picBoxPointColour.TabStop = false;
             // 
-            // btn_Point_Colour
+            // picBoxLineColour
             // 
-            this.btn_Point_Colour.Location = new System.Drawing.Point(41, 22);
-            this.btn_Point_Colour.Name = "btn_Point_Colour";
-            this.btn_Point_Colour.Size = new System.Drawing.Size(85, 23);
-            this.btn_Point_Colour.TabIndex = 12;
-            this.btn_Point_Colour.Text = "Point Colour";
-            this.btn_Point_Colour.UseVisualStyleBackColor = true;
-            this.btn_Point_Colour.Click += new System.EventHandler(this.button3_Click);
+            this.picBoxLineColour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxLineColour.Location = new System.Drawing.Point(6, 51);
+            this.picBoxLineColour.Name = "picBoxLineColour";
+            this.picBoxLineColour.Size = new System.Drawing.Size(23, 23);
+            this.picBoxLineColour.TabIndex = 2;
+            this.picBoxLineColour.TabStop = false;
             // 
-            // picBox_Line_Colour
+            // picBoxBackColour
             // 
-            this.picBox_Line_Colour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBox_Line_Colour.Location = new System.Drawing.Point(6, 51);
-            this.picBox_Line_Colour.Name = "picBox_Line_Colour";
-            this.picBox_Line_Colour.Size = new System.Drawing.Size(23, 23);
-            this.picBox_Line_Colour.TabIndex = 2;
-            this.picBox_Line_Colour.TabStop = false;
+            this.picBoxBackColour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxBackColour.Location = new System.Drawing.Point(6, 80);
+            this.picBoxBackColour.Name = "picBoxBackColour";
+            this.picBoxBackColour.Size = new System.Drawing.Size(23, 23);
+            this.picBoxBackColour.TabIndex = 14;
+            this.picBoxBackColour.TabStop = false;
             // 
-            // picBox_Point_Colour
+            // picBoxTitleColour
             // 
-            this.picBox_Point_Colour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBox_Point_Colour.Location = new System.Drawing.Point(6, 22);
-            this.picBox_Point_Colour.Name = "picBox_Point_Colour";
-            this.picBox_Point_Colour.Size = new System.Drawing.Size(23, 23);
-            this.picBox_Point_Colour.TabIndex = 0;
-            this.picBox_Point_Colour.TabStop = false;
+            this.picBoxTitleColour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxTitleColour.Location = new System.Drawing.Point(6, 109);
+            this.picBoxTitleColour.Name = "picBoxTitleColour";
+            this.picBoxTitleColour.Size = new System.Drawing.Size(23, 23);
+            this.picBoxTitleColour.TabIndex = 16;
+            this.picBoxTitleColour.TabStop = false;
             // 
-            // btn_Default
+            // btnDefault
             // 
-            this.btn_Default.Location = new System.Drawing.Point(248, 161);
-            this.btn_Default.Name = "btn_Default";
-            this.btn_Default.Size = new System.Drawing.Size(75, 23);
-            this.btn_Default.TabIndex = 10;
-            this.btn_Default.Text = "Default";
-            this.btn_Default.UseVisualStyleBackColor = true;
+            this.btnDefault.Location = new System.Drawing.Point(248, 161);
+            this.btnDefault.Name = "btnDefault";
+            this.btnDefault.Size = new System.Drawing.Size(75, 23);
+            this.btnDefault.TabIndex = 10;
+            this.btnDefault.Text = "Default";
+            this.btnDefault.UseVisualStyleBackColor = true;
             // 
             // frm_Settings
             // 
@@ -253,9 +252,9 @@
             this.Controls.Add(this.groupSQL);
             this.Controls.Add(this.groupGraph);
             this.Controls.Add(this.groupColours);
-            this.Controls.Add(this.btn_Default);
-            this.Controls.Add(this.btn_OK);
-            this.Controls.Add(this.btn_Cancel);
+            this.Controls.Add(this.btnDefault);
+            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.btnCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -271,10 +270,10 @@
             this.groupGraph.ResumeLayout(false);
             this.groupGraph.PerformLayout();
             this.groupColours.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_Title_Colour)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_Back_Colour)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_Line_Colour)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox_Point_Colour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxPointColour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxLineColour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBackColour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxTitleColour)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -282,23 +281,23 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupSQL;
-        private System.Windows.Forms.CheckBox chkBox_UDB;
-        private System.Windows.Forms.CheckBox chkBox_TDB;
+        private System.Windows.Forms.CheckBox chkBoxUDB;
+        private System.Windows.Forms.CheckBox chkBoxTDB;
         private System.Windows.Forms.GroupBox groupGraph;
-        private System.Windows.Forms.CheckBox chkBox_Spline;
-        private System.Windows.Forms.CheckBox chkBox_Line;
-        private System.Windows.Forms.Button btn_OK;
-        private System.Windows.Forms.Button btn_Cancel;
+        private System.Windows.Forms.CheckBox chkBoxSpline;
+        private System.Windows.Forms.CheckBox chkBoxLine;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.GroupBox groupColours;
-        private System.Windows.Forms.PictureBox picBox_Line_Colour;
-        private System.Windows.Forms.PictureBox picBox_Point_Colour;
+        private System.Windows.Forms.PictureBox picBoxLineColour;
+        private System.Windows.Forms.PictureBox picBoxPointColour;
         private System.Windows.Forms.ColorDialog colorDialog;
-        private System.Windows.Forms.Button btn_Line_Colour;
-        private System.Windows.Forms.Button btn_Point_Colour;
-        private System.Windows.Forms.Button btn_Title_Colour;
-        private System.Windows.Forms.PictureBox picBox_Title_Colour;
-        private System.Windows.Forms.Button btn_Back_Colour;
-        private System.Windows.Forms.PictureBox picBox_Back_Colour;
-        private System.Windows.Forms.Button btn_Default;
+        private System.Windows.Forms.Button btnLineColour;
+        private System.Windows.Forms.Button btnPointColour;
+        private System.Windows.Forms.Button btnTitleColour;
+        private System.Windows.Forms.PictureBox picBoxTitleColour;
+        private System.Windows.Forms.Button btnBackColour;
+        private System.Windows.Forms.PictureBox picBoxBackColour;
+        private System.Windows.Forms.Button btnDefault;
     }
 }
