@@ -27,6 +27,11 @@ namespace Frm_waypoint
             this.Close();
         }
 
+        private void btnDefault_Click(object sender, EventArgs e)
+        {
+            SetDefaults();
+        }
+
         private void btnCancelClick(object sender, EventArgs e)
         {
             this.Close();
@@ -77,8 +82,6 @@ namespace Frm_waypoint
                         picBoxTitleColour.BackColor = colorDlg.Color;
                         break;
                 }
-
-                picBoxTitleColour.BackColor = colorDlg.Color;
             }
         }
 
@@ -137,6 +140,18 @@ namespace Frm_waypoint
             Properties.Settings.Default.BackColour = picBoxBackColour.BackColor;
             Properties.Settings.Default.TitleColour = picBoxTitleColour.BackColor;
             Properties.Settings.Default.Save();
+        }
+
+        private void SetDefaults()
+        {
+            chkBoxTDB.CheckState = CheckState.Checked;
+            chkBoxUDB.CheckState = CheckState.Checked;
+            chkBoxLine.CheckState = CheckState.Checked;
+            chkBoxSpline.CheckState = CheckState.Checked;
+            picBoxPointColour.BackColor = Color.Blue;
+            picBoxLineColour.BackColor = Color.Aqua;
+            picBoxBackColour.BackColor = Color.White;
+            picBoxTitleColour.BackColor = Color.Blue;
         }
     }
 }

@@ -121,7 +121,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(248, 225);
+            this.btnOK.Location = new System.Drawing.Point(249, 160);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 7;
@@ -132,7 +132,7 @@
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.btnCancel.Location = new System.Drawing.Point(248, 254);
+            this.btnCancel.Location = new System.Drawing.Point(249, 189);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 8;
@@ -236,18 +236,19 @@
             // 
             // btnDefault
             // 
-            this.btnDefault.Location = new System.Drawing.Point(248, 161);
+            this.btnDefault.Location = new System.Drawing.Point(12, 160);
             this.btnDefault.Name = "btnDefault";
-            this.btnDefault.Size = new System.Drawing.Size(75, 23);
+            this.btnDefault.Size = new System.Drawing.Size(117, 23);
             this.btnDefault.TabIndex = 10;
-            this.btnDefault.Text = "Default";
+            this.btnDefault.Text = "Reset Default Values";
             this.btnDefault.UseVisualStyleBackColor = true;
+            this.btnDefault.Click += new System.EventHandler(this.btnDefault_Click);
             // 
             // frm_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(336, 289);
+            this.ClientSize = new System.Drawing.Size(336, 226);
             this.ControlBox = false;
             this.Controls.Add(this.groupSQL);
             this.Controls.Add(this.groupGraph);
