@@ -14,11 +14,11 @@ namespace Frm_waypoint
 {
     public partial class frm_Waypoint : Form
     {
-        static DataTable waypoints = new DataTable();
-        static DataTable guids = new DataTable();
+        static DataTable waypoints   = new DataTable();
+        static DataTable guids       = new DataTable();
         static DataTable movePackets = new DataTable();
-        static DataSet copiedRows = new DataSet();
-        static DataSet pasteTable = new DataSet();
+        static DataSet copiedRows    = new DataSet();
+        static DataSet pasteTable    = new DataSet();
 
         string creature_guid  = "";
         string creature_entry = "";
@@ -52,34 +52,8 @@ namespace Frm_waypoint
             System.Environment.Exit(1);
         }
 
-        private void toolStripButtonLoadCSV_Click(object sender, EventArgs e)
-        {
-            object boolresult = null;
-            openFileDialog.Title = "Open File";
-            openFileDialog.Filter = "Monster Move File (*.csv)|*.csv";
-            openFileDialog.FileName = "*.csv";
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.ShowReadOnly = false;
-            openFileDialog.Multiselect = false;
-            openFileDialog.CheckFileExists = true;
-            boolresult = openFileDialog.ShowDialog();
-            if (Convert.ToInt16(boolresult) == 2)
-            {
-                // This code runs if the dialog was cancelled
-                return;
-            }
-            else
-            {
-                LoadCSVFileIntoDatatable(openFileDialog.FileName);
-                toolStripTextBoxEntry.Enabled = true;
-                toolStripButtonSearch.Enabled = true;
-                toolStripStatusLabel.Text = openFileDialog.FileName + " is selected for input.";
-            }
-        }
-
         private void toolStripButtonLoadSniff_Click(object sender, EventArgs e)
         {
-            object boolresult = null;
             openFileDialog.Title = "Open File";
             openFileDialog.Filter = "Parsed Sniff File (*.txt)|*.txt";
             openFileDialog.FileName = "*.txt";
@@ -87,36 +61,30 @@ namespace Frm_waypoint
             openFileDialog.ShowReadOnly = false;
             openFileDialog.Multiselect = false;
             openFileDialog.CheckFileExists = true;
-            boolresult = openFileDialog.ShowDialog();
-            if (Convert.ToInt16(boolresult) == 2)
-            {
-                // This code runs if the dialog was cancelled
-                return;
-            }
-            else
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 LoadSniffFileIntoDatatable(openFileDialog.FileName);
                 toolStripTextBoxEntry.Enabled = true;
                 toolStripButtonSearch.Enabled = true;
                 toolStripStatusLabel.Text = openFileDialog.FileName + " is selected for input.";
             }
+            else
+            {
+                // This code runs if the dialog was cancelled
+                return;
+            }
         }
 
         private void toolStripButtonSave_Click(object sender, EventArgs e)
         {
-            object boolresult = null;
             saveFileDialog.Title = "Save File";
             saveFileDialog.Filter = "Path Insert SQL (*.sql)|*.sql";
             saveFileDialog.FileName = "";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.CheckFileExists = false;
-            boolresult = saveFileDialog.ShowDialog();
-            if (Convert.ToInt16(boolresult) == 2)
-            {
-                // This code runs if the dialog was cancelled
-                return;
-            }
-            else
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
                 {
@@ -126,11 +94,14 @@ namespace Frm_waypoint
                             sw.Write(line + sw.NewLine);
 
                         sw.Close();
-
                         MessageBox.Show("SQL Pathing Inserts written to file " + saveFileDialog.FileName, "SQL Written to file", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                     }
                 }
-
+            }
+            else
+            {
+                // This code runs if the dialog was cancelled
+                return;
             }
         }
 
@@ -207,8 +178,7 @@ namespace Frm_waypoint
             // Copy selected fields from grid and cut if cut is true.
             copiedRows.Tables.Clear();
             copiedRows.Tables.Add();
-            copiedRows.Tables[0].Columns.AddRange(new DataColumn[6] {new DataColumn("x", typeof(string)), new DataColumn("y", typeof(string)),
-                            new DataColumn("z", typeof(string)), new DataColumn("o",typeof(string)), new DataColumn("time",typeof(string)), new DataColumn("delay",typeof(string)) });
+            copiedRows.Tables[0].Columns.AddRange(new DataColumn[6] {new DataColumn("x", typeof(string)), new DataColumn("y", typeof(string)), new DataColumn("z", typeof(string)), new DataColumn("o",typeof(string)), new DataColumn("time",typeof(string)), new DataColumn("delay",typeof(string)) });
 
             foreach (DataGridViewRow row in gridWaypoint.SelectedRows)
             {
@@ -279,38 +249,6 @@ namespace Frm_waypoint
             GraphPath();
         }
 
-        public void LoadCSVFileIntoDatatable(string fileName)
-        {
-            waypoints.Clear();
-            waypoints = GetDataSourceFromCSVFile(fileName);
-        }
-
-        public DataTable GetDataSourceFromCSVFile(string fileName)
-        {
-            DataTable dt = new DataTable("Waypoints");
-            string[] columns = null;
-
-            string col = "entry,guid,x,y,z,o,time";
-            columns = col.Split(new char[] { ',' });
-            foreach (var column in columns)
-                dt.Columns.Add(column);
-
-            var lines = File.ReadAllLines(fileName);
-
-            // reading rest of the data
-            for (int i = 0; i < lines.Count(); i++)
-            {
-                DataRow dr = dt.NewRow();
-                string[] values = lines[i].Split(new char[] { ',' });
-
-                for (int j = 0; j < values.Count() && j < columns.Count(); j++)
-                    dr[j] = values[j];
-
-                dt.Rows.Add(dr);
-            }
-            return dt;
-        }
-
         public void LoadSniffFileIntoDatatable(string fileName)
         {
             System.IO.StreamReader file = new System.IO.StreamReader(fileName);
@@ -337,12 +275,12 @@ namespace Frm_waypoint
             Packet sniff;
 
             sniff.entry = "";
-            sniff.guid = "";
-            sniff.x = "";
-            sniff.y = "";
-            sniff.z = "";
-            sniff.o = "";
-            sniff.time = "";
+            sniff.guid  = "";
+            sniff.x     = "";
+            sniff.y     = "";
+            sniff.z     = "";
+            sniff.o     = "";
+            sniff.time  = "";
 
             string[] columns = null;
 
