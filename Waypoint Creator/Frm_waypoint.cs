@@ -18,6 +18,7 @@ namespace Frm_waypoint
         static DataTable guids = new DataTable();
         static DataTable movePackets = new DataTable();
         static DataSet copiedRows = new DataSet();
+        static DataSet pasteTable = new DataSet();
 
         string creature_guid  = "";
         string creature_entry = "";
@@ -182,20 +183,61 @@ namespace Frm_waypoint
 
             if (cut)
             {
-                RenumberGrid();
+                for (var l = 0; l < gridWaypoint.Rows.Count; l++)
+                    gridWaypoint[0, l].Value = l + 1;
+
                 GraphPath();
             }
         }
 
         private void PasteToGrid(bool above)
         {
+            // Paste copiedRows into table
+            pasteTable.Tables.Clear();
+            pasteTable.Tables.Add();
+            pasteTable.Tables[0].Columns.AddRange(new DataColumn[6] {new DataColumn("x", typeof(string)), new DataColumn("y", typeof(string)),
+                            new DataColumn("z", typeof(string)), new DataColumn("o",typeof(string)), new DataColumn("time",typeof(string)), new DataColumn("delay",typeof(string)) });
 
-        }
+            int selected = gridWaypoint.SelectedRows[0].Index;
 
-        private void RenumberGrid()
-        {
-            for (var l = 0; l < gridWaypoint.Rows.Count; l++)
-                gridWaypoint[0, l].Value = l + 1;
+            // If the selected row is not the first row copy all rows above it to pasteTable
+            if (selected > 0)
+            {
+                for (var l = 0; l < selected; l++)
+                {
+                    pasteTable.Tables[0].Rows.Add(gridWaypoint[1,l].Value, gridWaypoint[2,l].Value, gridWaypoint[3,l].Value, gridWaypoint[4,l].Value, gridWaypoint[5,l].Value, gridWaypoint[6,l].Value);
+                }
+
+            }
+
+            // If pasting below selected row, add selected row to pasteTable before copiedRows
+            if (!above)
+                pasteTable.Tables[0].Rows.Add(gridWaypoint[1,selected].Value, gridWaypoint[2,selected].Value, gridWaypoint[3,selected].Value, gridWaypoint[4,selected].Value, gridWaypoint[5,selected].Value, gridWaypoint[6,selected].Value);
+
+            for (var l = copiedRows.Tables[0].Rows.Count - 1; l > -1; l--)
+            {
+                pasteTable.Tables[0].Rows.Add(copiedRows.Tables[0].Rows[l].Field<string>(0), copiedRows.Tables[0].Rows[l].Field<string>(1), copiedRows.Tables[0].Rows[l].Field<string>(2), copiedRows.Tables[0].Rows[l].Field<string>(3), copiedRows.Tables[0].Rows[l].Field<string>(4), copiedRows.Tables[0].Rows[l].Field<string>(5));
+            }
+
+            if (above)
+                pasteTable.Tables[0].Rows.Add(gridWaypoint[1, selected].Value, gridWaypoint[2, selected].Value, gridWaypoint[3, selected].Value, gridWaypoint[4, selected].Value, gridWaypoint[5, selected].Value, gridWaypoint[6, selected].Value);
+
+            if (selected < gridWaypoint.Rows.Count - 1)
+            {
+                for (var l = selected + 1; l < gridWaypoint.Rows.Count; l++)
+                {
+                    pasteTable.Tables[0].Rows.Add(gridWaypoint[1, l].Value, gridWaypoint[2, l].Value, gridWaypoint[3, l].Value, gridWaypoint[4, l].Value, gridWaypoint[5, l].Value, gridWaypoint[6, l].Value);
+                }
+
+            }
+
+            // All data now in pasteTable. Now to replace grid contents with pasteTable.
+            gridWaypoint.Rows.Clear();
+
+            for (var l = 0; l < pasteTable.Tables[0].Rows.Count; l++)
+                gridWaypoint.Rows.Add(l + 1, pasteTable.Tables[0].Rows[l].Field<string>(0), pasteTable.Tables[0].Rows[l].Field<string>(1), pasteTable.Tables[0].Rows[l].Field<string>(2), pasteTable.Tables[0].Rows[l].Field<string>(3), pasteTable.Tables[0].Rows[l].Field<string>(4), pasteTable.Tables[0].Rows[l].Field<string>(5));
+
+            GraphPath();
         }
 
         public DataTable GetDataSourceFromFile(string fileName)
@@ -260,18 +302,9 @@ namespace Frm_waypoint
             creature_entry = movePackets.Rows[0].Field<string>(0);
 
             gridWaypoint.Rows.Clear();
+
             for (var l = 0; l < movePackets.Rows.Count; l++)
-            {
-                gridWaypoint.Rows.Add();
-                gridWaypoint[0, gridWaypoint.RowCount - 1].Value = l + 1;
-                for (var ll = 1; ll < 6; ll++)
-                gridWaypoint[1, gridWaypoint.RowCount - 1].Value = movePackets.Rows[l].Field<string>(2);
-                gridWaypoint[2, gridWaypoint.RowCount - 1].Value = movePackets.Rows[l].Field<string>(3);
-                gridWaypoint[3, gridWaypoint.RowCount - 1].Value = movePackets.Rows[l].Field<string>(4);
-                gridWaypoint[4, gridWaypoint.RowCount - 1].Value = movePackets.Rows[l].Field<string>(5);
-                gridWaypoint[5, gridWaypoint.RowCount - 1].Value = movePackets.Rows[l].Field<string>(6);
-                gridWaypoint[6, gridWaypoint.RowCount - 1].Value = "";
-            }
+                gridWaypoint.Rows.Add(l + 1, movePackets.Rows[l].Field<string>(2), movePackets.Rows[l].Field<string>(3), movePackets.Rows[l].Field<string>(4), movePackets.Rows[l].Field<string>(5), movePackets.Rows[l].Field<string>(6), "");
         }
 
         public void GraphPath()
@@ -337,6 +370,7 @@ namespace Frm_waypoint
 
                 chart.Series["Path"].Points.AddXY(xpos, ypos);
                 chart.Series["Path"].Points[l].Color = Properties.Settings.Default.PointColour;
+                // TODO Add Label Colour to settings
                 chart.Series["Path"].Points[l].Label = Convert.ToString(l + 1);
 
                 if (Properties.Settings.Default.Lines == true)
