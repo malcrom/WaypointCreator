@@ -25,6 +25,17 @@ namespace Frm_waypoint
         string creature_name  = "";
         string SQLtext        = "";
 
+        struct Packet
+        {
+            public string time;
+            public string x;
+            public string y;
+            public string z;
+            public string o;
+            public string entry;
+            public string guid;
+        };
+
         public frm_Waypoint()
         {
             InitializeComponent();
@@ -41,7 +52,7 @@ namespace Frm_waypoint
             System.Environment.Exit(1);
         }
 
-        private void toolStripButtonLoadSniff_Click(object sender, EventArgs e)
+        private void toolStripButtonLoadCSV_Click(object sender, EventArgs e)
         {
             object boolresult = null;
             openFileDialog.Title = "Open File";
@@ -59,10 +70,35 @@ namespace Frm_waypoint
             }
             else
             {
-                LoadFileIntoDatatable(openFileDialog.FileName);
+                LoadCSVFileIntoDatatable(openFileDialog.FileName);
                 toolStripTextBoxEntry.Enabled = true;
                 toolStripButtonSearch.Enabled = true;
-                toolStripStatusLabel.Text = openFileDialog.FileName + " is selected for parsing.";
+                toolStripStatusLabel.Text = openFileDialog.FileName + " is selected for input.";
+            }
+        }
+
+        private void toolStripButtonLoadSniff_Click(object sender, EventArgs e)
+        {
+            object boolresult = null;
+            openFileDialog.Title = "Open File";
+            openFileDialog.Filter = "Parsed Sniff File (*.txt)|*.txt";
+            openFileDialog.FileName = "*.txt";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.ShowReadOnly = false;
+            openFileDialog.Multiselect = false;
+            openFileDialog.CheckFileExists = true;
+            boolresult = openFileDialog.ShowDialog();
+            if (Convert.ToInt16(boolresult) == 2)
+            {
+                // This code runs if the dialog was cancelled
+                return;
+            }
+            else
+            {
+                LoadSniffFileIntoDatatable(openFileDialog.FileName);
+                toolStripTextBoxEntry.Enabled = true;
+                toolStripButtonSearch.Enabled = true;
+                toolStripStatusLabel.Text = openFileDialog.FileName + " is selected for input.";
             }
         }
 
@@ -214,14 +250,17 @@ namespace Frm_waypoint
             if (!above)
                 pasteTable.Tables[0].Rows.Add(gridWaypoint[1,selected].Value, gridWaypoint[2,selected].Value, gridWaypoint[3,selected].Value, gridWaypoint[4,selected].Value, gridWaypoint[5,selected].Value, gridWaypoint[6,selected].Value);
 
+            // Add copiedRows
             for (var l = copiedRows.Tables[0].Rows.Count - 1; l > -1; l--)
             {
                 pasteTable.Tables[0].Rows.Add(copiedRows.Tables[0].Rows[l].Field<string>(0), copiedRows.Tables[0].Rows[l].Field<string>(1), copiedRows.Tables[0].Rows[l].Field<string>(2), copiedRows.Tables[0].Rows[l].Field<string>(3), copiedRows.Tables[0].Rows[l].Field<string>(4), copiedRows.Tables[0].Rows[l].Field<string>(5));
             }
 
+            // If pasting above selected row, add selected row to pasteTable after copiedRows
             if (above)
                 pasteTable.Tables[0].Rows.Add(gridWaypoint[1, selected].Value, gridWaypoint[2, selected].Value, gridWaypoint[3, selected].Value, gridWaypoint[4, selected].Value, gridWaypoint[5, selected].Value, gridWaypoint[6, selected].Value);
 
+            // Add all rows below selected row
             if (selected < gridWaypoint.Rows.Count - 1)
             {
                 for (var l = selected + 1; l < gridWaypoint.Rows.Count; l++)
@@ -240,7 +279,13 @@ namespace Frm_waypoint
             GraphPath();
         }
 
-        public DataTable GetDataSourceFromFile(string fileName)
+        public void LoadCSVFileIntoDatatable(string fileName)
+        {
+            waypoints.Clear();
+            waypoints = GetDataSourceFromCSVFile(fileName);
+        }
+
+        public DataTable GetDataSourceFromCSVFile(string fileName)
         {
             DataTable dt = new DataTable("Waypoints");
             string[] columns = null;
@@ -258,7 +303,6 @@ namespace Frm_waypoint
                 DataRow dr = dt.NewRow();
                 string[] values = lines[i].Split(new char[] { ',' });
 
-                //dr[0] = i;
                 for (int j = 0; j < values.Count() && j < columns.Count(); j++)
                     dr[j] = values[j];
 
@@ -267,10 +311,104 @@ namespace Frm_waypoint
             return dt;
         }
 
-        public void LoadFileIntoDatatable(string fileName)
+        public void LoadSniffFileIntoDatatable(string fileName)
         {
-            waypoints.Clear();
-            waypoints = GetDataSourceFromFile(fileName);
+            System.IO.StreamReader file = new System.IO.StreamReader(fileName);
+            var line = file.ReadLine();
+            file.Close();
+
+            if (line == "# TrinityCore - WowPacketParser")
+            {
+                waypoints.Clear();
+                waypoints = GetDataSourceFromSniffFile(fileName);
+            }
+            else
+            {
+                MessageBox.Show(saveFileDialog.FileName + " is is not a valid TrinityCore parsed sniff file.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        public DataTable GetDataSourceFromSniffFile(string fileName)
+        {
+            var lines = File.ReadAllLines(fileName);
+
+            DataTable dt = new DataTable("Waypoints");
+
+            Packet sniff;
+
+            sniff.entry = "";
+            sniff.guid = "";
+            sniff.x = "";
+            sniff.y = "";
+            sniff.z = "";
+            sniff.o = "";
+            sniff.time = "";
+
+            string[] columns = null;
+
+            string col = "entry,guid,x,y,z,o,time";
+            columns = col.Split(new char[] { ',' });
+            foreach (var column in columns)
+                dt.Columns.Add(column);
+
+            // reading rest of the data
+            for (int i = 1; i < lines.Count(); i++)
+            {
+                string[] values = lines[i].Split(new char[] { ' ' });
+
+                if (values[0] == "ServerToClient:")
+                {
+                    if (values[1] == "SMSG_MONSTER_MOVE" || values[1] == "SMSG_MONSTER_MOVE_TRANSPORT")
+                    {
+                        string[] time = values[11].Split(new char[] { '.' });
+                        sniff.time = time[0];
+
+                        do
+	                    {
+                            i++;
+                            string[] packetline = lines[i].Split(new char[] { ' ' });
+
+                            if (packetline[0] == "[0]" && packetline[1] == "Spline")
+                            {
+                                sniff.x = packetline[4];
+                                sniff.y = packetline[6];
+                                sniff.z = packetline[8];
+                                sniff.o = "0";
+                            }
+
+                            if (packetline[0] == "Facing" && packetline[1] == "Angle:")
+                            {
+                                sniff.o = packetline[2];
+                            }
+
+                            if (packetline[0] == "Owner" && packetline[1] == "GUID:")
+                            {
+                                if (packetline[5] == "Unit" && packetline[6] == "Entry:")
+                                {
+                                    sniff.entry = packetline[7];
+                                    sniff.guid = packetline[3];
+                                }
+                            }
+
+	                    } while (lines[i] != "");
+
+                        if (sniff.entry != "")
+                        {
+                            DataRow dr = dt.NewRow();
+                            dr[0] = sniff.entry;
+                            dr[1] = sniff.guid;
+                            dr[2] = sniff.x;
+                            dr[3] = sniff.y;
+                            dr[4] = sniff.z;
+                            dr[5] = sniff.o;
+                            dr[6] = sniff.time;
+                            dt.Rows.Add(dr);
+                            sniff.entry = "";
+                        }
+                    }
+                }
+            }
+            return dt;
         }
 
         public void FillListBoxWithGuids(Int32 entry)
