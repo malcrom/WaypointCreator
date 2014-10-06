@@ -190,5 +190,17 @@ namespace Frm_waypoint.Properties {
                 this["UsingDB"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ObjectUpdate {
+            get {
+                return ((bool)(this["ObjectUpdate"]));
+            }
+            set {
+                this["ObjectUpdate"] = value;
+            }
+        }
     }
 }

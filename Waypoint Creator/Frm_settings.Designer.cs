@@ -48,6 +48,7 @@
             this.picBoxTitleColour = new System.Windows.Forms.PictureBox();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.btnDefault = new System.Windows.Forms.Button();
+            this.chkBoxObject = new System.Windows.Forms.CheckBox();
             this.groupSQL.SuspendLayout();
             this.groupGraph.SuspendLayout();
             this.groupColours.SuspendLayout();
@@ -236,7 +237,7 @@
             // 
             // btnDefault
             // 
-            this.btnDefault.Location = new System.Drawing.Point(12, 160);
+            this.btnDefault.Location = new System.Drawing.Point(12, 189);
             this.btnDefault.Name = "btnDefault";
             this.btnDefault.Size = new System.Drawing.Size(117, 23);
             this.btnDefault.TabIndex = 10;
@@ -244,12 +245,23 @@
             this.btnDefault.UseVisualStyleBackColor = true;
             this.btnDefault.Click += new System.EventHandler(this.btnDefault_Click);
             // 
+            // chkBoxObject
+            // 
+            this.chkBoxObject.AutoSize = true;
+            this.chkBoxObject.Location = new System.Drawing.Point(18, 166);
+            this.chkBoxObject.Name = "chkBoxObject";
+            this.chkBoxObject.Size = new System.Drawing.Size(218, 17);
+            this.chkBoxObject.TabIndex = 11;
+            this.chkBoxObject.Text = "Get spline waypoints from Object Update";
+            this.chkBoxObject.UseVisualStyleBackColor = true;
+            // 
             // frm_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(336, 226);
             this.ControlBox = false;
+            this.Controls.Add(this.chkBoxObject);
             this.Controls.Add(this.groupSQL);
             this.Controls.Add(this.groupGraph);
             this.Controls.Add(this.groupColours);
@@ -276,6 +288,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxBackColour)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxTitleColour)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -300,5 +313,6 @@
         private System.Windows.Forms.Button btnBackColour;
         private System.Windows.Forms.PictureBox picBoxBackColour;
         private System.Windows.Forms.Button btnDefault;
+        private System.Windows.Forms.CheckBox chkBoxObject;
     }
 }

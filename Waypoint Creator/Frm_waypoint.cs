@@ -109,14 +109,14 @@ namespace Frm_waypoint
         {
             try
             {
-                int temp = 0;
+                string temp = "0";
                 if (toolStripTextBoxEntry.Text == "" || toolStripTextBoxEntry.Text == null )
                 {
                     FillListBoxWithGuids(temp);
                 }
                 else
                 {
-                    temp = Convert.ToInt32(toolStripTextBoxEntry.Text);
+                    temp = toolStripTextBoxEntry.Text;
                     FillListBoxWithGuids(temp);
                 }
             }
@@ -137,8 +137,11 @@ namespace Frm_waypoint
         private void listBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             // On guid select fill grid and graph.
-            FillGrid();
-            GraphPath();
+            if ((string)listBox.SelectedItem != "" && (string)listBox.SelectedItem != null)
+            {
+                FillGrid();
+                GraphPath();
+            }
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -292,46 +295,87 @@ namespace Frm_waypoint
             // reading rest of the data
             for (int i = 1; i < lines.Count(); i++)
             {
-                string[] values = lines[i].Split(new char[] { ' ' });
-
-                if (values[0] == "ServerToClient:")
+                if (lines[i].Contains("SMSG_MONSTER_MOVE"))
                 {
-                    if (values[1] == "SMSG_MONSTER_MOVE" || values[1] == "SMSG_MONSTER_MOVE_TRANSPORT")
-                    {
-                        string[] time = values[11].Split(new char[] { '.' });
-                        sniff.time = time[0];
+                    string[] values = lines[i].Split(new char[] { ' ' });
+                    string[] time = values[11].Split(new char[] { '.' });
+                    sniff.time = time[0];
 
-                        do
-	                    {
-                            i++;
-                            string[] packetline = lines[i].Split(new char[] { ' ' });
+                    do
+	                {
+                        i++;
 
-                            if (packetline[0] == "[0]" && packetline[1] == "Spline")
-                            {
-                                sniff.x = packetline[4];
-                                sniff.y = packetline[6];
-                                sniff.z = packetline[8];
-                                sniff.o = "0";
-                            }
-
-                            if (packetline[0] == "Facing" && packetline[1] == "Angle:")
-                            {
-                                sniff.o = packetline[2];
-                            }
-
-                            if (packetline[0] == "Owner" && packetline[1] == "GUID:")
-                            {
-                                if (packetline[5] == "Unit" && packetline[6] == "Entry:")
-                                {
-                                    sniff.entry = packetline[7];
-                                    sniff.guid = packetline[3];
-                                }
-                            }
-
-	                    } while (lines[i] != "");
-
-                        if (sniff.entry != "")
+                        if (lines[i].Contains("[0] Spline Waypoint: X:"))
                         {
+                            string[] packetline = lines[i].Split(new char[] { ' ' });
+                            sniff.x = packetline[4];
+                            sniff.y = packetline[6];
+                            sniff.z = packetline[8];
+                            sniff.o = "0";
+                        }
+
+                        if (lines[i].Contains("Facing Angle:"))
+                        {
+                            string[] packetline = lines[i].Split(new char[] { ' ' });
+                            sniff.o = packetline[2];
+                        }
+
+                        if (lines[i].Contains("Owner GUID: Full:"))
+                        {
+                            if (lines[i].Contains("Vehicle Entry:") || lines[i].Contains("Unit Entry:"))
+                            {
+                                string[] packetline = lines[i].Split(new char[] { ' ' });
+                                sniff.entry = packetline[7];
+                                sniff.guid = packetline[3];
+                            }
+                        }
+
+                    } while (lines[i] != "");
+
+                    if (sniff.entry != "")
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[0] = sniff.entry;
+                        dr[1] = sniff.guid;
+                        dr[2] = sniff.x;
+                        dr[3] = sniff.y;
+                        dr[4] = sniff.z;
+                        dr[5] = sniff.o;
+                        dr[6] = sniff.time;
+                        dt.Rows.Add(dr);
+                        sniff.entry = "";
+                    }
+                }
+
+                if (Properties.Settings.Default.ObjectUpdate == true && lines[i].Contains("SMSG_UPDATE_OBJECT"))
+                {
+                    sniff.entry = "";
+                    string[] values = lines[i].Split(new char[] { ' ' });
+                    string[] time = values[11].Split(new char[] { '.' });
+                    sniff.time = time[0];
+
+                    do
+                    {
+                        i++;
+
+                        if (lines[i].Contains("GUID: Full:"))
+                        {
+                            if (lines[i].Contains("Vehicle Entry:") || lines[i].Contains("Unit Entry:"))
+                            {
+                                string[] packetline = lines[i].Split(new char[] { ' ' });
+                                sniff.entry = packetline[7];
+                                sniff.guid = packetline[3];
+                            }
+                        }
+
+                        if (lines[i].Contains("Spline: X:"))
+                        {
+                            string[] packetline = lines[i].Split(new char[] { ' ' });
+                            sniff.x = packetline[3];
+                            sniff.y = packetline[5];
+                            sniff.z = packetline[7];
+                            sniff.o = "0";
+
                             DataRow dr = dt.NewRow();
                             dr[0] = sniff.entry;
                             dr[1] = sniff.guid;
@@ -341,46 +385,64 @@ namespace Frm_waypoint
                             dr[5] = sniff.o;
                             dr[6] = sniff.time;
                             dt.Rows.Add(dr);
-                            sniff.entry = "";
                         }
-                    }
+
+                    } while (lines[i] != "");
                 }
             }
+
+            sniff.entry = "";
+            listBox.DataSource = null;
+            listBox.Refresh();
+            gridWaypoint.Rows.Clear();
+            chart.Titles.Clear();
+            chart.Series.Clear();
             return dt;
         }
 
-        public void FillListBoxWithGuids(Int32 entry)
+        public void FillListBoxWithGuids(string entry)
         {
             guids.Clear();
-            guids = waypoints.DefaultView.ToTable(true, "guid");
-
+            guids = waypoints.DefaultView.ToTable(true, "guid", "entry");
             List<string> lst = new List<string>();
+
             foreach (DataRow r in guids.Rows)
             {
-                lst.Add(r["guid"].ToString());
+                if (entry != "0")
+                {
+                    if (entry == r["entry"].ToString())
+                        lst.Add(r["guid"].ToString());
+                }
+                else
+                {
+                    if (r["guid"].ToString() != "")
+                        lst.Add(r["guid"].ToString());
+                }
             }
 
+            lst.Sort();
             if (listBox.DataSource != lst)
                 listBox.DataSource = lst;
+            listBox.Refresh();
         }
 
         public void FillGrid()
         {
-            creature_guid = (string)listBox.SelectedItem;
-            movePackets = waypoints.Clone();
+                creature_guid = (string)listBox.SelectedItem;
+                movePackets = waypoints.Clone();
 
-            foreach (DataRow row in waypoints.Rows)
-            {
-                if (row.Field<string>(1) == creature_guid)
-                    movePackets.ImportRow(row);
-            }
+                foreach (DataRow row in waypoints.Rows)
+                {
+                    if (row.Field<string>(1) == creature_guid)
+                        movePackets.ImportRow(row);
+                }
 
-            creature_entry = movePackets.Rows[0].Field<string>(0);
+                creature_entry = movePackets.Rows[0].Field<string>(0);
 
-            gridWaypoint.Rows.Clear();
+                gridWaypoint.Rows.Clear();
 
-            for (var l = 0; l < movePackets.Rows.Count; l++)
-                gridWaypoint.Rows.Add(l + 1, movePackets.Rows[l].Field<string>(2), movePackets.Rows[l].Field<string>(3), movePackets.Rows[l].Field<string>(4), movePackets.Rows[l].Field<string>(5), movePackets.Rows[l].Field<string>(6), "");
+                for (var l = 0; l < movePackets.Rows.Count; l++)
+                    gridWaypoint.Rows.Add(l + 1, movePackets.Rows[l].Field<string>(2), movePackets.Rows[l].Field<string>(3), movePackets.Rows[l].Field<string>(4), movePackets.Rows[l].Field<string>(5), movePackets.Rows[l].Field<string>(6), "");
         }
 
         public void GraphPath()

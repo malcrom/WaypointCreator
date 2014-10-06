@@ -107,6 +107,11 @@ namespace Frm_waypoint
             else
                 chkBoxSpline.CheckState = CheckState.Unchecked;
 
+            if (Properties.Settings.Default.ObjectUpdate == true)
+                chkBoxObject.CheckState = CheckState.Checked;
+            else
+                chkBoxObject.CheckState = CheckState.Unchecked;
+
             picBoxPointColour.BackColor = Properties.Settings.Default.PointColour;
             picBoxLineColour.BackColor = Properties.Settings.Default.LineColour;
             picBoxBackColour.BackColor = Properties.Settings.Default.BackColour;
@@ -134,6 +139,11 @@ namespace Frm_waypoint
                 Properties.Settings.Default.Splines = true;
             else
                 Properties.Settings.Default.Splines = false;
+
+            if (chkBoxObject.CheckState == CheckState.Checked)
+                Properties.Settings.Default.ObjectUpdate = true;
+            else
+                Properties.Settings.Default.ObjectUpdate = false;
 
             Properties.Settings.Default.PointColour = picBoxPointColour.BackColor;
             Properties.Settings.Default.LineColour = picBoxLineColour.BackColor;
