@@ -7,6 +7,8 @@ using System.Xml.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -38,6 +40,8 @@ namespace Frm_waypoint
 
         public frm_Waypoint()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             InitializeComponent();
         }
 
