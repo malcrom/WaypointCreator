@@ -38,6 +38,8 @@ namespace Frm_waypoint
 
         public frm_Waypoint()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             InitializeComponent();
         }
 
