@@ -271,6 +271,18 @@ namespace Frm_waypoint
 
         public DataTable GetDataSourceFromSniffFile(string fileName)
         {
+            // Clear old sniff displays
+            toolStripStatusLabel.Text = "Loading File...";
+            listBox.DataSource = null;
+            listBox.Refresh();
+            gridWaypoint.Rows.Clear();
+            chart.Titles.Clear();
+            chart.Series.Clear();
+
+            // Set cursor as hourglass
+            this.Cursor = Cursors.WaitCursor;
+            Application.DoEvents();
+
             var lines = File.ReadAllLines(fileName);
 
             DataTable dt = new DataTable("Waypoints");
@@ -392,11 +404,7 @@ namespace Frm_waypoint
             }
 
             sniff.entry = "";
-            listBox.DataSource = null;
-            listBox.Refresh();
-            gridWaypoint.Rows.Clear();
-            chart.Titles.Clear();
-            chart.Series.Clear();
+            this.Cursor = Cursors.Default;
             return dt;
         }
 
