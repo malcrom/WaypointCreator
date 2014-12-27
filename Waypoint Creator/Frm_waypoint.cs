@@ -7,6 +7,8 @@ using System.Xml.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -38,6 +40,8 @@ namespace Frm_waypoint
 
         public frm_Waypoint()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
             InitializeComponent();
         }
 
@@ -314,34 +318,33 @@ namespace Frm_waypoint
                     sniff.time = time[0];
 
                     do
-	                {
+	                    {
                         i++;
 
-                        if (lines[i].Contains("[0] Spline Waypoint: X:"))
+                        if (lines[i].Contains("MoverGUID: Full:"))
                         {
-                            string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.x = packetline[4];
-                            sniff.y = packetline[6];
-                            sniff.z = packetline[8];
-                            sniff.o = "0";
-                        }
-
-                        if (lines[i].Contains("Facing Angle:"))
-                        {
-                            string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.o = packetline[2];
-                        }
-
-                        if (lines[i].Contains("Owner GUID: Full:"))
-                        {
-                            if (lines[i].Contains("Vehicle Entry:") || lines[i].Contains("Unit Entry:"))
+                            if (lines[i].Contains("Entry:"))
                             {
                                 string[] packetline = lines[i].Split(new char[] { ' ' });
-                                sniff.entry = packetline[7];
-                                sniff.guid = packetline[3];
+                                sniff.entry = packetline[8];
+                                sniff.guid = packetline[2];
                             }
                         }
 
+                        if (lines[i].Contains("Face:"))
+                        {
+                            string[] packetline = lines[i].Split(new char[] { ' ' });
+                            sniff.o = packetline[1];
+                        }
+
+                        if (lines[i].Contains("[0] Waypoint: X:"))
+                        {
+                            string[] packetline = lines[i].Split(new char[] { ' ' });
+                            sniff.x = packetline[3];
+                            sniff.y = packetline[5];
+                            sniff.z = packetline[7];
+                            sniff.o = "0";
+                        }
                     } while (lines[i] != "");
 
                     if (sniff.entry != "")
@@ -370,22 +373,12 @@ namespace Frm_waypoint
                     {
                         i++;
 
-                        if (lines[i].Contains("GUID: Full:"))
-                        {
-                            if (lines[i].Contains("Vehicle Entry:") || lines[i].Contains("Unit Entry:"))
-                            {
-                                string[] packetline = lines[i].Split(new char[] { ' ' });
-                                sniff.entry = packetline[7];
-                                sniff.guid = packetline[3];
-                            }
-                        }
-
-                        if (lines[i].Contains("Spline: X:"))
+                        if (lines[i].Contains("Points: X:"))
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.x = packetline[3];
-                            sniff.y = packetline[5];
-                            sniff.z = packetline[7];
+                            sniff.x = packetline[4];
+                            sniff.y = packetline[6];
+                            sniff.z = packetline[8];
                             sniff.o = "0";
 
                             DataRow dr = dt.NewRow();
@@ -397,6 +390,16 @@ namespace Frm_waypoint
                             dr[5] = sniff.o;
                             dr[6] = sniff.time;
                             dt.Rows.Add(dr);
+                        }
+
+                        if (lines[i].Contains("MoverGUID: Full:"))
+                        {
+                            if (lines[i].Contains("Entry:"))
+                            {
+                                string[] packetline = lines[i].Split(new char[] { ' ' });
+                                sniff.entry = packetline[9];
+                                sniff.guid = packetline[3];
+                            }
                         }
 
                     } while (lines[i] != "");
