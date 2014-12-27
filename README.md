@@ -1,4 +1,5 @@
 WaypointCreator
 ===============
 
-Uses csv output file from wpp to create paths from movement packets.
+Uses text output file from wpp to create paths from movement packets.
+
