@@ -323,7 +323,7 @@ namespace Frm_waypoint
 
                         if (lines[i].Contains("MoverGUID: Full:"))
                         {
-                            if (lines[i].Contains("Entry:"))
+                            if (lines[i].Contains("Vehicle/0") || lines[i].Contains("Creature/0"))
                             {
                                 string[] packetline = lines[i].Split(new char[] { ' ' });
                                 sniff.entry = packetline[8];
@@ -337,7 +337,7 @@ namespace Frm_waypoint
                             sniff.o = packetline[1];
                         }
 
-                        if (lines[i].Contains("[0] Waypoint: X:"))
+                        if (lines[i].Contains("Waypoint: X:"))
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
                             sniff.x = packetline[3];
@@ -345,6 +345,7 @@ namespace Frm_waypoint
                             sniff.z = packetline[7];
                             sniff.o = "0";
                         }
+
                     } while (lines[i] != "");
 
                     if (sniff.entry != "")
@@ -394,7 +395,7 @@ namespace Frm_waypoint
 
                         if (lines[i].Contains("MoverGUID: Full:"))
                         {
-                            if (lines[i].Contains("Entry:"))
+                            if (lines[i].Contains("Vehicle/0") || lines[i].Contains("Creature/0"))
                             {
                                 string[] packetline = lines[i].Split(new char[] { ' ' });
                                 sniff.entry = packetline[9];
