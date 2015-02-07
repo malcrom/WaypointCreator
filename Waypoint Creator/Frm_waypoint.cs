@@ -311,7 +311,7 @@ namespace Frm_waypoint
             // reading rest of the data
             for (int i = 1; i < lines.Count(); i++)
             {
-                if (lines[i].Contains("SMSG_MONSTER_MOVE"))
+                if (lines[i].Contains("SMSG_ON_MONSTER_MOVE"))
                 {
                     string[] values = lines[i].Split(new char[] { ' ' });
                     string[] time = values[11].Split(new char[] { '.' });
@@ -374,8 +374,19 @@ namespace Frm_waypoint
                     {
                         i++;
 
+                        if (lines[i].Contains("MoverGUID: Full:"))
+                        {
+                            if (lines[i].Contains("Vehicle/0") || lines[i].Contains("Creature/0"))
+                            {
+                                string[] packetline = lines[i].Split(new char[] { ' ' });
+                                sniff.entry = packetline[9];
+                                sniff.guid = packetline[3];
+                            }
+                        }
+
                         if (lines[i].Contains("Points: X:"))
                         {
+
                             string[] packetline = lines[i].Split(new char[] { ' ' });
                             sniff.x = packetline[4];
                             sniff.y = packetline[6];
@@ -391,16 +402,6 @@ namespace Frm_waypoint
                             dr[5] = sniff.o;
                             dr[6] = sniff.time;
                             dt.Rows.Add(dr);
-                        }
-
-                        if (lines[i].Contains("MoverGUID: Full:"))
-                        {
-                            if (lines[i].Contains("Vehicle/0") || lines[i].Contains("Creature/0"))
-                            {
-                                string[] packetline = lines[i].Split(new char[] { ' ' });
-                                sniff.entry = packetline[9];
-                                sniff.guid = packetline[3];
-                            }
                         }
 
                     } while (lines[i] != "");
