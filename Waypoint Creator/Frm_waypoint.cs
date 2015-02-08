@@ -314,7 +314,7 @@ namespace Frm_waypoint
                 if (lines[i].Contains("SMSG_ON_MONSTER_MOVE"))
                 {
                     string[] values = lines[i].Split(new char[] { ' ' });
-                    string[] time = values[11].Split(new char[] { '.' });
+                    string[] time = values[9].Split(new char[] { '.' });
                     sniff.time = time[0];
 
                     do
@@ -334,15 +334,15 @@ namespace Frm_waypoint
                         if (lines[i].Contains("Face:"))
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.o = packetline[1];
+                            sniff.o = packetline[3];
                         }
 
-                        if (lines[i].Contains("Waypoint: X:"))
+                        if (lines[i].Contains("WayPoints: X:"))
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.x = packetline[3];
-                            sniff.y = packetline[5];
-                            sniff.z = packetline[7];
+                            sniff.x = packetline[5];
+                            sniff.y = packetline[7];
+                            sniff.z = packetline[9];
                             sniff.o = "0";
                         }
 
@@ -367,7 +367,7 @@ namespace Frm_waypoint
                 {
                     sniff.entry = "";
                     string[] values = lines[i].Split(new char[] { ' ' });
-                    string[] time = values[11].Split(new char[] { '.' });
+                    string[] time = values[9].Split(new char[] { '.' });
                     sniff.time = time[0];
 
                     do
