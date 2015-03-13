@@ -413,18 +413,28 @@ namespace Frm_waypoint
                             }
                         }
 
+                        /*
                         if (lines[i].Contains("Transport/0"))
                         {
                             if (lines[i].Contains("Transport Position: X:"))
                             {
-
                                 string[] packetline = lines[i].Split(new char[] { ' ' });
                                 sniff.x = packetline[4];
                                 sniff.y = packetline[6];
                                 sniff.z = packetline[8];
                                 sniff.o = packetline[10];
+
+                                DataRow dr = dt.NewRow();
+                                dr[0] = sniff.entry;
+                                dr[1] = sniff.guid;
+                                dr[2] = sniff.x;
+                                dr[3] = sniff.y;
+                                dr[4] = sniff.z;
+                                dr[5] = sniff.o;
+                                dr[6] = sniff.time;
+                                dt.Rows.Add(dr);
                             }
-                        }
+                        }*/
 
                         if (lines[i].Contains("Points: X:"))
                         {
@@ -590,6 +600,8 @@ namespace Frm_waypoint
                 if (facing == "")
                     facing = "0";
 
+                string time = Convert.ToString(gridWaypoint[5, l].Value);
+
                 string waittime = Convert.ToString(gridWaypoint[6, l].Value);
                 if (waittime == "")
                     waittime = "0";
@@ -603,11 +615,11 @@ namespace Frm_waypoint
 
                 if (l < (gridWaypoint.RowCount - 1))
                 {
-                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0)," + "\r\n";
+                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0)," + " -- " + time + "\r\n";
                 }
                 else
                 {
-                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0);" + "\r\n";
+                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0);" + " -- " + time + "\r\n";
                 }
             }
                 
