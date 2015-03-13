@@ -318,12 +318,12 @@ namespace Frm_waypoint
                     sniff.time = time[0];
 
                     do
-	                    {
+                    {
                         i++;
 
                         if (lines[i].Contains("MoverGUID: Full:"))
                         {
-                            if (lines[i].Contains("Vehicle/0") || lines[i].Contains("Creature/0"))
+                            if (lines[i].Contains("Creature/0") || lines[i].Contains("Vehicle/0"))
                             {
                                 string[] packetline = lines[i].Split(new char[] { ' ' });
                                 sniff.entry = packetline[8];
@@ -331,7 +331,25 @@ namespace Frm_waypoint
                             }
                         }
 
-                        if (lines[i].Contains("Face:"))
+                        if (lines[i].Contains("Position: X:"))
+                        {
+                            string[] packetline = lines[i].Split(new char[] { ' ' });
+                            sniff.x = packetline[2];
+                            sniff.y = packetline[4];
+                            sniff.z = packetline[6];
+                            sniff.o = "0";
+                        }
+
+                        if (lines[i].Contains("Points: X:"))
+                        {
+                            string[] packetline = lines[i].Split(new char[] { ' ' });
+                            sniff.x = packetline[5];
+                            sniff.y = packetline[7];
+                            sniff.z = packetline[9];
+                            sniff.o = "0";
+                        }
+
+                        if (lines[i].Contains("FaceDirection:"))
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
                             sniff.o = packetline[3];
@@ -344,6 +362,17 @@ namespace Frm_waypoint
                             sniff.y = packetline[7];
                             sniff.z = packetline[9];
                             sniff.o = "0";
+
+                            DataRow dr = dt.NewRow();
+                            dr[0] = sniff.entry;
+                            dr[1] = sniff.guid;
+                            dr[2] = sniff.x;
+                            dr[3] = sniff.y;
+                            dr[4] = sniff.z;
+                            dr[5] = sniff.o;
+                            dr[6] = sniff.time;
+                            dt.Rows.Add(dr);
+                            sniff.entry = "";
                         }
 
                     } while (lines[i] != "");
@@ -381,6 +410,19 @@ namespace Frm_waypoint
                                 string[] packetline = lines[i].Split(new char[] { ' ' });
                                 sniff.entry = packetline[9];
                                 sniff.guid = packetline[3];
+                            }
+                        }
+
+                        if (lines[i].Contains("Transport/0"))
+                        {
+                            if (lines[i].Contains("Transport Position: X:"))
+                            {
+
+                                string[] packetline = lines[i].Split(new char[] { ' ' });
+                                sniff.x = packetline[4];
+                                sniff.y = packetline[6];
+                                sniff.z = packetline[8];
+                                sniff.o = packetline[10];
                             }
                         }
 
