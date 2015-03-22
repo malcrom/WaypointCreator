@@ -311,38 +311,71 @@ namespace Frm_waypoint
             // reading rest of the data
             for (int i = 1; i < lines.Count(); i++)
             {
-                if (lines[i].Contains("SMSG_MONSTER_MOVE"))
+                if (lines[i].Contains("SMSG_ON_MONSTER_MOVE"))
                 {
                     string[] values = lines[i].Split(new char[] { ' ' });
-                    string[] time = values[11].Split(new char[] { '.' });
+                    string[] time = values[9].Split(new char[] { '.' });
                     sniff.time = time[0];
 
                     do
-	                {
+                    {
                         i++;
 
-                        if (lines[i].Contains("[0] Spline Waypoint: X:"))
+                        if (lines[i].Contains("MoverGUID: Full:"))
+                        {
+                            if (lines[i].Contains("Creature/0") || lines[i].Contains("Vehicle/0"))
+                            {
+                                string[] packetline = lines[i].Split(new char[] { ' ' });
+                                sniff.entry = packetline[8];
+                                sniff.guid = packetline[2];
+                            }
+                        }
+
+                        if (lines[i].Contains("Position: X:"))
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.x = packetline[4];
-                            sniff.y = packetline[6];
-                            sniff.z = packetline[8];
+                            sniff.x = packetline[2];
+                            sniff.y = packetline[4];
+                            sniff.z = packetline[6];
                             sniff.o = "0";
                         }
 
-                        if (lines[i].Contains("Facing Angle:"))
+                        if (lines[i].Contains("Points: X:"))
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.o = packetline[2];
+                            sniff.x = packetline[5];
+                            sniff.y = packetline[7];
+                            sniff.z = packetline[9];
+                            sniff.o = "0";
                         }
 
-                        if (lines[i].Contains("Owner GUID: Full:"))
+                        if (lines[i].Contains("FaceDirection:"))
                         {
-                            if (lines[i].Contains("Vehicle Entry:") || lines[i].Contains("Unit Entry:"))
+                            string[] packetline = lines[i].Split(new char[] { ' ' });
+                            sniff.o = packetline[3];
+                        }
+
+                        if (lines[i].Contains("WayPoints: X:"))
+                        {
+                            string[] packetline = lines[i].Split(new char[] { ' ' });
+                            sniff.x = packetline[5];
+                            sniff.y = packetline[7];
+                            sniff.z = packetline[9];
+                            sniff.o = "0";
+
+                            if (lines[i].Contains("[0]") || lines[i].Contains("[1]")) { }
+                            else
                             {
-                                string[] packetline = lines[i].Split(new char[] { ' ' });
-                                sniff.entry = packetline[7];
-                                sniff.guid = packetline[3];
+                                DataRow dr = dt.NewRow();
+                                dr[0] = sniff.entry;
+                                dr[1] = sniff.guid;
+                                dr[2] = sniff.x;
+                                dr[3] = sniff.y;
+                                dr[4] = sniff.z;
+                                dr[5] = sniff.o;
+                                dr[6] = sniff.time;
+                                dt.Rows.Add(dr);
+                                sniff.entry = "";
                             }
                         }
 
@@ -367,29 +400,53 @@ namespace Frm_waypoint
                 {
                     sniff.entry = "";
                     string[] values = lines[i].Split(new char[] { ' ' });
-                    string[] time = values[11].Split(new char[] { '.' });
+                    string[] time = values[9].Split(new char[] { '.' });
                     sniff.time = time[0];
 
                     do
                     {
                         i++;
 
-                        if (lines[i].Contains("GUID: Full:"))
+                        if (lines[i].Contains("MoverGUID: Full:"))
                         {
-                            if (lines[i].Contains("Vehicle Entry:") || lines[i].Contains("Unit Entry:"))
+                            if (lines[i].Contains("Vehicle/0") || lines[i].Contains("Creature/0"))
                             {
                                 string[] packetline = lines[i].Split(new char[] { ' ' });
-                                sniff.entry = packetline[7];
+                                sniff.entry = packetline[9];
                                 sniff.guid = packetline[3];
                             }
                         }
 
-                        if (lines[i].Contains("Spline: X:"))
+                        /*
+                        if (lines[i].Contains("Transport/0"))
                         {
+                            if (lines[i].Contains("Transport Position: X:"))
+                            {
+                                string[] packetline = lines[i].Split(new char[] { ' ' });
+                                sniff.x = packetline[4];
+                                sniff.y = packetline[6];
+                                sniff.z = packetline[8];
+                                sniff.o = packetline[10];
+
+                                DataRow dr = dt.NewRow();
+                                dr[0] = sniff.entry;
+                                dr[1] = sniff.guid;
+                                dr[2] = sniff.x;
+                                dr[3] = sniff.y;
+                                dr[4] = sniff.z;
+                                dr[5] = sniff.o;
+                                dr[6] = sniff.time;
+                                dt.Rows.Add(dr);
+                            }
+                        }*/
+
+                        if (lines[i].Contains("Points: X:"))
+                        {
+
                             string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.x = packetline[3];
-                            sniff.y = packetline[5];
-                            sniff.z = packetline[7];
+                            sniff.x = packetline[4];
+                            sniff.y = packetline[6];
+                            sniff.z = packetline[8];
                             sniff.o = "0";
 
                             DataRow dr = dt.NewRow();
@@ -547,6 +604,8 @@ namespace Frm_waypoint
                 if (facing == "")
                     facing = "0";
 
+                string time = Convert.ToString(gridWaypoint[5, l].Value);
+
                 string waittime = Convert.ToString(gridWaypoint[6, l].Value);
                 if (waittime == "")
                     waittime = "0";
@@ -560,11 +619,11 @@ namespace Frm_waypoint
 
                 if (l < (gridWaypoint.RowCount - 1))
                 {
-                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0)," + "\r\n";
+                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0)," + " -- " + time + "\r\n";
                 }
                 else
                 {
-                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0);" + "\r\n";
+                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0);" + " -- " + time + "\r\n";
                 }
             }
                 
