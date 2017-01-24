@@ -66,6 +66,7 @@
             this.toolStripEdit = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripTextBoxEntry = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabelEntry = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLoadSniff = new System.Windows.Forms.ToolStripButton();
@@ -73,7 +74,6 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripLabelEntry = new System.Windows.Forms.ToolStripLabel();
             this.tabOutput.SuspendLayout();
             this.toolStripSQL.SuspendLayout();
             this.tabEditor.SuspendLayout();
@@ -129,7 +129,7 @@
             this.toolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSave.Image")));
             this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSave.Name = "toolStripButtonSave";
-            this.toolStripButtonSave.Size = new System.Drawing.Size(75, 22);
+            this.toolStripButtonSave.Size = new System.Drawing.Size(79, 22);
             this.toolStripButtonSave.Text = "Write SQL";
             this.toolStripButtonSave.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.toolStripButtonSave.ToolTipText = "Write textbox to SQL file.";
@@ -227,7 +227,7 @@
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart.Series.Add(series1);
-            this.chart.Size = new System.Drawing.Size(695, 641);
+            this.chart.Size = new System.Drawing.Size(596, 641);
             this.chart.TabIndex = 25;
             this.chart.Text = "Waypoints";
             title1.DockedToChartArea = "ChartArea1";
@@ -239,9 +239,9 @@
             // listBox
             // 
             this.listBox.FormattingEnabled = true;
-            this.listBox.Location = new System.Drawing.Point(704, 28);
+            this.listBox.Location = new System.Drawing.Point(605, 28);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(140, 641);
+            this.listBox.Size = new System.Drawing.Size(239, 641);
             this.listBox.TabIndex = 24;
             this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
@@ -361,45 +361,45 @@
             this.toolStripSeparator,
             this.createSQLToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(136, 120);
+            this.contextMenuStrip.Size = new System.Drawing.Size(140, 120);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // pasteAboveToolStripMenuItem
             // 
             this.pasteAboveToolStripMenuItem.Name = "pasteAboveToolStripMenuItem";
-            this.pasteAboveToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.pasteAboveToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.pasteAboveToolStripMenuItem.Text = "Paste Above";
             this.pasteAboveToolStripMenuItem.Click += new System.EventHandler(this.pasteAboveToolStripMenuItem_Click);
             // 
             // pasteBelowToolStripMenuItem
             // 
             this.pasteBelowToolStripMenuItem.Name = "pasteBelowToolStripMenuItem";
-            this.pasteBelowToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.pasteBelowToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.pasteBelowToolStripMenuItem.Text = "Paste Below";
             this.pasteBelowToolStripMenuItem.Click += new System.EventHandler(this.pasteBelowToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(132, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(136, 6);
             // 
             // createSQLToolStripMenuItem
             // 
             this.createSQLToolStripMenuItem.Name = "createSQLToolStripMenuItem";
-            this.createSQLToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.createSQLToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.createSQLToolStripMenuItem.Text = "Create SQL";
             this.createSQLToolStripMenuItem.Click += new System.EventHandler(this.createSQLToolStripMenuItem_Click);
             // 
@@ -425,7 +425,7 @@
             this.toolStripButtonSearch.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSearch.Image")));
             this.toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSearch.Name = "toolStripButtonSearch";
-            this.toolStripButtonSearch.Size = new System.Drawing.Size(60, 22);
+            this.toolStripButtonSearch.Size = new System.Drawing.Size(62, 22);
             this.toolStripButtonSearch.Text = "Search";
             this.toolStripButtonSearch.ToolTipText = "Fill listbox with guids of\r\nselected entry or all entries.";
             this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
@@ -440,6 +440,15 @@
             this.toolStripTextBoxEntry.Tag = "";
             this.toolStripTextBoxEntry.ToolTipText = "Input entry of creature or leave\r\nblank to fill listbox will all in sniff.";
             // 
+            // toolStripLabelEntry
+            // 
+            this.toolStripLabelEntry.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabelEntry.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabelEntry.Name = "toolStripLabelEntry";
+            this.toolStripLabelEntry.Size = new System.Drawing.Size(37, 22);
+            this.toolStripLabelEntry.Text = "Entry:";
+            this.toolStripLabelEntry.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -452,7 +461,7 @@
             this.toolStripButtonSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSettings.Image")));
             this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSettings.Name = "toolStripButtonSettings";
-            this.toolStripButtonSettings.Size = new System.Drawing.Size(66, 22);
+            this.toolStripButtonSettings.Size = new System.Drawing.Size(69, 22);
             this.toolStripButtonSettings.Text = "Settings";
             this.toolStripButtonSettings.ToolTipText = "Setup chart and output SQL.";
             this.toolStripButtonSettings.Click += new System.EventHandler(this.toolStripButtonSettings_Click);
@@ -462,7 +471,7 @@
             this.toolStripButtonLoadSniff.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLoadSniff.Image")));
             this.toolStripButtonLoadSniff.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonLoadSniff.Name = "toolStripButtonLoadSniff";
-            this.toolStripButtonLoadSniff.Size = new System.Drawing.Size(84, 22);
+            this.toolStripButtonLoadSniff.Size = new System.Drawing.Size(90, 22);
             this.toolStripButtonLoadSniff.Text = "Import Sniff";
             this.toolStripButtonLoadSniff.ToolTipText = "Import a parsed wpp sniff file.";
             this.toolStripButtonLoadSniff.Click += new System.EventHandler(this.toolStripButtonLoadSniff_Click);
@@ -490,17 +499,8 @@
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(77, 17);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(86, 17);
             this.toolStripStatusLabel.Text = "No File Loaded";
-            // 
-            // toolStripLabelEntry
-            // 
-            this.toolStripLabelEntry.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripLabelEntry.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabelEntry.Name = "toolStripLabelEntry";
-            this.toolStripLabelEntry.Size = new System.Drawing.Size(37, 22);
-            this.toolStripLabelEntry.Text = "Entry:";
-            this.toolStripLabelEntry.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frm_Waypoint
             // 
