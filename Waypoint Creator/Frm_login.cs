@@ -28,7 +28,7 @@ namespace Frm_waypoint
 		{
 			MySqlConnection conn = null;
 			conn = new MySqlConnection();
-            conn.ConnectionString = "server=" + Properties.Settings.Default.host + "; port=" + Properties.Settings.Default.port + "; user id=" + Properties.Settings.Default.username + "; password=" + Properties.Settings.Default.password + "; database=" + Properties.Settings.Default.database;
+            conn.ConnectionString = "server=" + txt_Host.Text + "; port=" + txt_Port.Text + "; user id=" + txt_Username.Text + "; password=" + txt_Password.Text + "; database=" + txt_Database.Text;
 			try
 			{
                 // Try db connection.
