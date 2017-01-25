@@ -355,6 +355,7 @@ namespace Frm_waypoint
                             sniff.o = packetline[3];
                         }
 
+                        /*
                         if (lines[i].Contains("WayPoints: X:"))
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
@@ -378,6 +379,7 @@ namespace Frm_waypoint
                                 sniff.entry = "";
                             }
                         }
+                        */
 
                     } while (lines[i] != "");
 
@@ -619,11 +621,11 @@ namespace Frm_waypoint
 
                 if (l < (gridWaypoint.RowCount - 1))
                 {
-                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0)," + " -- " + time + "\r\n";
+                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0)," + "\r\n";
                 }
                 else
                 {
-                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0);" + " -- " + time + "\r\n";
+                    SQLtext = SQLtext + facing + "," + waittime + ",0,0,100,0);" + "\r\n";
                 }
             }
                 
