@@ -340,7 +340,7 @@ namespace Frm_waypoint
                             sniff.o = "0";
                         }
 
-                        if (lines[i].Contains("Points: X:"))
+                        if (lines[i].Contains("[0] Points: X:"))
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
                             sniff.x = packetline[5];
