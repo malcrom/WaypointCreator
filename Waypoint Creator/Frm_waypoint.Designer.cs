@@ -434,7 +434,7 @@
             // 
             this.toolStripTextBoxEntry.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripTextBoxEntry.Enabled = false;
-            this.toolStripTextBoxEntry.MaxLength = 5;
+            this.toolStripTextBoxEntry.MaxLength = 6;
             this.toolStripTextBoxEntry.Name = "toolStripTextBoxEntry";
             this.toolStripTextBoxEntry.Size = new System.Drawing.Size(70, 25);
             this.toolStripTextBoxEntry.Tag = "";
