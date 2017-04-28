@@ -178,6 +178,8 @@ namespace Frm_waypoint
                 createSQL_TDB();
             if (Properties.Settings.Default.UDB)
                 createSQL_UDB();
+            if (Properties.Settings.Default.SAI)
+                createSQL_SAI();
         }
 
         private void CopyCutFromGrid(bool cut)
@@ -629,7 +631,7 @@ namespace Frm_waypoint
                 }
             }
                 
-            SQLtext = SQLtext + "-- " + (string)listBox.SelectedItem + " .go " + Convert.ToString(gridWaypoint[1, 0].Value) + " " + Convert.ToString(gridWaypoint[2, 0].Value) + " " + Convert.ToString(gridWaypoint[3, 0].Value) + "\r\n";
+            SQLtext = SQLtext + "-- " + (string)listBox.SelectedItem + " .go xyz " + Convert.ToString(gridWaypoint[1, 0].Value) + " " + Convert.ToString(gridWaypoint[2, 0].Value) + " " + Convert.ToString(gridWaypoint[3, 0].Value) + "\r\n";
             txtOutput.Text = txtOutput.Text + SQLtext + "\r\n";
         }
 
@@ -668,7 +670,48 @@ namespace Frm_waypoint
                 }
             }
 
-            SQLtext = SQLtext + "-- " + (string)listBox.SelectedItem + " .go " + Convert.ToString(gridWaypoint[1, 0].Value) + " " + Convert.ToString(gridWaypoint[2, 0].Value) + " " + Convert.ToString(gridWaypoint[3, 0].Value) + "\r\n";
+            SQLtext = SQLtext + "-- " + (string)listBox.SelectedItem + " .go xyz " + Convert.ToString(gridWaypoint[1, 0].Value) + " " + Convert.ToString(gridWaypoint[2, 0].Value) + " " + Convert.ToString(gridWaypoint[3, 0].Value) + "\r\n";
+            txtOutput.Text = txtOutput.Text + SQLtext + "\r\n";
+        }
+
+        private void createSQL_SAI()
+        {
+            string name = creature_name.Replace("'", "''");
+            //Send to SQL
+            SQLtext = "-- Pathing for " + creature_name + " Entry: " + creature_entry + " 'SAI FORMAT' \r\n" + "SET @NPC := XXXXXX;" + "\r\n";
+            SQLtext = SQLtext + "DELETE FROM `waypoints` WHERE `id`=@NPC;" + "\r\n";
+            SQLtext = SQLtext + "INSERT INTO `waypoints` (`entry`,`pointid`,`position_x`,`position_y`,`position_z`,`point_comment`) VALUES" + "\r\n";
+
+            for (var l = 0; l < gridWaypoint.RowCount; l++)
+            {
+                string facing = Convert.ToString(gridWaypoint[4, l].Value);
+                if (facing == "")
+                    facing = "0";
+
+                string time = Convert.ToString(gridWaypoint[5, l].Value);
+
+                string waittime = Convert.ToString(gridWaypoint[6, l].Value);
+                if (waittime == "")
+                    waittime = "0";
+
+                SQLtext = SQLtext + "(@NPC," + (l + 1) + ",";
+
+                for (var ll = 1; ll < 4; ll++)
+                {
+                    SQLtext = SQLtext + gridWaypoint[ll, l].Value + ",";
+                }
+
+                if (l < (gridWaypoint.RowCount - 1))
+                {
+                    SQLtext = SQLtext + "'" + name + "')," + "\r\n";
+                }
+                else
+                {
+                    SQLtext = SQLtext + "'" + name + "');" + "\r\n";
+                }
+            }
+
+            SQLtext = SQLtext + "-- " + (string)listBox.SelectedItem + " .go xyz " + Convert.ToString(gridWaypoint[1, 0].Value) + " " + Convert.ToString(gridWaypoint[2, 0].Value) + " " + Convert.ToString(gridWaypoint[3, 0].Value) + "\r\n";
             txtOutput.Text = txtOutput.Text + SQLtext + "\r\n";
         }
    }

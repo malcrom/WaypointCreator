@@ -130,6 +130,11 @@ namespace Frm_waypoint
             else
                 Properties.Settings.Default.UDB = false;
 
+            if (chkBoxSAI.CheckState == CheckState.Checked)
+                Properties.Settings.Default.SAI = true;
+            else
+                Properties.Settings.Default.SAI = false;
+
             if (chkBoxLine.CheckState == CheckState.Checked)
                 Properties.Settings.Default.Lines = true;
             else
@@ -156,6 +161,7 @@ namespace Frm_waypoint
         {
             chkBoxTDB.CheckState = CheckState.Checked;
             chkBoxUDB.CheckState = CheckState.Checked;
+            chkBoxSAI.CheckState = CheckState.Checked;
             chkBoxLine.CheckState = CheckState.Checked;
             chkBoxSpline.CheckState = CheckState.Checked;
             picBoxPointColour.BackColor = Color.Blue;

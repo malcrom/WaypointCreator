@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Settings));
             this.groupSQL = new System.Windows.Forms.GroupBox();
+            this.chkBoxSAI = new System.Windows.Forms.CheckBox();
             this.chkBoxUDB = new System.Windows.Forms.CheckBox();
             this.chkBoxTDB = new System.Windows.Forms.CheckBox();
             this.groupGraph = new System.Windows.Forms.GroupBox();
@@ -60,15 +61,26 @@
             // 
             // groupSQL
             // 
+            this.groupSQL.Controls.Add(this.chkBoxSAI);
             this.groupSQL.Controls.Add(this.chkBoxUDB);
             this.groupSQL.Controls.Add(this.chkBoxTDB);
             this.groupSQL.Location = new System.Drawing.Point(12, 12);
             this.groupSQL.Name = "groupSQL";
-            this.groupSQL.Size = new System.Drawing.Size(168, 68);
+            this.groupSQL.Size = new System.Drawing.Size(168, 103);
             this.groupSQL.TabIndex = 5;
             this.groupSQL.TabStop = false;
             this.groupSQL.Text = "SQL Output Format";
             // 
+            // chkBoxSAI
+            //
+            this.chkBoxSAI.AutoSize = true;
+            this.chkBoxSAI.Location = new System.Drawing.Point(6, 65);
+            this.chkBoxSAI.Name = "chkBoxSAI";
+            this.chkBoxSAI.Size = new System.Drawing.Size(93, 17);
+            this.chkBoxSAI.TabIndex = 4;
+            this.chkBoxSAI.Text = "TDB SAI Path";
+            this.chkBoxSAI.UseVisualStyleBackColor = true;
+            //
             // chkBoxUDB
             // 
             this.chkBoxUDB.AutoSize = true;
@@ -93,7 +105,7 @@
             // 
             this.groupGraph.Controls.Add(this.chkBoxSpline);
             this.groupGraph.Controls.Add(this.chkBoxLine);
-            this.groupGraph.Location = new System.Drawing.Point(12, 86);
+            this.groupGraph.Location = new System.Drawing.Point(12, 121);
             this.groupGraph.Name = "groupGraph";
             this.groupGraph.Size = new System.Drawing.Size(168, 68);
             this.groupGraph.TabIndex = 6;
@@ -122,7 +134,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(249, 160);
+            this.btnOK.Location = new System.Drawing.Point(249, 203);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 7;
@@ -133,7 +145,7 @@
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.btnCancel.Location = new System.Drawing.Point(249, 189);
+            this.btnCancel.Location = new System.Drawing.Point(249, 232);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 8;
@@ -237,7 +249,7 @@
             // 
             // btnDefault
             // 
-            this.btnDefault.Location = new System.Drawing.Point(12, 189);
+            this.btnDefault.Location = new System.Drawing.Point(207, 166);
             this.btnDefault.Name = "btnDefault";
             this.btnDefault.Size = new System.Drawing.Size(117, 23);
             this.btnDefault.TabIndex = 10;
@@ -248,7 +260,7 @@
             // chkBoxObject
             // 
             this.chkBoxObject.AutoSize = true;
-            this.chkBoxObject.Location = new System.Drawing.Point(18, 166);
+            this.chkBoxObject.Location = new System.Drawing.Point(18, 209);
             this.chkBoxObject.Name = "chkBoxObject";
             this.chkBoxObject.Size = new System.Drawing.Size(218, 17);
             this.chkBoxObject.TabIndex = 11;
@@ -259,7 +271,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(336, 226);
+            this.ClientSize = new System.Drawing.Size(336, 265);
             this.ControlBox = false;
             this.Controls.Add(this.chkBoxObject);
             this.Controls.Add(this.groupSQL);
@@ -314,5 +326,6 @@
         private System.Windows.Forms.PictureBox picBoxBackColour;
         private System.Windows.Forms.Button btnDefault;
         private System.Windows.Forms.CheckBox chkBoxObject;
+        private System.Windows.Forms.CheckBox chkBoxSAI;
     }
 }
