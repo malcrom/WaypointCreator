@@ -22,3 +22,14 @@ C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.fr
 C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.frm_Login.resources
 C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.Properties.Resources.resources
 C:\Users\Troy\Desktop\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.csproj.GenerateResource.Cache
+C:\GitHubCode\WaypointCreator\Waypoint Creator\bin\Debug\Waypoint Creator.exe.config
+C:\GitHubCode\WaypointCreator\Waypoint Creator\bin\Debug\Waypoint Creator.exe
+C:\GitHubCode\WaypointCreator\Waypoint Creator\bin\Debug\Waypoint Creator.pdb
+C:\GitHubCode\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.csprojResolveAssemblyReference.cache
+C:\GitHubCode\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.frm_Settings.resources
+C:\GitHubCode\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.frm_Waypoint.resources
+C:\GitHubCode\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.frm_Login.resources
+C:\GitHubCode\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.Properties.Resources.resources
+C:\GitHubCode\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.csproj.GenerateResource.Cache
+C:\GitHubCode\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.exe
+C:\GitHubCode\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.pdb
