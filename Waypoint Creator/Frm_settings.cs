@@ -97,6 +97,11 @@ namespace Frm_waypoint
             else
                 chkBoxUDB.CheckState = CheckState.Unchecked;
 
+            if (Properties.Settings.Default.SAI == true)
+                chkBoxSAI.CheckState = CheckState.Checked;
+            else
+                chkBoxSAI.CheckState = CheckState.Unchecked;
+
             if (Properties.Settings.Default.Lines == true)
                 chkBoxLine.CheckState = CheckState.Checked;
             else
