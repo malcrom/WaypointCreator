@@ -1,0 +1,10 @@
+*.exe
+*.manifest
+*.resources
+*.pdb
+*.config
+*.dll
+*.cache
+*.Cache
+Debug/
+Release/
