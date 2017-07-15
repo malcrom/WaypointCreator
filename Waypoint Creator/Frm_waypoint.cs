@@ -26,6 +26,7 @@ namespace Frm_waypoint
         string creature_entry = "";
         string creature_name  = "";
         string SQLtext        = "";
+        string mapID          = "";
 
         struct Packet
         {
@@ -305,7 +306,7 @@ namespace Frm_waypoint
 
             string[] columns = null;
 
-            string col = "entry,guid,x,y,z,o,time";
+            string col = "entry,guid,x,y,z,o,time,mapID";
             columns = col.Split(new char[] { ',' });
             foreach (var column in columns)
                 dt.Columns.Add(column);
@@ -313,6 +314,13 @@ namespace Frm_waypoint
             // reading rest of the data
             for (int i = 1; i < lines.Count(); i++)
             {
+                if (lines[i].Contains("SMSG_INIT_WORLD_STATES"))
+                {
+                    i++;
+                    string[] packetline = lines[i].Split(new char[] { ' ' });
+                    mapID = packetline[1];
+                }
+
                 if (lines[i].Contains("SMSG_ON_MONSTER_MOVE"))
                 {
                     string[] values = lines[i].Split(new char[] { ' ' });
@@ -377,6 +385,7 @@ namespace Frm_waypoint
                                 dr[4] = sniff.z;
                                 dr[5] = sniff.o;
                                 dr[6] = sniff.time;
+                                dr[7] = mapID;
                                 dt.Rows.Add(dr);
                                 sniff.entry = "";
                             }
@@ -395,6 +404,7 @@ namespace Frm_waypoint
                         dr[4] = sniff.z;
                         dr[5] = sniff.o;
                         dr[6] = sniff.time;
+                        dr[7] = mapID;
                         dt.Rows.Add(dr);
                         sniff.entry = "";
                     }
@@ -440,6 +450,7 @@ namespace Frm_waypoint
                                 dr[4] = sniff.z;
                                 dr[5] = sniff.o;
                                 dr[6] = sniff.time;
+                                dr[7] = mapID;
                                 dt.Rows.Add(dr);
                             }
                         }*/
@@ -461,6 +472,7 @@ namespace Frm_waypoint
                             dr[4] = sniff.z;
                             dr[5] = sniff.o;
                             dr[6] = sniff.time;
+                            dr[7] = mapID;
                             dt.Rows.Add(dr);
                         }
 
