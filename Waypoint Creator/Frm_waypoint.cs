@@ -641,7 +641,7 @@ namespace Frm_waypoint
             SQLtext = "-- Pathing for " + creature_name + " Entry: " + creature_entry + " 'UDB FORMAT' \r\n" + "SET @GUID := XXXXXX;" + "\r\n";
             SQLtext = SQLtext + "UPDATE `creature` SET `position_x`=" + Convert.ToString(gridWaypoint[1, gridWaypoint.RowCount - 1].Value) + ",`position_y`=" + Convert.ToString(gridWaypoint[2, gridWaypoint.RowCount - 1].Value) + ",`position_z`=" + Convert.ToString(gridWaypoint[3, gridWaypoint.RowCount - 1].Value) + " WHERE `guid`=@GUID;" + "\r\n";
             SQLtext = SQLtext + "DELETE FROM `creature_movement` WHERE `id`=@GUID;" + "\r\n";
-            SQLtext = SQLtext + "INSERT INTO `creature_movement` (`id`,`point`,`position_x`,`position_y`,`position_z`,`waittime`,`script_id`,`textid1`,`textid2`,`textid3`,`textid4`,`textid5`,`emote`,`spell`,`wpguid`,`orientation`,`model1`,`model2`) VALUES" + "\r\n";
+            SQLtext = SQLtext + "INSERT INTO `creature_movement` (`id`,`point`,`position_x`,`position_y`,`position_z`,`waittime`,`script_id`,`textid1`,`textid2`,`textid3`,`textid4`,`textid5`,`emote`,`spell`,`orientation`,`model1`,`model2`) VALUES" + "\r\n";
 
             for (var l = 0; l < gridWaypoint.RowCount; l++)
             {
@@ -662,11 +662,11 @@ namespace Frm_waypoint
 
                 if (l < (gridWaypoint.RowCount - 1))
                 {
-                    SQLtext = SQLtext + waittime + ",0,0,0,0,0,0,0,0,0," + facing + ",0,0)," + "\r\n";
+                    SQLtext = SQLtext + waittime + ",0,0,0,0,0,0,0,0," + facing + ",0,0)," + "\r\n";
                 }
                 else
                 {
-                    SQLtext = SQLtext + waittime + ",0,0,0,0,0,0,0,0,0," + facing + ",0,0);" + "\r\n";
+                    SQLtext = SQLtext + waittime + ",0,0,0,0,0,0,0,0," + facing + ",0,0);" + "\r\n";
                 }
             }
 
