@@ -50,6 +50,7 @@
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.btnDefault = new System.Windows.Forms.Button();
             this.chkBoxObject = new System.Windows.Forms.CheckBox();
+            this.chkBoxCPP = new System.Windows.Forms.CheckBox();
             this.groupSQL.SuspendLayout();
             this.groupGraph.SuspendLayout();
             this.groupColours.SuspendLayout();
@@ -61,34 +62,35 @@
             // 
             // groupSQL
             // 
+            this.groupSQL.Controls.Add(this.chkBoxCPP);
             this.groupSQL.Controls.Add(this.chkBoxSAI);
             this.groupSQL.Controls.Add(this.chkBoxUDB);
             this.groupSQL.Controls.Add(this.chkBoxTDB);
             this.groupSQL.Location = new System.Drawing.Point(12, 12);
             this.groupSQL.Name = "groupSQL";
-            this.groupSQL.Size = new System.Drawing.Size(168, 103);
+            this.groupSQL.Size = new System.Drawing.Size(168, 108);
             this.groupSQL.TabIndex = 5;
             this.groupSQL.TabStop = false;
-            this.groupSQL.Text = "SQL Output Format";
+            this.groupSQL.Text = "Output Format";
             // 
             // chkBoxSAI
-            //
+            // 
             this.chkBoxSAI.AutoSize = true;
             this.chkBoxSAI.Location = new System.Drawing.Point(6, 65);
             this.chkBoxSAI.Name = "chkBoxSAI";
-            this.chkBoxSAI.Size = new System.Drawing.Size(93, 17);
+            this.chkBoxSAI.Size = new System.Drawing.Size(117, 17);
             this.chkBoxSAI.TabIndex = 4;
-            this.chkBoxSAI.Text = "TDB SAI Path";
+            this.chkBoxSAI.Text = "TDB SAI Path SQL";
             this.chkBoxSAI.UseVisualStyleBackColor = true;
-            //
+            // 
             // chkBoxUDB
             // 
             this.chkBoxUDB.AutoSize = true;
             this.chkBoxUDB.Location = new System.Drawing.Point(6, 42);
             this.chkBoxUDB.Name = "chkBoxUDB";
-            this.chkBoxUDB.Size = new System.Drawing.Size(98, 17);
+            this.chkBoxUDB.Size = new System.Drawing.Size(122, 17);
             this.chkBoxUDB.TabIndex = 3;
-            this.chkBoxUDB.Text = "UDB Database";
+            this.chkBoxUDB.Text = "UDB Database SQL";
             this.chkBoxUDB.UseVisualStyleBackColor = true;
             // 
             // chkBoxTDB
@@ -96,16 +98,16 @@
             this.chkBoxTDB.AutoSize = true;
             this.chkBoxTDB.Location = new System.Drawing.Point(6, 19);
             this.chkBoxTDB.Name = "chkBoxTDB";
-            this.chkBoxTDB.Size = new System.Drawing.Size(97, 17);
+            this.chkBoxTDB.Size = new System.Drawing.Size(121, 17);
             this.chkBoxTDB.TabIndex = 2;
-            this.chkBoxTDB.Text = "TDB Database";
+            this.chkBoxTDB.Text = "TDB Database SQL";
             this.chkBoxTDB.UseVisualStyleBackColor = true;
             // 
             // groupGraph
             // 
             this.groupGraph.Controls.Add(this.chkBoxSpline);
             this.groupGraph.Controls.Add(this.chkBoxLine);
-            this.groupGraph.Location = new System.Drawing.Point(12, 121);
+            this.groupGraph.Location = new System.Drawing.Point(12, 126);
             this.groupGraph.Name = "groupGraph";
             this.groupGraph.Size = new System.Drawing.Size(168, 68);
             this.groupGraph.TabIndex = 6;
@@ -115,7 +117,7 @@
             // chkBoxSpline
             // 
             this.chkBoxSpline.AutoSize = true;
-            this.chkBoxSpline.Location = new System.Drawing.Point(6, 42);
+            this.chkBoxSpline.Location = new System.Drawing.Point(6, 47);
             this.chkBoxSpline.Name = "chkBoxSpline";
             this.chkBoxSpline.Size = new System.Drawing.Size(98, 17);
             this.chkBoxSpline.TabIndex = 6;
@@ -125,7 +127,7 @@
             // chkBoxLine
             // 
             this.chkBoxLine.AutoSize = true;
-            this.chkBoxLine.Location = new System.Drawing.Point(6, 19);
+            this.chkBoxLine.Location = new System.Drawing.Point(6, 24);
             this.chkBoxLine.Name = "chkBoxLine";
             this.chkBoxLine.Size = new System.Drawing.Size(81, 17);
             this.chkBoxLine.TabIndex = 5;
@@ -249,7 +251,7 @@
             // 
             // btnDefault
             // 
-            this.btnDefault.Location = new System.Drawing.Point(207, 166);
+            this.btnDefault.Location = new System.Drawing.Point(207, 169);
             this.btnDefault.Name = "btnDefault";
             this.btnDefault.Size = new System.Drawing.Size(117, 23);
             this.btnDefault.TabIndex = 10;
@@ -267,11 +269,22 @@
             this.chkBoxObject.Text = "Get spline waypoints from Object Update";
             this.chkBoxObject.UseVisualStyleBackColor = true;
             // 
+            // chkBoxCPP
+            // 
+            this.chkBoxCPP.AutoSize = true;
+            this.chkBoxCPP.Location = new System.Drawing.Point(6, 88);
+            this.chkBoxCPP.Name = "chkBoxCPP";
+            this.chkBoxCPP.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.chkBoxCPP.Size = new System.Drawing.Size(130, 17);
+            this.chkBoxCPP.TabIndex = 5;
+            this.chkBoxCPP.Text = "C++ Position Constant";
+            this.chkBoxCPP.UseVisualStyleBackColor = true;
+            // 
             // frm_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(336, 265);
+            this.ClientSize = new System.Drawing.Size(336, 277);
             this.ControlBox = false;
             this.Controls.Add(this.chkBoxObject);
             this.Controls.Add(this.groupSQL);
@@ -327,5 +340,6 @@
         private System.Windows.Forms.Button btnDefault;
         private System.Windows.Forms.CheckBox chkBoxObject;
         private System.Windows.Forms.CheckBox chkBoxSAI;
+        private System.Windows.Forms.CheckBox chkBoxCPP;
     }
 }

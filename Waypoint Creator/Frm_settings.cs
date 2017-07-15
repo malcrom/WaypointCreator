@@ -11,6 +11,11 @@ namespace Frm_waypoint
 {
     public partial class frm_Settings : Form
     {
+        public const int boxPoint = 1;
+        public const int boxLine  = 2;
+        public const int boxBack  = 3;
+        public const int boxTitle = 4;
+
         public frm_Settings()
         {
             InitializeComponent();
@@ -39,46 +44,46 @@ namespace Frm_waypoint
 
         private void btnPointColour_Click(object sender, EventArgs e)
         {
-            setColour(1);
+            setColour(boxPoint);
         }
 
         private void btnLineColour_Click(object sender, EventArgs e)
         {
-            setColour(2);
+            setColour(boxLine);
         }
 
         private void btnBackColour_Click(object sender, EventArgs e)
         {
-            setColour(3);
+            setColour(boxBack);
         }
 
         private void btnTitleColour_Click(object sender, EventArgs e)
         {
-            setColour(4);
+            setColour(boxTitle);
         }
 
-        private void setColour(Int32 item)
+        private void setColour(int item)
         {
-            ColorDialog colorDlg = new ColorDialog();
-            colorDlg.AllowFullOpen = true;
-            colorDlg.AnyColor = true;
+            ColorDialog colorDlg    = new ColorDialog();
+            colorDlg.AllowFullOpen  = true;
+            colorDlg.AnyColor       = true;
             colorDlg.SolidColorOnly = false;
-            colorDlg.Color = Color.Red;
+            colorDlg.Color          = Color.Red;
 
             if (colorDlg.ShowDialog() == DialogResult.OK)
             {
                 switch (item)
                 {
-                    case 1:
+                    case boxPoint:
                         picBoxPointColour.BackColor = colorDlg.Color;
                         break;
-                    case 2:
+                    case boxLine:
                         picBoxLineColour.BackColor = colorDlg.Color;
                         break;
-                    case 3:
+                    case boxBack:
                         picBoxBackColour.BackColor = colorDlg.Color;
                         break;
-                    case 4:
+                    case boxTitle:
                         picBoxTitleColour.BackColor = colorDlg.Color;
                         break;
                 }
@@ -101,6 +106,11 @@ namespace Frm_waypoint
                 chkBoxSAI.CheckState = CheckState.Checked;
             else
                 chkBoxSAI.CheckState = CheckState.Unchecked;
+
+            if (Properties.Settings.Default.CPP == true)
+                chkBoxCPP.CheckState = CheckState.Checked;
+            else
+                chkBoxCPP.CheckState = CheckState.Unchecked;
 
             if (Properties.Settings.Default.Lines == true)
                 chkBoxLine.CheckState = CheckState.Checked;
@@ -140,6 +150,11 @@ namespace Frm_waypoint
             else
                 Properties.Settings.Default.SAI = false;
 
+            if (chkBoxCPP.CheckState == CheckState.Checked)
+                Properties.Settings.Default.CPP = true;
+            else
+                Properties.Settings.Default.CPP = false;
+
             if (chkBoxLine.CheckState == CheckState.Checked)
                 Properties.Settings.Default.Lines = true;
             else
@@ -167,6 +182,7 @@ namespace Frm_waypoint
             chkBoxTDB.CheckState = CheckState.Checked;
             chkBoxUDB.CheckState = CheckState.Checked;
             chkBoxSAI.CheckState = CheckState.Checked;
+            chkBoxCPP.CheckState = CheckState.Checked;
             chkBoxLine.CheckState = CheckState.Checked;
             chkBoxSpline.CheckState = CheckState.Checked;
             picBoxPointColour.BackColor = Color.Blue;

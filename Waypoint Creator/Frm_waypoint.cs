@@ -59,12 +59,12 @@ namespace Frm_waypoint
 
         private void toolStripButtonLoadSniff_Click(object sender, EventArgs e)
         {
-            openFileDialog.Title = "Open File";
-            openFileDialog.Filter = "Parsed Sniff File (*.txt)|*.txt";
-            openFileDialog.FileName = "*.txt";
-            openFileDialog.FilterIndex = 1;
-            openFileDialog.ShowReadOnly = false;
-            openFileDialog.Multiselect = false;
+            openFileDialog.Title           = "Open File";
+            openFileDialog.Filter          = "Parsed Sniff File (*.txt)|*.txt";
+            openFileDialog.FileName        = "*.txt";
+            openFileDialog.FilterIndex     = 1;
+            openFileDialog.ShowReadOnly    = false;
+            openFileDialog.Multiselect     = false;
             openFileDialog.CheckFileExists = true;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -83,10 +83,10 @@ namespace Frm_waypoint
 
         private void toolStripButtonSave_Click(object sender, EventArgs e)
         {
-            saveFileDialog.Title = "Save File";
-            saveFileDialog.Filter = "Path Insert SQL (*.sql)|*.sql";
-            saveFileDialog.FileName = "";
-            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.Title           = "Save File";
+            saveFileDialog.Filter          = "Path Insert SQL (*.sql)|*.sql";
+            saveFileDialog.FileName        = "";
+            saveFileDialog.FilterIndex     = 1;
             saveFileDialog.CheckFileExists = false;
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -181,6 +181,8 @@ namespace Frm_waypoint
                 createSQL_UDB();
             if (Properties.Settings.Default.SAI)
                 createSQL_SAI();
+            if (Properties.Settings.Default.CPP)
+                createCode_cpp();
         }
 
         private void CopyCutFromGrid(bool cut)
@@ -365,33 +367,6 @@ namespace Frm_waypoint
                             sniff.o = packetline[3];
                         }
 
-                        /*
-                        if (lines[i].Contains("WayPoints: X:"))
-                        {
-                            string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.x = packetline[5];
-                            sniff.y = packetline[7];
-                            sniff.z = packetline[9];
-                            sniff.o = "0";
-
-                            if (lines[i].Contains("[0]") || lines[i].Contains("[1]")) { }
-                            else
-                            {
-                                DataRow dr = dt.NewRow();
-                                dr[0] = sniff.entry;
-                                dr[1] = sniff.guid;
-                                dr[2] = sniff.x;
-                                dr[3] = sniff.y;
-                                dr[4] = sniff.z;
-                                dr[5] = sniff.o;
-                                dr[6] = sniff.time;
-                                dr[7] = mapID;
-                                dt.Rows.Add(dr);
-                                sniff.entry = "";
-                            }
-                        }
-                        */
-
                     } while (lines[i] != "");
 
                     if (sniff.entry != "")
@@ -430,30 +405,6 @@ namespace Frm_waypoint
                                 sniff.guid = packetline[3];
                             }
                         }
-
-                        /*
-                        if (lines[i].Contains("Transport/0"))
-                        {
-                            if (lines[i].Contains("Transport Position: X:"))
-                            {
-                                string[] packetline = lines[i].Split(new char[] { ' ' });
-                                sniff.x = packetline[4];
-                                sniff.y = packetline[6];
-                                sniff.z = packetline[8];
-                                sniff.o = packetline[10];
-
-                                DataRow dr = dt.NewRow();
-                                dr[0] = sniff.entry;
-                                dr[1] = sniff.guid;
-                                dr[2] = sniff.x;
-                                dr[3] = sniff.y;
-                                dr[4] = sniff.z;
-                                dr[5] = sniff.o;
-                                dr[6] = sniff.time;
-                                dr[7] = mapID;
-                                dt.Rows.Add(dr);
-                            }
-                        }*/
 
                         if (lines[i].Contains("Points: X:"))
                         {
@@ -725,6 +676,33 @@ namespace Frm_waypoint
 
             SQLtext = SQLtext + "-- " + (string)listBox.SelectedItem + " .go xyz " + Convert.ToString(gridWaypoint[1, 0].Value) + " " + Convert.ToString(gridWaypoint[2, 0].Value) + " " + Convert.ToString(gridWaypoint[3, 0].Value) + "\r\n";
             txtOutput.Text = txtOutput.Text + SQLtext + "\r\n";
+        }
+
+        private void createCode_cpp()
+        {
+            String Codetext = "// Position Constant for " + creature_name + " Entry: " + creature_entry + " 'C++ FORMAT' \r\n" + "Position const XXXXXX[]=" + "\r\n" + "{" + "\r\n";
+            String Codeline = "";
+
+            for (var l = 0; l < gridWaypoint.RowCount; l++)
+            {
+                Codeline = "    { ";
+                for (var ll = 1; ll < 4; ll++)
+                {
+                    Codeline = Codeline + gridWaypoint[ll, l].Value + "f";
+                    if (ll < 3)
+                        Codeline = Codeline + ", ";
+                    else
+                        Codeline = Codeline + " }";
+                }
+                if (l < gridWaypoint.RowCount - 1)
+                    Codeline = Codeline + "," + "\r\n";
+                else
+                    Codeline = Codeline + "\r\n";
+
+                Codetext = Codetext + Codeline;
+            }
+            Codetext = Codetext + "};" + "\r\n";
+            txtOutput.Text = txtOutput.Text + Codetext + "\r\n";
         }
    }
 }
