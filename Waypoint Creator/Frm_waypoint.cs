@@ -680,7 +680,7 @@ namespace Frm_waypoint
 
         private void createCode_cpp()
         {
-            String Codetext = "// Position Constant for " + creature_name + " Entry: " + creature_entry + " 'C++ FORMAT' \r\n" + "Position const XXXXXX[]=" + "\r\n" + "{" + "\r\n";
+            String Codetext = "// Position Constant for " + creature_name + " Entry: " + creature_entry + " 'C++ FORMAT' \r\n" + "Position const XXXXXX[] =" + "\r\n" + "{" + "\r\n";
             String Codeline = "";
 
             for (var l = 0; l < gridWaypoint.RowCount; l++)
