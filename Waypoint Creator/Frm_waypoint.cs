@@ -338,12 +338,12 @@ namespace Frm_waypoint
                             if (lines[i].Contains("Creature/0") || lines[i].Contains("Vehicle/0"))
                             {
                                 string[] packetline = lines[i].Split(new char[] { ' ' });
-                                sniff.entry = packetline[8];
-                                sniff.guid = packetline[2];
+                                sniff.entry = packetline[8]; // Entry count
+                                sniff.guid = packetline[2]; // Guid count
                             }
                         }
 
-                        if (lines[i].Contains("Position: X:"))
+                        if (lines[i].Contains("Position: X:")) // Save Postion for if movement is a turn.
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
                             sniff.x = packetline[2];
@@ -352,13 +352,18 @@ namespace Frm_waypoint
                             sniff.o = "0";
                         }
 
-                        if (lines[i].Contains("[0] Points: X:"))
+                        if (lines[i].Contains("[0] Points: X:")) // Replace Position with move to location.
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
                             sniff.x = packetline[5];
                             sniff.y = packetline[7];
                             sniff.z = packetline[9];
                             sniff.o = "0";
+                        }
+
+                        if (lines[i].Contains("Face: 2")) // moving to player will be ignored
+                        {
+                            sniff.entry = ""; // Clear entry so movement will be ignored.
                         }
 
                         if (lines[i].Contains("FaceDirection:"))
