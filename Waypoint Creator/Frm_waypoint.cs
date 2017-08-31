@@ -271,6 +271,15 @@ namespace Frm_waypoint
             {
                 waypoints.Clear();
                 waypoints = GetDataSourceFromSniffFile(fileName);
+
+                if (Properties.Settings.Default.ObjectUpdate == true)
+                {
+                    ActiveForm.Text = "Waypoint Creator - Movement loaded from SMSG_UPDATE_OBJECT";
+                }
+                else
+                {
+                    ActiveForm.Text = "Waypoint Creator - Movement loaded from SMSG_ON_MONSTER_MOVE";
+                }
             }
             else
             {
@@ -323,7 +332,7 @@ namespace Frm_waypoint
                     mapID = packetline[1];
                 }
 
-                if (lines[i].Contains("SMSG_ON_MONSTER_MOVE"))
+                if (Properties.Settings.Default.ObjectUpdate != true && lines[i].Contains("SMSG_ON_MONSTER_MOVE"))
                 {
                     string[] values = lines[i].Split(new char[] { ' ' });
                     string[] time = values[9].Split(new char[] { '.' });

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Settings));
             this.groupSQL = new System.Windows.Forms.GroupBox();
+            this.chkBoxCPP = new System.Windows.Forms.CheckBox();
             this.chkBoxSAI = new System.Windows.Forms.CheckBox();
             this.chkBoxUDB = new System.Windows.Forms.CheckBox();
             this.chkBoxTDB = new System.Windows.Forms.CheckBox();
@@ -50,7 +51,7 @@
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.btnDefault = new System.Windows.Forms.Button();
             this.chkBoxObject = new System.Windows.Forms.CheckBox();
-            this.chkBoxCPP = new System.Windows.Forms.CheckBox();
+            this.txt_movement = new System.Windows.Forms.TextBox();
             this.groupSQL.SuspendLayout();
             this.groupGraph.SuspendLayout();
             this.groupColours.SuspendLayout();
@@ -72,6 +73,17 @@
             this.groupSQL.TabIndex = 5;
             this.groupSQL.TabStop = false;
             this.groupSQL.Text = "Output Format";
+            // 
+            // chkBoxCPP
+            // 
+            this.chkBoxCPP.AutoSize = true;
+            this.chkBoxCPP.Location = new System.Drawing.Point(6, 88);
+            this.chkBoxCPP.Name = "chkBoxCPP";
+            this.chkBoxCPP.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.chkBoxCPP.Size = new System.Drawing.Size(130, 17);
+            this.chkBoxCPP.TabIndex = 5;
+            this.chkBoxCPP.Text = "C++ Position Constant";
+            this.chkBoxCPP.UseVisualStyleBackColor = true;
             // 
             // chkBoxSAI
             // 
@@ -96,6 +108,8 @@
             // chkBoxTDB
             // 
             this.chkBoxTDB.AutoSize = true;
+            this.chkBoxTDB.Checked = true;
+            this.chkBoxTDB.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkBoxTDB.Location = new System.Drawing.Point(6, 19);
             this.chkBoxTDB.Name = "chkBoxTDB";
             this.chkBoxTDB.Size = new System.Drawing.Size(121, 17);
@@ -136,7 +150,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(249, 203);
+            this.btnOK.Location = new System.Drawing.Point(249, 264);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 7;
@@ -147,7 +161,7 @@
             // btnCancel
             // 
             this.btnCancel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.btnCancel.Location = new System.Drawing.Point(249, 232);
+            this.btnCancel.Location = new System.Drawing.Point(249, 293);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 8;
@@ -269,23 +283,25 @@
             this.chkBoxObject.Text = "Get spline waypoints from Object Update";
             this.chkBoxObject.UseVisualStyleBackColor = true;
             // 
-            // chkBoxCPP
+            // txt_movement
             // 
-            this.chkBoxCPP.AutoSize = true;
-            this.chkBoxCPP.Location = new System.Drawing.Point(6, 88);
-            this.chkBoxCPP.Name = "chkBoxCPP";
-            this.chkBoxCPP.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkBoxCPP.Size = new System.Drawing.Size(130, 17);
-            this.chkBoxCPP.TabIndex = 5;
-            this.chkBoxCPP.Text = "C++ Position Constant";
-            this.chkBoxCPP.UseVisualStyleBackColor = true;
+            this.txt_movement.Location = new System.Drawing.Point(18, 232);
+            this.txt_movement.Multiline = true;
+            this.txt_movement.Name = "txt_movement";
+            this.txt_movement.ReadOnly = true;
+            this.txt_movement.Size = new System.Drawing.Size(218, 84);
+            this.txt_movement.TabIndex = 12;
+            this.txt_movement.Text = "If you check this box the software\r\nwill obtain movement data from \r\nSMSG_UPDATE_" +
+    "OBJECT rather than\r\nSMSG_ON_MONSTER_MOVE.\r\n\r\nChanges will require reload of snif" +
+    "f.";
             // 
             // frm_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(336, 277);
+            this.ClientSize = new System.Drawing.Size(336, 328);
             this.ControlBox = false;
+            this.Controls.Add(this.txt_movement);
             this.Controls.Add(this.chkBoxObject);
             this.Controls.Add(this.groupSQL);
             this.Controls.Add(this.groupGraph);
@@ -341,5 +357,6 @@
         private System.Windows.Forms.CheckBox chkBoxObject;
         private System.Windows.Forms.CheckBox chkBoxSAI;
         private System.Windows.Forms.CheckBox chkBoxCPP;
+        private System.Windows.Forms.TextBox txt_movement;
     }
 }

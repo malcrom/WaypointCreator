@@ -21,13 +21,13 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Splines" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="TDB" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="UDB" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="PointColour" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Blue</Value>
@@ -48,10 +48,10 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="SAI" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="CPP" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

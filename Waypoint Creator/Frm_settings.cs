@@ -180,11 +180,11 @@ namespace Frm_waypoint
         private void SetDefaults()
         {
             chkBoxTDB.CheckState = CheckState.Checked;
-            chkBoxUDB.CheckState = CheckState.Checked;
-            chkBoxSAI.CheckState = CheckState.Checked;
-            chkBoxCPP.CheckState = CheckState.Checked;
+            chkBoxUDB.CheckState = CheckState.Unchecked;
+            chkBoxSAI.CheckState = CheckState.Unchecked;
+            chkBoxCPP.CheckState = CheckState.Unchecked;
             chkBoxLine.CheckState = CheckState.Checked;
-            chkBoxSpline.CheckState = CheckState.Checked;
+            chkBoxSpline.CheckState = CheckState.Unchecked;
             picBoxPointColour.BackColor = Color.Blue;
             picBoxLineColour.BackColor = Color.Aqua;
             picBoxBackColour.BackColor = Color.White;
