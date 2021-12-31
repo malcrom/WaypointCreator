@@ -1,0 +1,28 @@
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.csproj.AssemblyReference.cache
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.frm_Settings.resources
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.frm_Waypoint.resources
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.frm_Login.resources
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\obj\Debug\Frm_waypoint.Properties.Resources.resources
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.csproj.GenerateResource.cache
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.csproj.CoreCompileInputs.cache
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\Waypoint Creator.exe.config
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\Waypoint Creator.exe
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\Waypoint Creator.pdb
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\MySql.Data.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\Google.Protobuf.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\Zstandard.Net.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\System.Security.Permissions.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\System.Text.Encoding.CodePages.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\System.Memory.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\System.Security.Cryptography.ProtectedData.dll
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\bin\Debug\MySql.Data.xml
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.csproj.CopyComplete
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.exe
+C:\Users\AAA\Desktop\Thumb\WaypointCreator\Waypoint Creator\obj\Debug\Waypoint Creator.pdb

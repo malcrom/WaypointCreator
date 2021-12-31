@@ -70,10 +70,12 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLoadSniff = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabelRange = new System.Windows.Forms.ToolStripLabel();
             this.tab_Waypoint = new System.Windows.Forms.TabControl();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.makegoXyzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabOutput.SuspendLayout();
             this.toolStripSQL.SuspendLayout();
             this.tabEditor.SuspendLayout();
@@ -93,10 +95,11 @@
             // 
             this.tabOutput.Controls.Add(this.txtOutput);
             this.tabOutput.Controls.Add(this.toolStripSQL);
-            this.tabOutput.Location = new System.Drawing.Point(4, 22);
+            this.tabOutput.Location = new System.Drawing.Point(8, 39);
+            this.tabOutput.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tabOutput.Name = "tabOutput";
-            this.tabOutput.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOutput.Size = new System.Drawing.Size(1312, 672);
+            this.tabOutput.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabOutput.Size = new System.Drawing.Size(2808, 1261);
             this.tabOutput.TabIndex = 1;
             this.tabOutput.Text = "SQL Output";
             this.tabOutput.UseVisualStyleBackColor = true;
@@ -105,21 +108,24 @@
             // 
             this.txtOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtOutput.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOutput.Location = new System.Drawing.Point(3, 28);
+            this.txtOutput.Location = new System.Drawing.Point(6, 48);
+            this.txtOutput.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtOutput.Size = new System.Drawing.Size(1306, 641);
+            this.txtOutput.Size = new System.Drawing.Size(2796, 1207);
             this.txtOutput.TabIndex = 0;
             this.txtOutput.WordWrap = false;
             // 
             // toolStripSQL
             // 
+            this.toolStripSQL.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStripSQL.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonSave});
-            this.toolStripSQL.Location = new System.Drawing.Point(3, 3);
+            this.toolStripSQL.Location = new System.Drawing.Point(6, 6);
             this.toolStripSQL.Name = "toolStripSQL";
-            this.toolStripSQL.Size = new System.Drawing.Size(1306, 25);
+            this.toolStripSQL.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.toolStripSQL.Size = new System.Drawing.Size(2796, 42);
             this.toolStripSQL.TabIndex = 1;
             this.toolStripSQL.Text = "toolStrip1";
             // 
@@ -129,7 +135,7 @@
             this.toolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSave.Image")));
             this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSave.Name = "toolStripButtonSave";
-            this.toolStripButtonSave.Size = new System.Drawing.Size(79, 22);
+            this.toolStripButtonSave.Size = new System.Drawing.Size(157, 36);
             this.toolStripButtonSave.Text = "Write SQL";
             this.toolStripButtonSave.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.toolStripButtonSave.ToolTipText = "Write textbox to SQL file.";
@@ -141,10 +147,11 @@
             this.tabEditor.Controls.Add(this.listBox);
             this.tabEditor.Controls.Add(this.gridWaypoint);
             this.tabEditor.Controls.Add(this.toolStripEdit);
-            this.tabEditor.Location = new System.Drawing.Point(4, 22);
+            this.tabEditor.Location = new System.Drawing.Point(8, 39);
+            this.tabEditor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tabEditor.Name = "tabEditor";
-            this.tabEditor.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEditor.Size = new System.Drawing.Size(1312, 672);
+            this.tabEditor.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabEditor.Size = new System.Drawing.Size(2808, 1261);
             this.tabEditor.TabIndex = 0;
             this.tabEditor.Text = "Waypoint Editor";
             this.tabEditor.UseVisualStyleBackColor = true;
@@ -209,6 +216,7 @@
             chartArea1.CursorY.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             chartArea1.Name = "ChartArea1";
             this.chart.ChartAreas.Add(chartArea1);
+            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Enabled = false;
             legend1.ForeColor = System.Drawing.Color.Transparent;
             legend1.HeaderSeparatorColor = System.Drawing.Color.Transparent;
@@ -217,7 +225,8 @@
             legend1.TitleForeColor = System.Drawing.Color.Transparent;
             legend1.TitleSeparatorColor = System.Drawing.Color.Transparent;
             this.chart.Legends.Add(legend1);
-            this.chart.Location = new System.Drawing.Point(3, 28);
+            this.chart.Location = new System.Drawing.Point(6, 48);
+            this.chart.Margin = new System.Windows.Forms.Padding(0);
             this.chart.Name = "chart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
@@ -227,7 +236,7 @@
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.chart.Series.Add(series1);
-            this.chart.Size = new System.Drawing.Size(596, 641);
+            this.chart.Size = new System.Drawing.Size(1358, 1207);
             this.chart.TabIndex = 25;
             this.chart.Text = "Waypoints";
             title1.DockedToChartArea = "ChartArea1";
@@ -238,10 +247,15 @@
             // 
             // listBox
             // 
+            this.listBox.BackColor = System.Drawing.SystemColors.Menu;
+            this.listBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBox.Dock = System.Windows.Forms.DockStyle.Right;
             this.listBox.FormattingEnabled = true;
-            this.listBox.Location = new System.Drawing.Point(605, 28);
+            this.listBox.ItemHeight = 25;
+            this.listBox.Location = new System.Drawing.Point(1364, 48);
+            this.listBox.Margin = new System.Windows.Forms.Padding(0);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(239, 641);
+            this.listBox.Size = new System.Drawing.Size(476, 1207);
             this.listBox.TabIndex = 24;
             this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
@@ -282,20 +296,24 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridWaypoint.DefaultCellStyle = dataGridViewCellStyle5;
+            this.gridWaypoint.Dock = System.Windows.Forms.DockStyle.Right;
             this.gridWaypoint.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.gridWaypoint.Location = new System.Drawing.Point(850, 28);
+            this.gridWaypoint.Location = new System.Drawing.Point(1840, 48);
+            this.gridWaypoint.Margin = new System.Windows.Forms.Padding(0);
             this.gridWaypoint.Name = "gridWaypoint";
+            this.gridWaypoint.RowHeadersWidth = 82;
             this.gridWaypoint.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridWaypoint.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.gridWaypoint.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridWaypoint.Size = new System.Drawing.Size(459, 641);
+            this.gridWaypoint.Size = new System.Drawing.Size(962, 1207);
             this.gridWaypoint.TabIndex = 20;
             this.gridWaypoint.TabStop = false;
             // 
             // gridColumn_no
             // 
             this.gridColumn_no.HeaderText = "no";
+            this.gridColumn_no.MinimumWidth = 10;
             this.gridColumn_no.Name = "gridColumn_no";
             this.gridColumn_no.ReadOnly = true;
             this.gridColumn_no.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
@@ -307,6 +325,7 @@
             this.gridColumn_x.DefaultCellStyle = dataGridViewCellStyle3;
             this.gridColumn_x.HeaderText = "x";
             this.gridColumn_x.MaxInputLength = 25;
+            this.gridColumn_x.MinimumWidth = 10;
             this.gridColumn_x.Name = "gridColumn_x";
             this.gridColumn_x.ReadOnly = true;
             this.gridColumn_x.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -317,6 +336,7 @@
             dataGridViewCellStyle4.NullValue = null;
             this.gridColumn_y.DefaultCellStyle = dataGridViewCellStyle4;
             this.gridColumn_y.HeaderText = "y";
+            this.gridColumn_y.MinimumWidth = 10;
             this.gridColumn_y.Name = "gridColumn_y";
             this.gridColumn_y.ReadOnly = true;
             this.gridColumn_y.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -325,6 +345,7 @@
             // gridColumn_z
             // 
             this.gridColumn_z.HeaderText = "z";
+            this.gridColumn_z.MinimumWidth = 10;
             this.gridColumn_z.Name = "gridColumn_z";
             this.gridColumn_z.ReadOnly = true;
             this.gridColumn_z.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -333,6 +354,7 @@
             // gridColumn_o
             // 
             this.gridColumn_o.HeaderText = "o";
+            this.gridColumn_o.MinimumWidth = 10;
             this.gridColumn_o.Name = "gridColumn_o";
             this.gridColumn_o.ReadOnly = true;
             this.gridColumn_o.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -341,6 +363,7 @@
             // gridColumn_time
             // 
             this.gridColumn_time.HeaderText = "time";
+            this.gridColumn_time.MinimumWidth = 10;
             this.gridColumn_time.Name = "gridColumn_time";
             this.gridColumn_time.ReadOnly = true;
             this.gridColumn_time.Width = 60;
@@ -348,73 +371,80 @@
             // gridColumn_delay
             // 
             this.gridColumn_delay.HeaderText = "delay";
+            this.gridColumn_delay.MinimumWidth = 10;
             this.gridColumn_delay.Name = "gridColumn_delay";
             this.gridColumn_delay.Width = 60;
             // 
             // contextMenuStrip
             // 
+            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cutToolStripMenuItem,
             this.copyToolStripMenuItem,
             this.pasteAboveToolStripMenuItem,
             this.pasteBelowToolStripMenuItem,
             this.toolStripSeparator,
-            this.createSQLToolStripMenuItem});
+            this.createSQLToolStripMenuItem,
+            this.makegoXyzToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(140, 120);
+            this.contextMenuStrip.Size = new System.Drawing.Size(301, 282);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // pasteAboveToolStripMenuItem
             // 
             this.pasteAboveToolStripMenuItem.Name = "pasteAboveToolStripMenuItem";
-            this.pasteAboveToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.pasteAboveToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
             this.pasteAboveToolStripMenuItem.Text = "Paste Above";
             this.pasteAboveToolStripMenuItem.Click += new System.EventHandler(this.pasteAboveToolStripMenuItem_Click);
             // 
             // pasteBelowToolStripMenuItem
             // 
             this.pasteBelowToolStripMenuItem.Name = "pasteBelowToolStripMenuItem";
-            this.pasteBelowToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.pasteBelowToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
             this.pasteBelowToolStripMenuItem.Text = "Paste Below";
             this.pasteBelowToolStripMenuItem.Click += new System.EventHandler(this.pasteBelowToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(136, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(297, 6);
             // 
             // createSQLToolStripMenuItem
             // 
             this.createSQLToolStripMenuItem.Name = "createSQLToolStripMenuItem";
-            this.createSQLToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.createSQLToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
             this.createSQLToolStripMenuItem.Text = "Create SQL";
             this.createSQLToolStripMenuItem.Click += new System.EventHandler(this.createSQLToolStripMenuItem_Click);
             // 
             // toolStripEdit
             // 
+            this.toolStripEdit.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonSearch,
             this.toolStripTextBoxEntry,
             this.toolStripLabelEntry,
             this.toolStripSeparator1,
             this.toolStripButtonSettings,
-            this.toolStripButtonLoadSniff});
-            this.toolStripEdit.Location = new System.Drawing.Point(3, 3);
+            this.toolStripButtonLoadSniff,
+            this.toolStripLabelRange});
+            this.toolStripEdit.Location = new System.Drawing.Point(6, 6);
             this.toolStripEdit.Name = "toolStripEdit";
-            this.toolStripEdit.Size = new System.Drawing.Size(1306, 25);
+            this.toolStripEdit.Padding = new System.Windows.Forms.Padding(0);
+            this.toolStripEdit.Size = new System.Drawing.Size(2796, 42);
+            this.toolStripEdit.Stretch = true;
             this.toolStripEdit.TabIndex = 23;
             this.toolStripEdit.Text = "toolStrip1";
             // 
@@ -425,7 +455,7 @@
             this.toolStripButtonSearch.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSearch.Image")));
             this.toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSearch.Name = "toolStripButtonSearch";
-            this.toolStripButtonSearch.Size = new System.Drawing.Size(62, 22);
+            this.toolStripButtonSearch.Size = new System.Drawing.Size(122, 36);
             this.toolStripButtonSearch.Text = "Search";
             this.toolStripButtonSearch.ToolTipText = "Fill listbox with guids of\r\nselected entry or all entries.";
             this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
@@ -434,9 +464,10 @@
             // 
             this.toolStripTextBoxEntry.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripTextBoxEntry.Enabled = false;
+            this.toolStripTextBoxEntry.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBoxEntry.MaxLength = 6;
             this.toolStripTextBoxEntry.Name = "toolStripTextBoxEntry";
-            this.toolStripTextBoxEntry.Size = new System.Drawing.Size(70, 25);
+            this.toolStripTextBoxEntry.Size = new System.Drawing.Size(136, 42);
             this.toolStripTextBoxEntry.Tag = "";
             this.toolStripTextBoxEntry.ToolTipText = "Input entry of creature or leave\r\nblank to fill listbox will all in sniff.";
             // 
@@ -445,7 +476,7 @@
             this.toolStripLabelEntry.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLabelEntry.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabelEntry.Name = "toolStripLabelEntry";
-            this.toolStripLabelEntry.Size = new System.Drawing.Size(37, 22);
+            this.toolStripLabelEntry.Size = new System.Drawing.Size(70, 36);
             this.toolStripLabelEntry.Text = "Entry:";
             this.toolStripLabelEntry.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -453,7 +484,7 @@
             // 
             this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 42);
             // 
             // toolStripButtonSettings
             // 
@@ -461,7 +492,7 @@
             this.toolStripButtonSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSettings.Image")));
             this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSettings.Name = "toolStripButtonSettings";
-            this.toolStripButtonSettings.Size = new System.Drawing.Size(69, 22);
+            this.toolStripButtonSettings.Size = new System.Drawing.Size(137, 36);
             this.toolStripButtonSettings.Text = "Settings";
             this.toolStripButtonSettings.ToolTipText = "Setup chart and output SQL.";
             this.toolStripButtonSettings.Click += new System.EventHandler(this.toolStripButtonSettings_Click);
@@ -471,47 +502,68 @@
             this.toolStripButtonLoadSniff.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLoadSniff.Image")));
             this.toolStripButtonLoadSniff.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonLoadSniff.Name = "toolStripButtonLoadSniff";
-            this.toolStripButtonLoadSniff.Size = new System.Drawing.Size(90, 22);
+            this.toolStripButtonLoadSniff.Size = new System.Drawing.Size(178, 36);
             this.toolStripButtonLoadSniff.Text = "Import Sniff";
             this.toolStripButtonLoadSniff.ToolTipText = "Import a parsed wpp sniff file.";
             this.toolStripButtonLoadSniff.Click += new System.EventHandler(this.toolStripButtonLoadSniff_Click);
+            // 
+            // toolStripLabelRange
+            // 
+            this.toolStripLabelRange.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabelRange.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.toolStripLabelRange.Margin = new System.Windows.Forms.Padding(0, 1, 30, 2);
+            this.toolStripLabelRange.Name = "toolStripLabelRange";
+            this.toolStripLabelRange.Size = new System.Drawing.Size(176, 39);
+            this.toolStripLabelRange.Tag = "1/2 max distance between points";
+            this.toolStripLabelRange.Text = "Wander Range:";
             // 
             // tab_Waypoint
             // 
             this.tab_Waypoint.Controls.Add(this.tabEditor);
             this.tab_Waypoint.Controls.Add(this.tabOutput);
+            this.tab_Waypoint.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tab_Waypoint.Location = new System.Drawing.Point(0, 0);
+            this.tab_Waypoint.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tab_Waypoint.Name = "tab_Waypoint";
             this.tab_Waypoint.SelectedIndex = 0;
-            this.tab_Waypoint.Size = new System.Drawing.Size(1320, 698);
+            this.tab_Waypoint.Size = new System.Drawing.Size(2824, 1308);
             this.tab_Waypoint.TabIndex = 20;
             // 
             // statusStrip
             // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 698);
+            this.statusStrip.Location = new System.Drawing.Point(0, 1308);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1320, 22);
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
+            this.statusStrip.Size = new System.Drawing.Size(2824, 42);
             this.statusStrip.TabIndex = 23;
             this.statusStrip.Text = "statusStrip";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(86, 17);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(176, 32);
             this.toolStripStatusLabel.Text = "No File Loaded";
+            // 
+            // makegoXyzToolStripMenuItem
+            // 
+            this.makegoXyzToolStripMenuItem.Name = "makegoXyzToolStripMenuItem";
+            this.makegoXyzToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.makegoXyzToolStripMenuItem.Text = "Make .go xyz";
+            this.makegoXyzToolStripMenuItem.Click += new System.EventHandler(this.makegoXyzToolStripMenuItem_Click);
             // 
             // frm_Waypoint
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 720);
+            this.ClientSize = new System.Drawing.Size(2824, 1350);
             this.Controls.Add(this.tab_Waypoint);
             this.Controls.Add(this.statusStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frm_Waypoint";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -543,7 +595,6 @@
         private System.Windows.Forms.TabPage tabOutput;
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.TabPage tabEditor;
-        internal System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.ListBox listBox;
         internal System.Windows.Forms.DataGridView gridWaypoint;
         private System.Windows.Forms.ToolStrip toolStripEdit;
@@ -573,6 +624,8 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.ToolStripLabel toolStripLabelEntry;
-
+        internal System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private System.Windows.Forms.ToolStripLabel toolStripLabelRange;
+        private System.Windows.Forms.ToolStripMenuItem makegoXyzToolStripMenuItem;
     }
 }

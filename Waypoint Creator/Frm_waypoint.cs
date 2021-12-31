@@ -39,6 +39,39 @@ namespace Frm_waypoint
             public string guid;
         };
 
+        // Sniff Varibles for sniffs
+        public int state_map;
+        public int move_time;
+        public int move_entry;
+        public int move_guid;
+        public int move_x;
+        public int move_y;
+        public int move_z;
+        public int move_o;
+        public int move_pointx;
+        public int move_pointy;
+        public int move_pointz;
+        public int object_time;
+        public int object_entry;
+        public int object_guid;
+        public int object_pointx;
+        public int object_pointy;
+        public int object_pointz;
+        public string sniff_state;
+        public string sniff_move;
+        public string sniff_move_1;
+        public string sniff_move_2;
+        public string sniff_move_3;
+        public string sniff_move_4;
+        public string sniff_move_5;
+        public string sniff_move_6;
+        public string sniff_move_7;
+        public string sniff_object;
+        public string sniff_object_1;
+        public string sniff_object_2;
+        public string sniff_object_3;
+        public string sniff_object_4;
+
         public frm_Waypoint()
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
@@ -185,6 +218,13 @@ namespace Frm_waypoint
                 createCode_cpp();
         }
 
+        private void makegoXyzToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = gridWaypoint.SelectedRows[0];
+            string go = ".go xyz " + row.Cells[1].Value + " " + row.Cells[2].Value + " " + row.Cells[3].Value;
+            Clipboard.SetText(go);
+        }
+
         private void CopyCutFromGrid(bool cut)
         {
             // Copy selected fields from grid and cut if cut is true.
@@ -205,6 +245,7 @@ namespace Frm_waypoint
                     gridWaypoint[0, l].Value = l + 1;
 
                 GraphPath();
+                findrange();
             }
         }
 
@@ -259,26 +300,38 @@ namespace Frm_waypoint
                 gridWaypoint.Rows.Add(l + 1, pasteTable.Tables[0].Rows[l].Field<string>(0), pasteTable.Tables[0].Rows[l].Field<string>(1), pasteTable.Tables[0].Rows[l].Field<string>(2), pasteTable.Tables[0].Rows[l].Field<string>(3), pasteTable.Tables[0].Rows[l].Field<string>(4), pasteTable.Tables[0].Rows[l].Field<string>(5));
 
             GraphPath();
+            findrange();
         }
 
         public void LoadSniffFileIntoDatatable(string fileName)
         {
             System.IO.StreamReader file = new System.IO.StreamReader(fileName);
             var line = file.ReadLine();
+            string filetype = line;
+            line = file.ReadLine();
+            line = file.ReadLine();
+            string sniffversion = line;
             file.Close();
 
-            if (line == "# TrinityCore - WowPacketParser")
+            if (filetype == "# TrinityCore - WowPacketParser")
             {
+                // Determine sniff version
+                if ((sniffversion.Contains("V4")) || (sniffversion.Contains("V5")))
+                    sniff_version_4();
+                else if ((sniffversion.Contains("V1")) || (sniffversion.Contains("V2")) || (sniffversion.Contains("V6")) || (sniffversion.Contains("V7")) || (sniffversion.Contains("V9")))
+                    sniff_version_6();
+
+                // Process new sniff file
                 waypoints.Clear();
                 waypoints = GetDataSourceFromSniffFile(fileName);
 
                 if (Properties.Settings.Default.ObjectUpdate == true)
                 {
-                    ActiveForm.Text = "Waypoint Creator - Movement loaded from SMSG_UPDATE_OBJECT";
+                    this.Text = "Waypoint Creator - Movement data loaded from SMSG_UPDATE_OBJECT";
                 }
                 else
                 {
-                    ActiveForm.Text = "Waypoint Creator - Movement loaded from SMSG_ON_MONSTER_MOVE";
+                    this.Text = "Waypoint Creator - Movement data loaded from SMSG_ON_MONSTER_MOVE";
                 }
             }
             else
@@ -312,7 +365,7 @@ namespace Frm_waypoint
             sniff.x     = "";
             sniff.y     = "";
             sniff.z     = "";
-            sniff.o     = "";
+            sniff.o     = "0";
             sniff.time  = "";
 
             string[] columns = null;
@@ -325,60 +378,61 @@ namespace Frm_waypoint
             // reading rest of the data
             for (int i = 1; i < lines.Count(); i++)
             {
-                if (lines[i].Contains("SMSG_INIT_WORLD_STATES"))
+                if (lines[i].Contains(sniff_state))
                 {
                     i++;
                     string[] packetline = lines[i].Split(new char[] { ' ' });
-                    mapID = packetline[1];
+                    mapID = packetline[state_map];
                 }
 
-                if (Properties.Settings.Default.ObjectUpdate != true && lines[i].Contains("SMSG_ON_MONSTER_MOVE"))
+                if (Properties.Settings.Default.ObjectUpdate != true && lines[i].Contains(sniff_move)) // Is this a move packet
                 {
                     string[] values = lines[i].Split(new char[] { ' ' });
-                    string[] time = values[9].Split(new char[] { '.' });
+                    string[] time = values[move_time].Split(new char[] { '.' }); // Get time
                     sniff.time = time[0];
 
                     do
                     {
                         i++;
 
-                        if (lines[i].Contains("MoverGUID: Full:"))
+                        if (lines[i].Contains(sniff_move_1)) // is this GUID line
                         {
-                            if (lines[i].Contains("Creature/0") || lines[i].Contains("Vehicle/0"))
+                            if (lines[i].Contains(sniff_move_2) || lines[i].Contains(sniff_move_3)) // Is this a Creature or Vehicle
                             {
                                 string[] packetline = lines[i].Split(new char[] { ' ' });
-                                sniff.entry = packetline[8]; // Entry count
-                                sniff.guid = packetline[2]; // Guid count
+                                sniff.entry = packetline[move_entry]; // Entry count
+                                sniff.guid = packetline[move_guid]; // Guid count
                             }
                         }
 
-                        if (lines[i].Contains("Position: X:")) // Save Postion for if movement is a turn.
+                        if (lines[i].Contains(sniff_move_4)) // Save Postion for if movement is a turn.
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.x = packetline[2];
-                            sniff.y = packetline[4];
-                            sniff.z = packetline[6];
-                            sniff.o = "0";
+                            sniff.x = packetline[move_x];
+                            sniff.y = packetline[move_y];
+                            sniff.z = packetline[move_z];
+                            //sniff.o = "0";
                         }
 
-                        if (lines[i].Contains("[0] Points: X:")) // Replace Position with move to location.
+                        if (lines[i].Contains(sniff_move_5)) // Replace Position with move to location.
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.x = packetline[5];
-                            sniff.y = packetline[7];
-                            sniff.z = packetline[9];
-                            sniff.o = "0";
+                            sniff.x = packetline[move_pointx];
+                            sniff.y = packetline[move_pointy];
+                            sniff.z = packetline[move_pointz];
+                            //sniff.o = "0";
                         }
 
-                        if (lines[i].Contains("Face: 2")) // moving to player will be ignored
+                        if (lines[i].Contains(sniff_move_6)) // moving to player or creature will be ignored
                         {
                             sniff.entry = ""; // Clear entry so movement will be ignored.
+                            break;
                         }
 
-                        if (lines[i].Contains("FaceDirection:"))
+                        if (lines[i].Contains(sniff_move_7))
                         {
                             string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.o = packetline[3];
+                            sniff.o = packetline[move_o];
                         }
 
                     } while (lines[i] != "");
@@ -397,36 +451,37 @@ namespace Frm_waypoint
                         dt.Rows.Add(dr);
                         sniff.entry = "";
                     }
+                    sniff.o = "0";
                 }
 
-                if (Properties.Settings.Default.ObjectUpdate == true && lines[i].Contains("SMSG_UPDATE_OBJECT"))
+                if (Properties.Settings.Default.ObjectUpdate == true && lines[i].Contains(sniff_object))
                 {
                     sniff.entry = "";
                     string[] values = lines[i].Split(new char[] { ' ' });
-                    string[] time = values[9].Split(new char[] { '.' });
+                    string[] time = values[object_time].Split(new char[] { '.' });
                     sniff.time = time[0];
 
                     do
                     {
                         i++;
 
-                        if (lines[i].Contains("MoverGUID: Full:"))
+                        if (lines[i].Contains(sniff_object_1))
                         {
-                            if (lines[i].Contains("Vehicle/0") || lines[i].Contains("Creature/0"))
+                            if (lines[i].Contains(sniff_object_2) || lines[i].Contains(sniff_object_3))
                             {
                                 string[] packetline = lines[i].Split(new char[] { ' ' });
-                                sniff.entry = packetline[9];
-                                sniff.guid = packetline[3];
+                                sniff.entry = packetline[object_entry];
+                                sniff.guid = packetline[object_guid];
                             }
                         }
 
-                        if (lines[i].Contains("Points: X:"))
+                        if (lines[i].Contains(sniff_object_4))
                         {
 
                             string[] packetline = lines[i].Split(new char[] { ' ' });
-                            sniff.x = packetline[4];
-                            sniff.y = packetline[6];
-                            sniff.z = packetline[8];
+                            sniff.x = packetline[object_pointx];
+                            sniff.y = packetline[object_pointy];
+                            sniff.z = packetline[object_pointz];
                             sniff.o = "0";
 
                             DataRow dr = dt.NewRow();
@@ -442,6 +497,7 @@ namespace Frm_waypoint
                         }
 
                     } while (lines[i] != "");
+                    sniff.entry = "";
                 }
             }
 
@@ -493,6 +549,8 @@ namespace Frm_waypoint
 
                 for (var l = 0; l < movePackets.Rows.Count; l++)
                     gridWaypoint.Rows.Add(l + 1, movePackets.Rows[l].Field<string>(2), movePackets.Rows[l].Field<string>(3), movePackets.Rows[l].Field<string>(4), movePackets.Rows[l].Field<string>(5), movePackets.Rows[l].Field<string>(6), "");
+
+            findrange();
         }
 
         public void GraphPath()
@@ -572,10 +630,10 @@ namespace Frm_waypoint
         private void createSQL_TDB()
         {
             //Send to SQL
-            SQLtext = "-- Pathing for " + creature_name + " Entry: " + creature_entry + " 'TDB FORMAT' \r\n" + "SET @NPC := XXXXXX;" + "\r\n" + "SET @PATH := @NPC * 10;" + "\r\n";
-            SQLtext = SQLtext + "UPDATE `creature` SET `spawndist`=0,`MovementType`=2,`position_x`=" + Convert.ToString(gridWaypoint[1, 0].Value) + ",`position_y`=" + Convert.ToString(gridWaypoint[2, 0].Value) + ",`position_z`=" + Convert.ToString(gridWaypoint[3, 0].Value) + " WHERE `guid`=@NPC;" + "\r\n";
+            SQLtext = "-- Pathing for " + creature_name + " Entry: " + creature_entry + "\r\n" + "SET @NPC := XXXXXX;" + "\r\n" + "SET @PATH := @NPC * 10;" + "\r\n";
+            SQLtext = SQLtext + "UPDATE `creature` SET `wander_distance`=0,`MovementType`=2,`position_x`=" + Convert.ToString(gridWaypoint[1, 0].Value) + ",`position_y`=" + Convert.ToString(gridWaypoint[2, 0].Value) + ",`position_z`=" + Convert.ToString(gridWaypoint[3, 0].Value) + " WHERE `guid`=@NPC;" + "\r\n";
             SQLtext = SQLtext + "DELETE FROM `creature_addon` WHERE `guid`=@NPC;" + "\r\n";
-            SQLtext = SQLtext + "INSERT INTO `creature_addon` (`guid`,`path_id`,`mount`,`bytes1`,`bytes2`,`emote`,`auras`) VALUES (@NPC,@PATH,0,0,1,0, '');" + "\r\n";
+            SQLtext = SQLtext + "INSERT INTO `creature_addon` (`guid`,`path_id`,`mount`,`bytes1`,`bytes2`,`emote`,`visibilityDistanceType`,`auras`) VALUES (@NPC,@PATH,0,0,1,0,0, '');" + "\r\n";
             SQLtext = SQLtext + "DELETE FROM `waypoint_data` WHERE `id`=@PATH;" + "\r\n";
             SQLtext = SQLtext + "INSERT INTO `waypoint_data` (`id`,`point`,`position_x`,`position_y`,`position_z`,`orientation`,`delay`,`move_type`,`action`,`action_chance`,`wpguid`) VALUES" + "\r\n";
 
@@ -616,9 +674,9 @@ namespace Frm_waypoint
         {
             //Send to SQL
             SQLtext = "-- Pathing for " + creature_name + " Entry: " + creature_entry + " 'UDB FORMAT' \r\n" + "SET @GUID := XXXXXX;" + "\r\n";
-            SQLtext = SQLtext + "UPDATE `creature` SET `spawndist`=0,`MovementType`=2,`position_x`=" + Convert.ToString(gridWaypoint[1, 0].Value) + ",`position_y`=" + Convert.ToString(gridWaypoint[2, 0].Value) + ",`position_z`=" + Convert.ToString(gridWaypoint[3, 0].Value) + " WHERE `guid`=@GUID;" + "\r\n";
+            SQLtext = SQLtext + "UPDATE `creature` SET `wander_distance`=0,`MovementType`=2,`position_x`=" + Convert.ToString(gridWaypoint[1, 0].Value) + ",`position_y`=" + Convert.ToString(gridWaypoint[2, 0].Value) + ",`position_z`=" + Convert.ToString(gridWaypoint[3, 0].Value) + " WHERE `guid`=@GUID;" + "\r\n";
             SQLtext = SQLtext + "DELETE FROM `creature_movement` WHERE `id`=@GUID;" + "\r\n";
-            SQLtext = SQLtext + "INSERT INTO `creature_movement` (`id`,`point`,`position_x`,`position_y`,`position_z`,`waittime`,`script_id`,`textid1`,`textid2`,`textid3`,`textid4`,`textid5`,`emote`,`spell`,`orientation`,`model1`,`model2`) VALUES" + "\r\n";
+            SQLtext = SQLtext + "INSERT INTO `creature_movement` (`id`,`point`,`position_x`,`position_y`,`position_z`,`waittime`,`script_id`,`orientation`) VALUES" + "\r\n";
 
             for (var l = 0; l < gridWaypoint.RowCount; l++)
             {
@@ -639,11 +697,11 @@ namespace Frm_waypoint
 
                 if (l < (gridWaypoint.RowCount - 1))
                 {
-                    SQLtext = SQLtext + waittime + ",0,0,0,0,0,0,0,0," + facing + ",0,0)," + "\r\n";
+                    SQLtext = SQLtext + waittime + ",0," + facing + ")," + "\r\n";
                 }
                 else
                 {
-                    SQLtext = SQLtext + waittime + ",0,0,0,0,0,0,0,0," + facing + ",0,0);" + "\r\n";
+                    SQLtext = SQLtext + waittime + ",0," + facing + ");" + "\r\n";
                 }
             }
 
@@ -718,5 +776,105 @@ namespace Frm_waypoint
             Codetext = Codetext + "};" + "\r\n";
             txtOutput.Text = txtOutput.Text + Codetext + "\r\n";
         }
-   }
+
+        private void sniff_version_4()
+        {
+            state_map = 2;
+            move_time = 9;
+            move_entry = 6;
+            move_guid = 2;
+            move_x = 2;
+            move_y = 4;
+            move_z = 6;
+            move_o = 2;
+            move_pointx = 3;
+            move_pointy = 5;
+            move_pointz = 7;
+            object_time = 9;
+            object_entry = 7;
+            object_guid = 3;
+            object_pointx = 5;
+            object_pointy = 7;
+            object_pointz = 9;
+            sniff_state = "SMSG_INIT_WORLD_STATES";
+            sniff_move = "SMSG_ON_MONSTER_MOVE";
+            sniff_move_1 = "GUID: Full:";
+            sniff_move_2 = "Creature";
+            sniff_move_3 = "Vehicle";
+            sniff_move_4 = "Position: X:";
+            sniff_move_5 = " Endpoint: X:";
+            sniff_move_6 = "Spline Type: 3";
+            sniff_move_7 = "Facing Angle:";
+            sniff_object = "SMSG_UPDATE_OBJECT";
+            sniff_object_1 = "GUID: Full:";
+            sniff_object_2 = "Creature";
+            sniff_object_3 = "Vehicle";
+            sniff_object_4 = "Spline Waypoint: X:";
+        }
+
+        private void sniff_version_6()
+        {
+            state_map = 1;
+            move_time = 9;
+            move_entry = 8;
+            move_guid = 2;
+            move_x = 2;
+            move_y = 4;
+            move_z = 6;
+            move_o = 3;
+            move_pointx = 5;
+            move_pointy = 7;
+            move_pointz = 9;
+            object_time = 9;
+            object_entry = 9;
+            object_guid = 3;
+            object_pointx = 4;
+            object_pointy = 6;
+            object_pointz = 8;
+            sniff_state = "SMSG_INIT_WORLD_STATES";
+            sniff_move = "SMSG_ON_MONSTER_MOVE";
+            sniff_move_1 = "MoverGUID: Full:";
+            sniff_move_2 = "Creature/0";
+            sniff_move_3 = "Vehicle/0";
+            sniff_move_4 = "Position: X:";
+            sniff_move_5 = " Points: X:";
+            sniff_move_6 = "Face: 2";
+            sniff_move_7 = "FaceDirection:";
+            sniff_object = "SMSG_UPDATE_OBJECT";
+            sniff_object_1 = "MoverGUID: Full:";
+            sniff_object_2 = "Creature/0";
+            sniff_object_3 = "Vehicle/0";
+            sniff_object_4 = "Endpoint: X:";
+        }
+
+        private void findrange()
+        {
+            float wanderRange = 0.0f;
+
+            for (var i = 0; i < gridWaypoint.RowCount; i++)
+            {
+                float x1 = float.Parse(gridWaypoint[1, i].Value.ToString());
+                float y1 = float.Parse(gridWaypoint[2, i].Value.ToString());
+                float z1 = float.Parse(gridWaypoint[3, i].Value.ToString());
+
+                for (var ii = 0; ii < gridWaypoint.RowCount; ii++)
+                {
+                    float x2 = float.Parse(gridWaypoint[1, ii].Value.ToString());
+                    float y2 = float.Parse(gridWaypoint[2, ii].Value.ToString());
+                    float z2 = float.Parse(gridWaypoint[3, ii].Value.ToString());
+
+                    float deltaX = x2 - x1;
+                    float deltaY = y2 - y1;
+                    float deltaZ = z2 - z1;
+
+                    float distance = (float)Math.Sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+
+                    if (distance > wanderRange)
+                        wanderRange = distance;
+                }
+
+            }
+            toolStripLabelRange.Text = "Wander Range: " + (wanderRange/2).ToString();
+        }
+    }
 }
