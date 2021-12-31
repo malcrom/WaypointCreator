@@ -63,6 +63,7 @@
             this.pasteBelowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.createSQLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.makegoXyzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripEdit = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripTextBoxEntry = new System.Windows.Forms.ToolStripTextBox();
@@ -75,7 +76,7 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.makegoXyzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tabOutput.SuspendLayout();
             this.toolStripSQL.SuspendLayout();
             this.tabEditor.SuspendLayout();
@@ -96,9 +97,9 @@
             this.tabOutput.Controls.Add(this.txtOutput);
             this.tabOutput.Controls.Add(this.toolStripSQL);
             this.tabOutput.Location = new System.Drawing.Point(8, 39);
-            this.tabOutput.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabOutput.Margin = new System.Windows.Forms.Padding(6);
             this.tabOutput.Name = "tabOutput";
-            this.tabOutput.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabOutput.Padding = new System.Windows.Forms.Padding(6);
             this.tabOutput.Size = new System.Drawing.Size(2808, 1261);
             this.tabOutput.TabIndex = 1;
             this.tabOutput.Text = "SQL Output";
@@ -109,7 +110,7 @@
             this.txtOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtOutput.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOutput.Location = new System.Drawing.Point(6, 48);
-            this.txtOutput.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtOutput.Margin = new System.Windows.Forms.Padding(6);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -148,9 +149,9 @@
             this.tabEditor.Controls.Add(this.gridWaypoint);
             this.tabEditor.Controls.Add(this.toolStripEdit);
             this.tabEditor.Location = new System.Drawing.Point(8, 39);
-            this.tabEditor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabEditor.Margin = new System.Windows.Forms.Padding(6);
             this.tabEditor.Name = "tabEditor";
-            this.tabEditor.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabEditor.Padding = new System.Windows.Forms.Padding(6);
             this.tabEditor.Size = new System.Drawing.Size(2808, 1261);
             this.tabEditor.TabIndex = 0;
             this.tabEditor.Text = "Waypoint Editor";
@@ -385,49 +386,57 @@
             this.pasteBelowToolStripMenuItem,
             this.toolStripSeparator,
             this.createSQLToolStripMenuItem,
+            this.toolStripSeparator2,
             this.makegoXyzToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(301, 282);
+            this.contextMenuStrip.Size = new System.Drawing.Size(231, 244);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // pasteAboveToolStripMenuItem
             // 
             this.pasteAboveToolStripMenuItem.Name = "pasteAboveToolStripMenuItem";
-            this.pasteAboveToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.pasteAboveToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.pasteAboveToolStripMenuItem.Text = "Paste Above";
             this.pasteAboveToolStripMenuItem.Click += new System.EventHandler(this.pasteAboveToolStripMenuItem_Click);
             // 
             // pasteBelowToolStripMenuItem
             // 
             this.pasteBelowToolStripMenuItem.Name = "pasteBelowToolStripMenuItem";
-            this.pasteBelowToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.pasteBelowToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.pasteBelowToolStripMenuItem.Text = "Paste Below";
             this.pasteBelowToolStripMenuItem.Click += new System.EventHandler(this.pasteBelowToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(297, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(227, 6);
             // 
             // createSQLToolStripMenuItem
             // 
             this.createSQLToolStripMenuItem.Name = "createSQLToolStripMenuItem";
-            this.createSQLToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.createSQLToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
             this.createSQLToolStripMenuItem.Text = "Create SQL";
             this.createSQLToolStripMenuItem.Click += new System.EventHandler(this.createSQLToolStripMenuItem_Click);
+            // 
+            // makegoXyzToolStripMenuItem
+            // 
+            this.makegoXyzToolStripMenuItem.Name = "makegoXyzToolStripMenuItem";
+            this.makegoXyzToolStripMenuItem.Size = new System.Drawing.Size(230, 38);
+            this.makegoXyzToolStripMenuItem.Text = "Make .go xyz";
+            this.makegoXyzToolStripMenuItem.Click += new System.EventHandler(this.makegoXyzToolStripMenuItem_Click);
             // 
             // toolStripEdit
             // 
@@ -523,7 +532,7 @@
             this.tab_Waypoint.Controls.Add(this.tabOutput);
             this.tab_Waypoint.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tab_Waypoint.Location = new System.Drawing.Point(0, 0);
-            this.tab_Waypoint.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tab_Waypoint.Margin = new System.Windows.Forms.Padding(6);
             this.tab_Waypoint.Name = "tab_Waypoint";
             this.tab_Waypoint.SelectedIndex = 0;
             this.tab_Waypoint.Size = new System.Drawing.Size(2824, 1308);
@@ -547,12 +556,10 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(176, 32);
             this.toolStripStatusLabel.Text = "No File Loaded";
             // 
-            // makegoXyzToolStripMenuItem
+            // toolStripSeparator2
             // 
-            this.makegoXyzToolStripMenuItem.Name = "makegoXyzToolStripMenuItem";
-            this.makegoXyzToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
-            this.makegoXyzToolStripMenuItem.Text = "Make .go xyz";
-            this.makegoXyzToolStripMenuItem.Click += new System.EventHandler(this.makegoXyzToolStripMenuItem_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(227, 6);
             // 
             // frm_Waypoint
             // 
@@ -563,7 +570,7 @@
             this.Controls.Add(this.statusStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frm_Waypoint";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -591,12 +598,13 @@
 
         #endregion
 
+        internal System.Windows.Forms.DataGridView gridWaypoint;
+        internal System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.TabPage tabOutput;
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.TabPage tabEditor;
         private System.Windows.Forms.ListBox listBox;
-        internal System.Windows.Forms.DataGridView gridWaypoint;
         private System.Windows.Forms.ToolStrip toolStripEdit;
         private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxEntry;
@@ -604,15 +612,16 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteAboveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteBelowToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem createSQLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem makegoXyzToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonSettings;
         private System.Windows.Forms.ToolStrip toolStripSQL;
         private System.Windows.Forms.ToolStripButton toolStripButtonSave;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteAboveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteBelowToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridColumn_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridColumn_x;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridColumn_y;
@@ -624,8 +633,7 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.ToolStripLabel toolStripLabelEntry;
-        internal System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.ToolStripLabel toolStripLabelRange;
-        private System.Windows.Forms.ToolStripMenuItem makegoXyzToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

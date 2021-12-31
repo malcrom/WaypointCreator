@@ -110,12 +110,12 @@ namespace Frm_waypoint.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool TDB {
+        public bool DB {
             get {
-                return ((bool)(this["TDB"]));
+                return ((bool)(this["DB"]));
             }
             set {
-                this["TDB"] = value;
+                this["DB"] = value;
             }
         }
         

@@ -208,8 +208,8 @@ namespace Frm_waypoint
 
         private void createSQLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.TDB)
-                createSQL_TDB();
+            if (Properties.Settings.Default.DB)
+                createSQL_DB();
             if (Properties.Settings.Default.UDB)
                 createSQL_UDB();
             if (Properties.Settings.Default.SAI)
@@ -627,7 +627,7 @@ namespace Frm_waypoint
             }
         }
 
-        private void createSQL_TDB()
+        private void createSQL_DB()
         {
             //Send to SQL
             SQLtext = "-- Pathing for " + creature_name + " Entry: " + creature_entry + "\r\n" + "SET @NPC := XXXXXX;" + "\r\n" + "SET @PATH := @NPC * 10;" + "\r\n";

@@ -92,10 +92,10 @@ namespace Frm_waypoint
 
         private void GetValues()
         {
-            if (Properties.Settings.Default.TDB == true)
-                chkBoxTDB.CheckState = CheckState.Checked;
+            if (Properties.Settings.Default.DB == true)
+                chkBoxDB.CheckState = CheckState.Checked;
             else
-                chkBoxTDB.CheckState = CheckState.Unchecked;
+                chkBoxDB.CheckState = CheckState.Unchecked;
 
             if (Properties.Settings.Default.UDB == true)
                 chkBoxUDB.CheckState = CheckState.Checked;
@@ -135,10 +135,10 @@ namespace Frm_waypoint
 
         private void SaveValues()
         {
-            if (chkBoxTDB.CheckState == CheckState.Checked)
-                Properties.Settings.Default.TDB = true;
+            if (chkBoxDB.CheckState == CheckState.Checked)
+                Properties.Settings.Default.DB = true;
             else
-                Properties.Settings.Default.TDB = false;
+                Properties.Settings.Default.DB = false;
 
             if (chkBoxUDB.CheckState == CheckState.Checked)
                 Properties.Settings.Default.UDB = true;
@@ -179,7 +179,7 @@ namespace Frm_waypoint
 
         private void SetDefaults()
         {
-            chkBoxTDB.CheckState = CheckState.Checked;
+            chkBoxDB.CheckState = CheckState.Checked;
             chkBoxUDB.CheckState = CheckState.Unchecked;
             chkBoxSAI.CheckState = CheckState.Unchecked;
             chkBoxCPP.CheckState = CheckState.Unchecked;
