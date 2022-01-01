@@ -1,4 +1,4 @@
-# ![logo](https://raw.githubusercontent.com/WaypointCreator/blob/master/images/Fire%20Elemental.png) Waypoint Creator
+# ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/Fire%20Elemental.png) Waypoint Creator
 
 Note: This software requires a parsed packet file to work.
 
