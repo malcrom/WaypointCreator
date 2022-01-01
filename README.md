@@ -5,4 +5,4 @@ Note: This software requires a parsed packet file to work.
 
 ## How to use
 
-(https://github.com/malcrom/WaypointCreator/blob/master/images/login_screen.png)
+# ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/login_screen.png)
