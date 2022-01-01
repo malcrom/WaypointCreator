@@ -1,5 +1,4 @@
-Waypoint Creator
-===============
+## Waypoint Creator
 
 Note: This software requires a parsed packet file to work.
 
