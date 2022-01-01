@@ -28,6 +28,6 @@ You can now search through the movement packets by all, leaving the entry textbo
 # ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/search_all.png)
 # ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/search_entry.png)
 
-You will see a list of guids the program has collected movement packets for, if any, and selecting one of the guids, by clicking on it, will show you its collected movement packets displayed in a list and on a grid.
+You will see a list of guids the program has collected movement packets for, if any. You can then select a guid, by clicking on it, and you will be shown its collected movement packets displayed in a list and on a grid.
 
 More to come...
