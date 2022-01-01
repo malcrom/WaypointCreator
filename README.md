@@ -11,4 +11,14 @@ When you start the program you will see the following window. If you have access
 
 ## Main Window
 
+After you login to your database, or click cancel, you will be presented with the main window. Click the import sniff button and you will see an Open file window.
+
 # ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/main_window.png)
+
+Select a parsed pkt file on your computer to load into the program and click the Open button. The program will then collect all the movement packets from the sniff file.
+
+# ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/open_file.png)
+
+You will now see that a file has been loaded into the program ready to examine the movement packets
+
+# ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/loaded_file.png)
