@@ -22,3 +22,8 @@ Select a parsed pkt file on your computer to load into the program and click the
 You will now see that a file has been loaded into the program ready to examine the movement packets
 
 # ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/loaded_file.png)
+
+You can now search through the movement packets by all or by entry. As shown below.
+
+# ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/search_all.png)
+# ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/search_entry.png)
