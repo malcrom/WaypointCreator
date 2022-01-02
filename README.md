@@ -37,3 +37,7 @@ If you look in the top right of the window you will see Wander Range. This is a 
 # ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/make_go_xyz.png)
 
 If you wish to locate this npc in game you can right click on a point and then click "Make .go xyz". I this case it will copy ".go xyz -320.78665 -787.35364 56.93638" to your clipboard so you can paste it in game to take you to the location. Note: Make sure you are on the right map before doing this or you may find yourself falling.
+
+# Pathing "The main reason we are here"
+
+
