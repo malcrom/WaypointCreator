@@ -40,6 +40,6 @@ If you wish to locate this npc in game you can right click on a point and then c
 
 # Pathing "The main reason we are here"
 
-Below we see a sniff that appears to be a path. It is important to not that this software does not detext paths. It will show you movement packets on a graph and it is up to you to find the path. Here we can see that the movement is repeating, thus a path but some points are ther more than once and need to be removed.
+Below we see a sniff that appears to be a path. It is important to not that this software does not detext paths, but will show you movement packets on a graph and it is up to you to find the path in the points. Here we can see that the movement is repeating, thus a path, but some points appear more than once and need to be removed.
 
 # ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/path_circular_sniff.png)
