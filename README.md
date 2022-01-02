@@ -34,4 +34,6 @@ This group of movement packets shown here is obviously random movement and not a
 
 If you look in the top right of the window you will see Wander Range. This is a calculation of the move radius based on the distance between the two farthest collected move points. This will be more accurate with more points collected. Note that if you see a spike where the creature moved into combat you may wish to delete those points for a more accurate calculation. I will get into cutting and pasting when I discuss paths. Here I would set the wander distance for this creature to 10.
 
+# ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/make_go_xyz.png)
 
+If you wish to locate this npc in game you can right click on a point and then click "Make .go xyz". I this case it will copy ".go xyz -320.78665 -787.35364 56.93638" to your clipboard so you can paste it in game to take you to the location. Note: Make sure you are on the right map before doing this or you may find yourself falling.
