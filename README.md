@@ -30,4 +30,8 @@ You can now search through the movement packets by all, leaving the entry textbo
 
 You will see a list of guids the program has collected movement packets for, if any. You can then select a guid, by clicking on it, and you will be shown its collected movement packets displayed in a list and on a grid.
 
-More to come...
+This group of movement packets shown here is obviously random movement and not a path But it is still useful. First note that "Gray Bear" is shown because I logged into my database. If I did not log in this would show "Entry XXXXX database not connected". Also if you are connected to a database and the sniff contains a creature not found in that database you will see "Entry XXXXX not in database".
+
+If you look in the top right of the window you will see Wander Range. This is a calculation of the move radius based on the distance between the two farthest collected move points. This will be more accurate with more points collected. Note that if you see a spike where the creature moved into combat you may wish to delete those points for a more accurate calculation. I will get into cutting and pasting when I discuss paths. Here I would set the wander distance for this creature to 10.
+
+
