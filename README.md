@@ -43,3 +43,15 @@ If you wish to locate this npc in game you can right click on a point and then c
 Below we see a sniff that appears to be a path. It is important to not that this software does not detext paths, but will show you movement packets on a graph and it is up to you to find the path in the points. Here we can see that the movement is repeating, thus a path, but some points appear more than once and need to be removed.
 
 # ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/path_circular_sniff.png)
+
+Looking at the path you can see that it goes from point 1 to point 10 and then repeats so we should remove all the points above 10 by selecting them, then right clicking on the points, and clicking cut.
+
+# ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/path_circular_cut.png)
+
+After cutting the duplicate points we are left with the path shown below.
+
+# ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/path_circular_fixed.png)
+
+You can then right click on the waypoints again and click "Create SQL" to output your path to the textbox on the SQL Output Tab. 
+
+# ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/path_circular_output.png)
