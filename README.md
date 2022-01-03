@@ -52,6 +52,8 @@ After cutting the duplicate points we are left with the path shown below.
 
 # ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/path_circular_fixed.png)
 
-You can then right click on the waypoints again and click "Create SQL" to output your path to the textbox on the SQL Output Tab. 
+You can then right click on the waypoints again and click "Create SQL" to output your path to the textbox on the SQL Output Tab. Click on the SQL Output tab and you will see your SQL for the path.
+
+It's very important to note that the creature_addon INSERT line is generic. The values given will be good for most creatures but may be wrong for some. If the npc has a mount or auras you will need to update it before inserting into db or you will erase them. Also you will need to make sure bytes2 is correct. 
 
 # ![logo](https://github.com/malcrom/WaypointCreator/blob/master/images/path_circular_output.png)
