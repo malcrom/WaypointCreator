@@ -454,6 +454,7 @@ namespace Frm_waypoint
                     sniff.o = "0";
                 }
 
+                // Sniff points from createobject "Mostly for flying"
                 if (Properties.Settings.Default.ObjectUpdate == true && lines[i].Contains(sniff_object))
                 {
                     sniff.entry = "";
@@ -475,6 +476,7 @@ namespace Frm_waypoint
                             }
                         }
 
+                        // Endpoint: X: doesn't exist in the sniffs I checked. May be 335 and above. 
                         if (lines[i].Contains(sniff_object_4))
                         {
 
