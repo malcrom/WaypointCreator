@@ -28,6 +28,9 @@ namespace Frm_waypoint
         string SQLtext        = "";
         string mapID          = "";
 
+        float midX = 0;
+        float midY = 0;
+
         struct Packet
         {
             public string time;
@@ -365,7 +368,7 @@ namespace Frm_waypoint
             sniff.x     = "";
             sniff.y     = "";
             sniff.z     = "";
-            sniff.o     = "0";
+            sniff.o     = "NULL";
             sniff.time  = "";
 
             string[] columns = null;
@@ -451,7 +454,7 @@ namespace Frm_waypoint
                         dt.Rows.Add(dr);
                         sniff.entry = "";
                     }
-                    sniff.o = "0";
+                    sniff.o = "NULL";
                 }
 
                 // Sniff points from createobject "Mostly for flying"
@@ -484,7 +487,7 @@ namespace Frm_waypoint
                             sniff.x = packetline[object_pointx];
                             sniff.y = packetline[object_pointy];
                             sniff.z = packetline[object_pointz];
-                            sniff.o = "0";
+                            sniff.o = "NULL";
 
                             DataRow dr = dt.NewRow();
                             dr[0] = sniff.entry;
@@ -869,6 +872,9 @@ namespace Frm_waypoint
                     float deltaY = y2 - y1;
                     float deltaZ = z2 - z1;
 
+                    midX = (x2 + x1)/2;
+                    midY = (y2 + y1)/2;
+
                     float distance = (float)Math.Sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
 
                     if (distance > wanderRange)
@@ -877,6 +883,12 @@ namespace Frm_waypoint
 
             }
             toolStripLabelRange.Text = "Wander Range: " + (wanderRange/2).ToString();
+        }
+
+        private void makegoMidpointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string mid = ".go xy " + midX.ToString() + " " + midY.ToString();
+            Clipboard.SetText(mid);
         }
     }
 }
