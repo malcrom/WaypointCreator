@@ -321,7 +321,7 @@ namespace Frm_waypoint
                 // Determine sniff version
                 if ((sniffversion.Contains("V4")) || (sniffversion.Contains("V5")))
                     sniff_version_4();
-                else if ((sniffversion.Contains("V1")) || (sniffversion.Contains("V2")) || (sniffversion.Contains("V6")) || (sniffversion.Contains("V7")) || (sniffversion.Contains("V9")))
+                else if ((sniffversion.Contains("V1")) || (sniffversion.Contains("V2")) || (sniffversion.Contains("V3")) || (sniffversion.Contains("V6")) || (sniffversion.Contains("V7")) || (sniffversion.Contains("V9")))
                     sniff_version_6();
 
                 // Process new sniff file
