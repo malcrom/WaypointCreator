@@ -719,8 +719,8 @@ namespace Frm_waypoint
             string name = creature_name.Replace("'", "''");
             //Send to SQL
             SQLtext = "-- Pathing for " + creature_name + " Entry: " + creature_entry + " 'SAI FORMAT' \r\n" + "SET @NPC := XXXXXX;" + "\r\n";
-            SQLtext = SQLtext + "DELETE FROM `waypoints` WHERE `id`=@NPC;" + "\r\n";
-            SQLtext = SQLtext + "INSERT INTO `waypoints` (`entry`,`pointid`,`position_x`,`position_y`,`position_z`,`point_comment`) VALUES" + "\r\n";
+            SQLtext = SQLtext + "DELETE FROM `waypoints` WHERE `entry`=@NPC;" + "\r\n";
+            SQLtext = SQLtext + "INSERT INTO `waypoints` (`entry`,`pointid`,`position_x`,`position_y`,`position_z`,`orientation`,`delay`,`point_comment`) VALUES" + "\r\n";
 
             for (var l = 0; l < gridWaypoint.RowCount; l++)
             {
@@ -743,11 +743,11 @@ namespace Frm_waypoint
 
                 if (l < (gridWaypoint.RowCount - 1))
                 {
-                    SQLtext = SQLtext + "'" + name + "')," + "\r\n";
+                    SQLtext = SQLtext + facing + "," + waittime + "'" + name + ",')," + "\r\n";
                 }
                 else
                 {
-                    SQLtext = SQLtext + "'" + name + "');" + "\r\n";
+                    SQLtext = SQLtext + facing + "," + waittime + "'" + name + ",');" + "\r\n";
                 }
             }
 

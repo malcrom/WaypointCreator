@@ -61,7 +61,7 @@ namespace Frm_waypoint
 
         private void Btn_Cancel_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.UsingDB = false;
+            //Settings.Default.UsingDB = false;
             Properties.Settings.Default.Save();
             LoadMain();
         }
@@ -69,8 +69,8 @@ namespace Frm_waypoint
         private void LoadMain()
         {
             // Open Frm_waypoint and hide login form.
-            System.Windows.Forms.Form Frm_waypoint = new frm_Waypoint();
-            Frm_waypoint.Show();
+            System.Windows.Forms.Form Frm_Main = new frm_Waypoint();
+            Frm_Main.Show();
             this.Hide();
         }
     }
