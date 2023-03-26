@@ -61,7 +61,7 @@ namespace Frm_waypoint
 
         private void Btn_Cancel_Click(object sender, EventArgs e)
         {
-            //Settings.Default.UsingDB = false;
+            Properties.Settings.Default.UsingDB = false;
             Properties.Settings.Default.Save();
             LoadMain();
         }
